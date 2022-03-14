@@ -8,10 +8,21 @@
 ==========================================================================================*/
 
 'use strict';
+var sidebarToggle = $('.sidebar-toggle'),
+  overlay = $('.body-content-overlay'),
+  sidebarContent = $('.sidebar-content');
 
+// Chat sidebar toggle
+function sidebarToggleFunction() {
+  if (sidebarToggle.length) {
+    sidebarToggle.on('click', function () {
+      sidebarContent.addClass('show');
+      overlay.addClass('show');
+    });
+  }
+}
 $(function () {
   var chatUsersListWrapper = $('.chat-application .chat-user-list-wrapper'),
-    overlay = $('.body-content-overlay'),
     profileSidebar = $('.chat-application .chat-profile-sidebar'),
     profileSidebarArea = $('.chat-application .profile-sidebar-area'),
     profileToggle = $('.chat-application .sidebar-profile-toggle'),
@@ -22,7 +33,6 @@ $(function () {
     chatsUserList = $('.chat-users-list'),
     chatList = $('.chat-list'),
     contactList = $('.contact-list'),
-    sidebarContent = $('.sidebar-content'),
     closeIcon = $('.chat-application .close-icon'),
     sidebarCloseIcon = $('.chat-application .sidebar-close-icon'),
     menuToggle = $('.chat-application .menu-toggle'),
@@ -163,9 +173,8 @@ $(function () {
     });
   }
 
-  // Chat sidebar toggle
-  if ($(window).width() < 991) {
-    onClickFn();
+  if ($(window).width() < 992) {
+    sidebarToggleFunction();
   }
 
   // Filter
@@ -239,9 +248,9 @@ $(function () {
     }
   }
 });
-
 // Window Resize
 $(window).on('resize', function () {
+  sidebarToggleFunction();
   if ($(window).width() > 992) {
     if ($('.chat-application .body-content-overlay').hasClass('show')) {
       $('.app-content .sidebar-left').removeClass('show');
@@ -251,7 +260,6 @@ $(window).on('resize', function () {
 
   // Chat sidebar toggle
   if ($(window).width() < 991) {
-    onClickFn();
     if (
       !$('.chat-application .chat-profile-sidebar').hasClass('show') ||
       !$('.chat-application .sidebar-content').hasClass('show')
@@ -261,21 +269,6 @@ $(window).on('resize', function () {
     }
   }
 });
-
-$(document).on('click', '.sidebar-toggle', function () {
-  if ($(window).width() < 992) {
-    onClickFn();
-  }
-});
-function onClickFn() {
-  var sidebarContent = $('.sidebar-content'),
-    sidebarToggle = $('.sidebar-toggle'),
-    overlay = $('.body-content-overlay');
-  if (sidebarToggle.length) {
-    sidebarContent.addClass('show');
-    overlay.addClass('show');
-  }
-}
 
 // Add message to chat - function call on form submit
 function enterChat(source) {

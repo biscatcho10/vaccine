@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{{-- <html class="loading" lang="en" data-textdirection="ltr"> --}}
-    <html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="rtl">
+<html class="loading" lang="en" data-textdirection="ltr">
+    {{-- <html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="rtl"> --}}
 
 <!-- BEGIN: Head-->
 

@@ -119,6 +119,7 @@
 
 .toast-top-center, .toast-top-full-width {
   top : 1.3rem;
+  width : 100% !important;
 }
 
 .toast-bottom-left {
@@ -133,6 +134,7 @@
 
 .toast-bottom-center, .toast-bottom-full-width {
   bottom : 1.3rem;
+  width : 100% !important;
 }
 
 @media (max-width: 480px) and (min-width: 241px) {
@@ -143,11 +145,11 @@
     top : 0;
     left : -1px;
   }
-  #toast-container:not(.toast-top-full-width):not(.toast-bottom-full-width) > div {
+  #toast-container > div {
     width : 20rem;
   }
   .toast-top-left {
-    right : 0;
+    right : 1rem;
   }
   #toast-container.toast-top-center, #toast-container.toast-bottom-center {
     left : 1rem;
@@ -164,7 +166,7 @@
     width : 100%;
   }
   .toast-bottom-left {
-    right : 0.25rem;
+    right : 1rem;
     bottom : 0.75rem;
   }
   .toast-bottom-right {

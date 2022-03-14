@@ -24,8 +24,8 @@
   margin-top: .25rem; }
 
 .bs-stepper .bs-stepper-header .step .step-trigger {
-  padding: 0;
   flex-wrap: nowrap;
+  padding: 0;
   font-weight: normal; }
 
 .bs-stepper .bs-stepper-header .step .step-trigger .bs-stepper-box {

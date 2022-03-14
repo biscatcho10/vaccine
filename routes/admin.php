@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('dashboard', [HomeController::class, 'dashboard']);
-Route::get('locale/{locale}', [HomeController::class, 'changeLanguage']);
-
-
-Route::resource('admin', AdminController::class);
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('dashboard', [HomeController::class, 'dashboard']);
+    Route::get('locale/{locale}', [HomeController::class, 'changeLanguage']);
+    Route::resource('admin', AdminController::class);
+});
