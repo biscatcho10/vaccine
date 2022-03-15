@@ -9,12 +9,12 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Well Pharamacy</title>
+    <title>Well Pharamacy | @yield('title') </title>
     <link rel="apple-touch-icon" href="{{asset('backend/app-assets/images/ico/')}}apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('backend/app-assets/images/ico/')}}favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
-    @include('backend.partials.layouts.styles')
+    @include('backend.layouts.styles')
 
 </head>
 <!-- END: Head-->
@@ -24,13 +24,13 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
-    @include('backend.partials.layouts.nav')
-    @include('backend.partials.layouts.header')
+    @include('backend.layouts.nav')
+    @include('backend.layouts.header')
     <!-- END: Header-->
 
 
     <!-- BEGIN: Main Menu-->
-    @include('backend.partials.layouts.sidebar')
+    @include('backend.layouts.sidebar')
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
@@ -41,6 +41,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
+                @yield('page-header')
                 <!-- Dashboard Ecommerce Starts -->
                 @yield('content')
                 <!-- Dashboard Ecommerce ends -->
@@ -54,12 +55,12 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('backend.partials.layouts.footer')
+    @include('backend.layouts.footer')
     <!-- END: Footer-->
 
 
     <!-- BEGIN: Scripts-->
-    @include('backend.partials.layouts.scripts')
+    @include('backend.layouts.scripts')
     <!-- END: Scripts-->
 
 

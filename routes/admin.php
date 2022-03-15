@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:web'])->group(function () {
-    Route::get('dashboard', [HomeController::class, 'dashboard']);
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('locale/{locale}', [HomeController::class, 'changeLanguage']);
     Route::resource('admin', AdminController::class);
+
+    // Settings
+    Route::get('settings', [SettingController::class ,'showSettingsForm'])->name('settings');
+    Route::post('settings', [SettingController::class, 'updateSettings'])->name('update-settings');
 });
