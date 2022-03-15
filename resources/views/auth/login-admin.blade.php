@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Login Page - Well Pharamcy</title>
     <link rel="apple-touch-icon" href="{{asset('backend/app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('backend/app-assets/images/ico/favicon.ico')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -30,7 +30,7 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/css/pages/page-auth.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/css/pages/authentication.css')}}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -51,12 +51,12 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <div class="auth-wrapper auth-v1 px-2">
-                    <div class="auth-inner py-2">
-                        <!-- Login v1 -->
+                <div class="auth-wrapper auth-basic px-2">
+                    <div class="auth-inner my-2">
+                        <!-- Login basic -->
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="javascript:void(0);" class="brand-logo">
+                                <a href="index.html" class="brand-logo">
                                     <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                                         <defs>
                                             <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -80,15 +80,14 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ml-1">Well Pharamacy</h2>
+                                    <h2 class="brand-text text-primary ms-1">Well Pharamacy</h2>
                                 </a>
 
-                                <h4 class="card-title mb-1">Welcome to Well Pharamacy! 👋</h4>
-                                <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+                                <h4 class="card-title mb-3">Welcome to Well Pharamacy</h4>
 
-                                <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
+                                <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="mb-1">
                                         <label for="login-email" class="form-label">Email</label>
                                         <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                                         @error('email')
@@ -98,18 +97,16 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="mb-1">
                                         <div class="d-flex justify-content-between">
-                                            <label for="login-password">Password</label>
-                                            <a href="page-auth-forgot-password-v1.html">
+                                            <label class="form-label" for="login-password">Password</label>
+                                            <a href="auth-forgot-password-basic.html">
                                                 <small>Forgot Password?</small>
                                             </a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
                                             <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                                            <div class="input-group-append">
-                                                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                            </div>
+                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -117,17 +114,18 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="remember-me" tabindex="3" />
-                                            <label class="custom-control-label" for="remember-me"> Remember Me </label>
+                                    <div class="mb-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" />
+                                            <label class="form-check-label" for="remember-me"> Remember Me </label>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-block" tabindex="4">Sign in</button>
+                                    <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign in</button>
                                 </form>
+
                             </div>
                         </div>
-                        <!-- /Login v1 -->
+                        <!-- /Login basic -->
                     </div>
                 </div>
 
@@ -151,7 +149,7 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{asset('backend/app-assets/js/scripts/pages/page-auth-login.js')}}"></script>
+    <script src="{{asset('backend/app-assets/js/scripts/pages/auth-login.js')}}"></script>
     <!-- END: Page JS-->
 
     <script>

@@ -7,11 +7,11 @@
                     <i class="ficon"  data-feather="sun"></i>
                 </a>
             </li>
-            
+
             <li class="nav-item dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none">
-                        <span class="user-name fw-bolder">John Doe</span>
+                        <span class="user-name fw-bolder">{{auth()->user()->name}}</span>
                         <span
                             class="user-status">Admin</span>
                         </div>
@@ -36,9 +36,12 @@
                         Settings
                     </a>
 
-                    <a class="dropdown-item" href="auth-login-cover.html">
-                        <i class="me-50" data-feather="power"></i> Logout
-                    </a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item d-block w-100">
+                            <i class="me-50" data-feather="power"></i> Logout
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>
