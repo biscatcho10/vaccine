@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('backend.home-dark');
+        return view('backend.home');
     }
 
 

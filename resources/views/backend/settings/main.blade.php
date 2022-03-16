@@ -1,33 +1,21 @@
-@extends('backend.home-dark')
+@extends('backend.dark-app')
 
 @section('title')
     {{ __('Main Settings') }}
 @stop
 
-
-@section('page-header')
-    <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">{{ __('Settings') }}</h2>
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
-                            </li>
-                            <li class="breadcrumb-item"><a href="#">{{ __('Main Settings') }}</a>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-@endsection
+@push('css')
+<!---Internal Fileupload css-->
+<link href="{{ asset('backend/app-assets/vendors/js/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+@endpush
 
 
 @section('content')
+
+    @component('backend.components.breadcrumbs')
+        @slot('page', 'Settings')
+    @endcomponent
+
     <!-- row -->
     <div class="row">
 
@@ -41,110 +29,30 @@
                     <h3 class="card-title">{{ __('Main Settings') }}</h3>
                 </div>
                 <div class="card-body h-100">
-                    <form class="needs-validation" autocomplete="off" action="{{ route('update-settings') }}"
-                        method="post" autocomplete="off" enctype="multipart/form-data" id="form">
+                    <form class="needs-validation" autocomplete="off" action="{{ route('update-settings') }}" method="post"
+                        autocomplete="off" enctype="multipart/form-data" id="form">
                         @csrf
-
-{{--
-                        <div id="accordionIcon" class="accordion accordion-without-arrow" data-toggle-hover="true">
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header text-body d-flex justify-content-between" id="accordionIconOne">
-                                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                                        data-bs-target="#accordionIcon-1" aria-controls="accordionIcon-1"
-                                        aria-expanded="false">
-                                        Home Page Title
-                                    </button>
-                                </h2>
-
-                                <div id="accordionIcon-1" class="accordion-collapse collapse"  data-bs-parent="#accordionIcon" style="">
-                                    <div class="accordion-body">
-                                        <div class="row row-sm mg-b-20">
-
-                                            <div class="form-group">
-                                                <label for="">Title</label>
-                                                <input type="text" name="page_title" class="form-control" placeholder="Enter Home Page Title" value="{{ array_key_exists('page_title', $settings) ? $settings['page_title'] : '' }}" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header text-body d-flex justify-content-between" id="accordionIconOne">
-                                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                                        data-bs-target="#accordionIcon-2" aria-controls="accordionIcon-2"
-                                        aria-expanded="false">
-                                        Image and Logo
-                                    </button>
-                                </h2>
-
-                                <div id="accordionIcon-2" class="accordion-collapse collapse"  data-bs-parent="#accordionIcon" style="">
-                                    <div class="accordion-body">
-                                        <div class="row row-sm mg-b-20">
-                                            <div class="col-lg-6">
-                                                <label class="form-label">Logo</label>
-                                                <input type="file" class="dropify" name="logo" data-height="200"  @if(array_key_exists('logo', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['logo']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("logo is required")}}' @endif>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <label class="form-label">Home Page Image</label>
-                                                <input type="file" class="dropify" name="page_image" data-height="200"  @if(array_key_exists('page_image', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['page_image']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("favicon is required")}}' @endif>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header text-body d-flex justify-content-between" id="accordionIconOne">
-                                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                                        data-bs-target="#accordionIcon-3" aria-controls="accordionIcon-3"
-                                        aria-expanded="false">
-                                        Social Media
-                                    </button>
-                                </h2>
-
-                                <div id="accordionIcon-3" class="accordion-collapse collapse"  data-bs-parent="#accordionIcon" style="">
-                                    <div class="accordion-body">
-                                        <div class="row">
-
-                                            <div class="form-group">
-                                                <label for="">{{__("Facebook link")}}</label>
-                                                <input type="url" name="facebook_link" class="form-control" placeholder="{{ __('https://facebook.com') }}" value="{{ array_key_exists('facebook_link', $settings) ? $settings['facebook_link'] : '' }}" required>
-                                            </div>
-
-                                            <div class="form-group my-2">
-                                                <label for="">{{__("Twitter link")}}</label>
-                                                <input type="url" name="twitter_link" class="form-control" placeholder="{{ __('https://twitter.com') }}" value="{{ array_key_exists('twitter_link', $settings) ? $settings['twitter_link'] : '' }}" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="">{{__("instgram link")}}</label>
-                                                <input type="url" name="instgram_link" class="form-control" placeholder="{{ __('https://instgram.com') }}" value="{{ array_key_exists('instgram_link', $settings) ? $settings['instgram_link'] : '' }}" required>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> --}}
 
 
                         <div class="accordion accordion-margin" id="accordionMargin" data-toggle-hover="true">
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMargin1">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin1" aria-expanded="false" aria-controls="accordionMargin1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin1" aria-expanded="false"
+                                        aria-controls="accordionMargin1">
                                         Home Page Title
                                     </button>
                                 </h2>
-                                <div id="accordionMargin1" class="accordion-collapse collapse" aria-labelledby="headingMargin1" data-bs-parent="#accordionMargin" style="">
+                                <div id="accordionMargin1" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin1" data-bs-parent="#accordionMargin" style="">
                                     <div class="accordion-body">
                                         <div class="form-group">
                                             <label for="">Title</label>
-                                            <input type="text" name="page_title" class="form-control" placeholder="Enter Home Page Title" value="{{ array_key_exists('page_title', $settings) ? $settings['page_title'] : '' }}" required>
+                                            <input type="text" name="page_title" class="form-control"
+                                                placeholder="Enter Home Page Title"
+                                                value="{{ array_key_exists('page_title', $settings) ? $settings['page_title'] : '' }}"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -152,21 +60,26 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMargin3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin2" aria-expanded="false" aria-controls="accordionMargin2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin2" aria-expanded="false"
+                                        aria-controls="accordionMargin2">
                                         Image and Logo
                                     </button>
                                 </h2>
-                                <div id="accordionMargin2" class="accordion-collapse collapse" aria-labelledby="headingMargin2" data-bs-parent="#accordionMargin" style="">
+                                <div id="accordionMargin2" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin2" data-bs-parent="#accordionMargin" style="">
                                     <div class="accordion-body">
                                         <div class="row row-sm mg-b-20">
                                             <div class="col-lg-6">
                                                 <label class="form-label">Logo</label>
-                                                <input type="file" class="dropify" name="logo" data-height="200"  @if(array_key_exists('logo', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['logo']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("logo is required")}}' @endif>
+                                                <input type="file" class="dropify" name="logo" data-height="200"
+                                                    @if (array_key_exists('logo', $settings)) data-default-file="{{ asset('storage/images/settings/' . $settings['logo']) }}" @else  data-parsley-required= true data-parsley-required-message='{{ __('logo is required') }}' @endif>
                                             </div>
 
                                             <div class="col-lg-6">
                                                 <label class="form-label">Home Page Image</label>
-                                                <input type="file" class="dropify" name="page_image" data-height="200"  @if(array_key_exists('page_image', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['page_image']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("favicon is required")}}' @endif>
+                                                <input type="file" class="dropify" name="page_image" data-height="200"
+                                                    @if (array_key_exists('page_image', $settings)) data-default-file="{{ asset('storage/images/settings/' . $settings['page_image']) }}" @else  data-parsley-required= true data-parsley-required-message='{{ __('home page image is required') }}' @endif>
                                             </div>
                                         </div>
                                     </div>
@@ -175,21 +88,262 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingMargin3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionMargin3" aria-expanded="false" aria-controls="accordionMargin3">
-                                        Image and Logo
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin3" aria-expanded="false"
+                                        aria-controls="accordionMargin3">
+                                        Social Medial
                                     </button>
                                 </h2>
-                                <div id="accordionMargin3" class="accordion-collapse collapse" aria-labelledby="headingMargin3" data-bs-parent="#accordionMargin" style="">
+                                <div id="accordionMargin3" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin3" data-bs-parent="#accordionMargin" style="">
                                     <div class="accordion-body">
-                                        <div class="row row-sm mg-b-20">
-                                            <div class="col-lg-6">
-                                                <label class="form-label">Logo</label>
-                                                <input type="file" class="dropify" name="logo" data-height="200"  @if(array_key_exists('logo', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['logo']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("logo is required")}}' @endif>
-                                            </div>
+                                        <div class="form-group">
+                                            <label> Facebook </label>
+                                            <input
+                                                type="url"
+                                                name="facebook_link"
+                                                class="form-control"
+                                                data-parsley-required
+                                                data-parsley-required-message = "{{__("facebook link is required")}}"
+                                                data-parsley-trigger ="keyup"
+                                                data-parsley-type ="url"
+                                                data-parsley-type-message = "{{__('this value should be a valid url')}}"
+                                                placeholder="{{ __('https://facebook.com') }}"
+                                                value="{{ array_key_exists('facebook_link', $settings) ? $settings['facebook_link'] : '' }}">
+                                        </div>
+                                        <div class="form-group my-2">
+                                            <label> Twitter </label>
+                                            <input
+                                                type="url"
+                                                name="twitter_link"
+                                                class="form-control"
+                                                data-parsley-required
+                                                data-parsley-required-message = "{{__("twitter link is required")}}"
+                                                data-parsley-trigger ="keyup"
+                                                data-parsley-type ="url"
+                                                data-parsley-type-message = "{{__('this value should be a valid url')}}"
+                                                placeholder="{{ __('https://twitter.com') }}"
+                                                value="{{ array_key_exists('twitter_link', $settings) ? $settings['twitter_link'] : '' }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label> Instagram </label>
+                                            <input
+                                                type="url"
+                                                name="instagram_link"
+                                                class="form-control"
+                                                data-parsley-required
+                                                data-parsley-required-message = "{{__("instagram link is required")}}"
+                                                data-parsley-trigger ="keyup"
+                                                data-parsley-type ="url"
+                                                data-parsley-type-message = "{{__('this value should be a valid url')}}"
+                                                placeholder="{{ __('https://instagram.com') }}"
+                                                value="{{ array_key_exists('instagram_link', $settings) ? $settings['instagram_link'] : '' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                            <div class="col-lg-6">
-                                                <label class="form-label">Home Page Image</label>
-                                                <input type="file" class="dropify" name="page_image" data-height="200"  @if(array_key_exists('page_image', $settings)) data-default-file="{{ asset('storage/images/settings/'.$settings['page_image']) }}" @else  data-parsley-required= true data-parsley-required-message='{{__("favicon is required")}}' @endif>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin4" aria-expanded="false"
+                                        aria-controls="accordionMargin4">
+                                        SEO Settings
+                                    </button>
+                                </h2>
+                                <div id="accordionMargin4" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin4" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Facebook pixel</label>
+                                                    <textarea
+                                                    type="text" name="facebook_pixel"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("facebook pixel is required")}}"
+                                                    placeholder="Enter Facebook pixel"
+                                                    >{{ array_key_exists('facebook_pixel', $settings) ? $settings['facebook_pixel'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Google ID head</label>
+                                                    <textarea
+                                                    type="text" name="google_id_head"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("google id head is required")}}"
+                                                    placeholder="Enter Google ID head"
+                                                    >{{ array_key_exists('google_id_head', $settings) ? $settings['google_id_head'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Google ID footer</label>
+                                                    <textarea
+                                                    type="text" name="google_id_footer"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("google id footer is required")}}"
+                                                    placeholder="Enter Google ID footer"
+                                                    >{{ array_key_exists('google_id_footer', $settings) ? $settings['google_id_footer'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Track Code</label>
+                                                    <textarea
+                                                    type="text" name="track_code"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("track code is required")}}"
+                                                    placeholder="Enter Track Code"
+                                                    >{{ array_key_exists('track_code', $settings) ? $settings['track_code'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Google Analects</label>
+                                                    <textarea
+                                                    type="text" name="google_analects"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("google analects is required")}}"
+                                                    placeholder="Enter Google Analects"
+                                                    >{{ array_key_exists('google_analects', $settings) ? $settings['google_analects'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin5" aria-expanded="false"
+                                        aria-controls="accordionMargin5">
+                                        Thanks Page Data
+                                    </button>
+                                </h2>
+                                <div id="accordionMargin5" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin5" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Thanks Title</label>
+                                                    <input type="text" name="thanks_title"
+                                                    class="form-control"
+                                                    placeholder="Enter Thanks Page Title"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("thanks title is required")}}"
+                                                    value="{{ array_key_exists('thanks_title', $settings) ? $settings['thanks_title'] : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Thanks Paragraph</label>
+                                                    <textarea
+                                                    type="text" name="thanks_parag"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("thanks paragraph is required")}}"
+                                                    placeholder="Enter Thanks Paragraph"
+                                                    >{{ array_key_exists('thanks_parag', $settings) ? $settings['thanks_parag'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin6" aria-expanded="false"
+                                        aria-controls="accordionMargin6">
+                                        Email Content
+                                    </button>
+                                </h2>
+                                <div id="accordionMargin6" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin6" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Email Subject</label>
+                                                    <input type="text" name="email_subject"
+                                                    class="form-control"
+                                                    placeholder="Enter Email Subject"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("email subject is required")}}"
+                                                    value="{{ array_key_exists('email_subject', $settings) ? $settings['email_subject'] : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Email Template</label>
+                                                    <textarea
+                                                    type="text" name="email_template"
+                                                    class="form-control ckeditor"
+                                                    rows="3"
+                                                    >{{ array_key_exists('email_template', $settings) ? $settings['email_template'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin7" aria-expanded="false"
+                                        aria-controls="accordionMargin7">
+                                        Redirect To
+                                    </button>
+                                </h2>
+                                <div id="accordionMargin7" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin7" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
+                                        <div class="row my-2 mx-1">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="redirect" id="redirect" {{ array_key_exists('redirect', $settings) ? $settings['redirect'] : '' ? "checked" : ""  }}>
+                                                    Redirect to another link ?
+                                                </label>
+                                            </div>
+                                        </div>
+{{-- @dd($settings['redirect']) --}}
+                                         <div class="row" id="url_input"
+                                            @if (array_key_exists('redirect', $settings))
+                                                @if ($settings['redirect'] != true)
+                                                    style="display: none"
+                                                @endif
+                                            @else
+                                                style="display: none"
+                                            @endif>
+                                            <div class="col-12">
+                                                <input type="text" name="redirect_url" class="form-control"
+                                                placeholder="Enter New Link"
+                                                value="{{ array_key_exists('redirect_url', $settings) ? $settings['redirect_url'] : '' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -202,8 +356,12 @@
 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
-                            <button class="btn btn-primary waves-effect waves-float waves-light" type="submit">{{ __('Save') }}</button>
-                            <a class="btn btn-danger waves-effect waves-float waves-light" href="{{ route('dashboard') }}"> {{ __('Back') }}</a>
+                            <button class="btn btn-primary waves-effect waves-float waves-light" type="submit">
+                                {{ __('Save') }}
+                            </button>
+                            <a class="btn btn-danger waves-effect waves-float waves-light mx-1" style="height: 40px"
+                                href="{{ route('dashboard') }}"> {{ __('Back') }}
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -220,13 +378,6 @@
 
 
 @push('js')
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('backend/app-assets/vendors/js/ui/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('backend/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{ asset('backend/app-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('backend/app-assets/vendors/js/pickers/flatpickr/flatpickr.min') }}.js"></script>
-    <!-- END: Page Vendor JS-->
-
 
     <!-- BEGIN: Page JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
@@ -236,9 +387,28 @@
     <script src="{{ asset('backend/app-assets/js/scripts/components/components-accordion.js') }}"></script>
     <!-- END: Page JS-->
 
+    <!--Internal Fileuploads js-->
+    <script src="{{ asset('backend/app-assets/vendors/js/fileuploads/js/fileupload.js') }}"></script>
+    <script src="{{ asset('backend/app-assets/vendors/js/fileuploads/js/file-upload.js') }}"></script>
+
+    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+
     <script>
         $(document).ready(function() {
             $('#form').parsley();
         });
+
+        $(document).ready(function() {
+        $('[name="redirect"]').change(function(e) {
+            e.preventDefault();
+            var value = $('[name="redirect"]').is(':checked');
+            if (value) {
+                $("#url_input").show();
+            } else {
+                $("#url_input").hide();
+            }
+        });
+    });
     </script>
 @endpush
