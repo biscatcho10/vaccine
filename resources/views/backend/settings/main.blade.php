@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    {{ __('Main Settings') }}
+    Main Settings
 @stop
 
 @push('css')
@@ -331,8 +331,8 @@
                                                 </label>
                                             </div>
                                         </div>
-{{-- @dd($settings['redirect']) --}}
-                                         <div class="row" id="url_input"
+
+                                          <div class="row" id="url_input"
                                             @if (array_key_exists('redirect', $settings))
                                                 @if ($settings['redirect'] != true)
                                                     style="display: none"
@@ -349,9 +349,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
 
 
 

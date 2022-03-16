@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,7 @@ Route::middleware(['auth:web'])->group(function () {
     // Settings
     Route::get('settings', [SettingController::class ,'showSettingsForm'])->name('settings');
     Route::post('settings', [SettingController::class, 'updateSettings'])->name('update-settings');
+
+    // Users
+    Route::resource('user', PatientController::class);
 });
