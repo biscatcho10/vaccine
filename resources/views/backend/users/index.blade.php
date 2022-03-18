@@ -27,8 +27,9 @@
         @slot('page', 'Users')
     @endcomponent
 
+    @include('backend.layouts.partials.session')
 
-    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <table id="datatable-buttons" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
         <thead>
             <tr>
                 <th>Name</th>
@@ -50,12 +51,9 @@
                 <th>{{$user->dob}}</th>
                 <th>{{$user->health_card_num}}</th>
                 <th>
-                    <a href="">
-                        <i data-feather="edit"></i>
-                    </a>
-                    <a href="">
-                        <i data-feather="trash"></i>
-                    </a>
+                    @include('backend.users.partials.actions.show')
+                    @include('backend.users.partials.actions.edit')
+                    @include('backend.users.partials.actions.delete')
                 </th>
             </tr>
             @endforeach
@@ -107,5 +105,7 @@
             .container()
             .appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)");
         });
+
+
     </script>
 @endpush

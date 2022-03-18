@@ -44,3 +44,28 @@
 
 
 
+@php($errorBag = $errorBag ?? 'default')
+@if ($errors->{$errorBag}->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->{$errorBag}->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+@if(session()->has('success'))
+    <div class="alert alert-success" role="alert">
+        <div class="alert-body">
+            {{ session()->get('success') }}
+        </div>
+    </div>
+@endif

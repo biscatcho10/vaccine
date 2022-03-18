@@ -376,11 +376,6 @@
 
 
 @push('js')
-
-    <!-- BEGIN: Page JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
-    <!-- END: Page JS-->
-
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('backend/app-assets/js/scripts/components/components-accordion.js') }}"></script>
     <!-- END: Page JS-->
@@ -393,10 +388,6 @@
 
 
     <script>
-        $(document).ready(function() {
-            $('#form').parsley();
-        });
-
         $(document).ready(function() {
         $('[name="redirect"]').change(function(e) {
             e.preventDefault();
