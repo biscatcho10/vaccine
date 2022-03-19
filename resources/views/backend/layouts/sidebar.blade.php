@@ -44,6 +44,8 @@
 
             @include('backend.users.sidebar')
 
+            @include('backend.vaccines.sidebar')
+
             @include('backend.settings.sidebar')
 
         </ul>

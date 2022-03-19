@@ -1,13 +1,15 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Users
+    Vaccines
 @stop
+
+
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('page', 'Users')
+        @slot('page', 'Vaccines')
     @endcomponent
 
     @include('backend.layouts.partials.session')
@@ -16,27 +18,19 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Date Of Birth</th>
-                <th>Health Card Number</th>
                 <th>Actions</th>
             </tr>
         </thead>
 
 
         <tbody>
-            @foreach ($data as $user)
+            @foreach ($data as $vaccine)
             <tr>
-                <th>{{$user->name}}</th>
-                <th>{{$user->email}}</th>
-                <th>{{$user->phone}}</th>
-                <th>{{$user->dob}}</th>
-                <th>{{$user->health_card_num}}</th>
+                <th>{{$vaccine->name}}</th>
                 <th>
-                    @include('backend.users.partials.actions.show')
-                    @include('backend.users.partials.actions.edit')
-                    @include('backend.users.partials.actions.delete')
+                    @include('backend.vaccines.partials.actions.show')
+                    @include('backend.vaccines.partials.actions.edit')
+                    @include('backend.vaccines.partials.actions.delete')
                 </th>
             </tr>
             @endforeach

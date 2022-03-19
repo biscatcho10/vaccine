@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\VaccineController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Users
     Route::resource('user', PatientController::class);
+
+    // Vaccines
+    Route::resource('vaccine', VaccineController::class);
 });

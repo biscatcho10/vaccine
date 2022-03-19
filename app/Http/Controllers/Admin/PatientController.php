@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
-use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 
 class PatientController extends Controller

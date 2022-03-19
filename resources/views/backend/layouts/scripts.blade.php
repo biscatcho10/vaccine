@@ -20,6 +20,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 <!-- END: Page JS-->
 
+<!-- BEGIN: SWEET ALERT-->
+<script src="{{asset('backend/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+<!-- END: SWEET ALERT-->
+
 <script>
     $(window).on('load', function() {
         if (feather) {

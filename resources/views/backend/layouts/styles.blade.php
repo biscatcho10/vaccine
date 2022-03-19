@@ -26,6 +26,20 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/style.css') }}">
  <!-- END: Custom CSS-->
 
+ <!-- BEGIN: DataTables -->
+ <link href="{{ asset('backend/app-assets/vendors/js/datatables/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+ <link href="{{ asset('backend/app-assets/vendors/js/datatables/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+ <!-- END: DataTables -->
+
+<!-- BEGIN:sweet alert-->
+ <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{asset('backend/app-assets/css/plugins/extensions/ext-component-sweet-alerts.css')}}">
+<!-- END:sweet alert-->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+
+
  <style>
      /* Start Parsley js Style */
      input.parsley-success,
@@ -71,6 +85,10 @@
      }
 
      /* End Parsley js Style */
+
+     .buttons-html5{
+     background-color: rgb(55, 56, 139) !important
+ }
 
  </style>
 
