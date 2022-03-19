@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VaccineController;
@@ -32,4 +33,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Vaccines
     Route::resource('vaccine', VaccineController::class);
+
+    // Conditions
+    Route::resource('{vaccine}/condition', ConditionController::class);
 });

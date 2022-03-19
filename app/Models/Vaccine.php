@@ -22,4 +22,13 @@ class Vaccine extends Model
         'diff_ages' => 'array'
     ];
 
+    /** Begin Relations  **/
+
+    public function conditions()
+    {
+        return $this->hasMany(Condition::class);
+    }
+
+    /** End Relations  **/
+
 }
