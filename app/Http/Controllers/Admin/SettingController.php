@@ -19,11 +19,9 @@ class SettingController extends Controller
     {
         $request_data = $request->except('_token', 'sliders');
 
-        if ($request->redirect) {
-            $request_data['redirect'] = true;
-        } else {
-            $request_data['redirect'] = false;
-            $request_data['redirect_url'] = null;
+        if (!$request->redirect) {
+            Setting::set('redirect', false);
+            Setting::set('redirect_url', null);
         }
 
 

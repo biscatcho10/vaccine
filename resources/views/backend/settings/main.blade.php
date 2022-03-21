@@ -326,7 +326,8 @@
                                         <div class="row my-2 mx-1">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input" name="redirect" id="redirect" {{ array_key_exists('redirect', $settings) ? $settings['redirect'] : '' ? "checked" : ""  }}>
+                                                    {{-- @dd($settings['redirect'] == true) --}}
+                                                    <input type="checkbox" class="form-check-input" value="1" name="redirect" id="redirect" @if (array_key_exists('redirect', $settings)) {{ $settings['redirect'] == true ? "checked" : ""  }}  @endif>
                                                     Redirect to another link ?
                                                 </label>
                                             </div>

@@ -8,7 +8,7 @@
 
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
-        @slot('parentUrl', route('vaccine.show  ', $vaccine))
+        @slot('parentUrl', route('vaccine.show', $vaccine))
         @slot('page', 'Add Condition')
     @endcomponent
 
