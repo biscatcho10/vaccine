@@ -36,4 +36,8 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Conditions
     Route::resource('{vaccine}/condition', ConditionController::class);
+
+    // Settings
+    Route::get('{vaccine}/exceptions', [VaccineController::class ,'showexceptionsForm'])->name('exceptions');
+    Route::put('{vaccine}/exceptions', [VaccineController::class, 'updateexceptions'])->name('update-exceptions');
 });

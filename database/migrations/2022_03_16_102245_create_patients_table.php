@@ -21,7 +21,7 @@ class CreatePatientsTable extends Migration
             $table->string('phone');
             $table->date('dob');
             $table->text('address');
-            $table->string('health_card_num');
+            $table->string('health_card_num')->unique();
             $table->timestamps();
         });
     }

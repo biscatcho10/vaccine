@@ -17,9 +17,9 @@ class ConditionController extends Controller
      */
     public function index(Vaccine $vaccine)
     {
-        $data = $vaccine->conditions()->all();
+        $data = $vaccine->conditions()->get();
 
-        return view('backend.conditions.index', compact('data'));
+        return view('backend.conditions.index', compact('data', 'vaccine'));
     }
 
     /**
@@ -55,7 +55,7 @@ class ConditionController extends Controller
     public function show(Vaccine $vaccine, Condition $condition)
     {
         $condition = $vaccine->conditions()->find($condition->id);
-        return view('backend.conditions.show', compact('condition'));
+        return view('backend.conditions.show', compact('condition', 'vaccine'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ConditionController extends Controller
     {
         $condition = $vaccine->conditions()->find($condition->id);
 
-        return view('backend.conditions.edit', compact('condition'));
+        return view('backend.conditions.edit', compact('condition', 'vaccine'));
     }
 
     /**
@@ -99,9 +99,9 @@ class ConditionController extends Controller
     {
         $condition = $vaccine->conditions()->find($condition->id);
 
-        $condition->delete($vaccine);
+        $condition->delete();
 
-        return redirect()->route('condition.index')->with('success', 'condition deleted successfully.');
+        return redirect()->route('condition.index', $vaccine)->with('success', 'condition deleted successfully.');
     }
 
 

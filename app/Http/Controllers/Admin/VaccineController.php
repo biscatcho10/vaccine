@@ -84,8 +84,9 @@ class VaccineController extends Controller
     public function edit(Vaccine $vaccine)
     {
         $vaccine = $this->repository->find($vaccine);
+        $days = $vaccine->days->pluck('name')->toArray();
 
-        return view('backend.vaccines.edit', compact('vaccine'));
+        return view('backend.vaccines.edit', compact('vaccine', 'days'));
     }
 
     /**
@@ -155,5 +156,17 @@ class VaccineController extends Controller
         $this->repository->restore($vaccine);
 
         return redirect()->route('vaccine.trashed');
+    }
+
+    public function showexceptionsForm(Vaccine $vaccine)
+    {
+        return view('backend.vaccines.exception-form', compact('vaccine'));
+    }
+
+    public function updateexceptions(Request $request, Vaccine $vaccine)
+    {
+        $vaccine->update(['exceptions' => $request->exceptions]);
+
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
     }
 }

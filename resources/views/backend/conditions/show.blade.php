@@ -1,15 +1,15 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Show User
+    Show condition
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Users')
-        @slot('parentUrl', route('user.index'))
-        @slot('page', $user->name)
+        @slot('parent', $vaccine->name)
+        @slot('parentUrl', route('vaccine.show', $vaccine))
+        @slot('page', "show condition")
     @endcomponent
 
 
@@ -22,35 +22,15 @@
         <table class="table table-middle">
             <tbody>
                 <tr>
-                    <th width="200">Name</th>
-                    <td>{{ $user->name }}</td>
-                </tr>
-                <tr>
-                    <th width="200">Email</th>
-                    <td>{{ $user->email }}</td>
-                </tr>
-                <tr>
-                    <th width="200">Phone</th>
-                    <td>{{ $user->phone }}</td>
-                </tr>
-                <tr>
-                    <th width="200">Date Of Birth</th>
-                    <td>{{ $user->dob }}</td>
-                </tr>
-                <tr>
-                    <th width="200">Address</th>
-                    <td>{{ $user->address }}</td>
-                </tr>
-                <tr>
-                    <th width="200">Health Card Number</th>
-                    <td>{{ $user->health_card_num }}</td>
+                    <th width="200">Condition</th>
+                    <td>{{ $condition->condition }}</td>
                 </tr>
             </tbody>
         </table>
 
         @slot('footer')
-            @include('backend.users.partials.actions.edit')
-            @include('backend.users.partials.actions.delete')
+            @include('backend.conditions.partials.actions.edit')
+            @include('backend.conditions.partials.actions.delete')
         @endslot
     @endcomponent
 

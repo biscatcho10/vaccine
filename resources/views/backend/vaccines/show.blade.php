@@ -39,11 +39,11 @@
                     <th width="200">Available Days</th>
                     <td>
                         <div class="row">
-                            @foreach ($vaccine->available_days as $day)
+                            @foreach ($vaccine->days as $day)
                                 <div class="col-1 mx-2">
                                     <label class="custom-option-item text-center p-1" for="sunday">
                                         <i data-feather='calendar'></i>
-                                        <span class="custom-option-item-title h4 d-block">{{ $day }}</span>
+                                        <span class="custom-option-item-title h4 d-block">{{ $day->name }}</span>
                                     </label>
                                 </div>
                             @endforeach
@@ -67,6 +67,8 @@
         @slot('footer')
             @include('backend.vaccines.partials.actions.edit')
             @include('backend.vaccines.partials.actions.delete')
+            @include('backend.vaccines.partials.actions.exceptions')
+            @include('backend.vaccines.partials.actions.conditions')
         @endslot
     @endcomponent
 

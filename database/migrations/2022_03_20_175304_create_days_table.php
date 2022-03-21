@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVaccinesTable extends Migration
+class CreateDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateVaccinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vaccines', function (Blueprint $table) {
+        Schema::create('days', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('definded_period');
-            $table->date('from')->nullable();
-            $table->date('to')->nullable();
-            $table->boolean('has_diff_ages')->default(false);
-            $table->json('diff_ages')->nullable();
-            $table->json('exceptions')->nullable();
+            $table->text('timetables')->nullable();
+            $table->boolean('available')->default(true);
+            $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateVaccinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vaccines');
+        Schema::dropIfExists('days');
     }
 }

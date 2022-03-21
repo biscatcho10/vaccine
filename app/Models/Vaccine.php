@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Vaccine extends Model
@@ -12,17 +11,22 @@ class Vaccine extends Model
         "definded_period",
         "from",
         "to",
-        "available_days",
         "has_diff_ages",
         "diff_ages",
+        "exceptions",
     ];
 
     protected $casts = [
-        'available_days' => 'array',
-        'diff_ages' => 'array'
+        'diff_ages' => 'array',
+        'exceptions' => 'array',
     ];
 
     /** Begin Relations  **/
+
+    public function days()
+    {
+        return $this->hasMany(Day::class);
+    }
 
     public function conditions()
     {

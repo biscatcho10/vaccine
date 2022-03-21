@@ -30,6 +30,10 @@ class VaccineRepository implements CrudRepository
     {
         $vaccine = Vaccine::create($data);
 
+        foreach ($data['available_days'] as $day) {
+            $vaccine->days()->create(['name' => $day]);
+        }
+
         return $vaccine;
     }
 
@@ -60,6 +64,13 @@ class VaccineRepository implements CrudRepository
         $vaccine = $this->find($model);
 
         $vaccine->update($data);
+
+        $vaccine->days()->delete();
+
+        foreach ($data['available_days'] as $day) {
+            $vaccine->days()->create(['name' => $day]);
+        }
+
 
         return $vaccine;
     }

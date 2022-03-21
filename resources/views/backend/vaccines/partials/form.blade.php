@@ -14,7 +14,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="saturday"
                     value="saturday"
-                    @isset($vaccine) {{ in_array('saturday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('saturday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="saturday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Saturday</span>
@@ -24,7 +24,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="sunday"
                     value="sunday"
-                    @isset($vaccine) {{ in_array('sunday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('sunday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="sunday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Sunday</span>
@@ -34,7 +34,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="monday"
                     value="monday"
-                    @isset($vaccine) {{ in_array('monday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('monday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="monday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Monday</span>
@@ -44,7 +44,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="tuesday"
                     value="tuesday"
-                    @isset($vaccine) {{ in_array('tuesday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('tuesday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="tuesday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Tuesday</span>
@@ -56,7 +56,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="wednesday"
                     value="wednesday"
-                    @isset($vaccine) {{ in_array('wednesday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('wednesday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="wednesday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Wednesday</span>
@@ -66,7 +66,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="thursday"
                     value="thursday"
-                    @isset($vaccine) {{ in_array('thursday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('thursday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="thursday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Thursday</span>
@@ -76,7 +76,7 @@
             <div class="col-2">
                 <input class="custom-option-item-check" type="checkbox" name="available_days[]" id="friday"
                     value="friday"
-                    @isset($vaccine) {{ in_array('friday', $vaccine->available_days) ? 'checked' : '' }} @endisset>
+                    @isset($vaccine) {{ in_array('friday', $days) ? 'checked' : '' }} @endisset>
                 <label class="custom-option-item text-center p-1" for="friday">
                     <i data-feather='calendar'></i>
                     <span class="custom-option-item-title h5 d-block">Friday</span>
@@ -128,7 +128,7 @@ style="display: none" @endisset>
 </div>
 
 
-@if ($vaccine)
+@isset($vaccine)
 <div class="age-repeater">
     <div data-repeater-list="diff_ages">
         @foreach ($vaccine->diff_ages as $age)
@@ -136,7 +136,8 @@ style="display: none" @endisset>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control" name="age" value="{{ $age['age'] }}" placeholder="Enter Age Name" />
+                            <input type="text" class="form-control" name="age" value="{{ $age['age'] }}"
+                                placeholder="Enter Age Name" />
                         </div>
                     </div>
 
@@ -190,7 +191,7 @@ style="display: none" @endisset>
         </div>
     </div>
 </div>
-@endif
+@endisset
 
 
 @push('js')
