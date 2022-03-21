@@ -1,17 +1,15 @@
 @include('backend.layouts.partials.session')
 
-{{-- @dd($vaccine->exceptions) --}}
-
-@if(!empty($vaccine->exceptions))
+@if(!empty($day->intervals))
     <div class="expection-repeater">
-        <div data-repeater-list="exceptions">
-            @foreach ($vaccine->exceptions as $exception)
+        <div data-repeater-list="intervals">
+            @foreach ($day->intervals as $interval)
                 <div data-repeater-item>
                     <div class="row d-flex align-items-end">
                         <div class="col-md-6 col-12">
                             <div class="mb-1">
-                                <input type="date" class="form-control" name="exception"
-                                    value="{{ $exception['exception'] }}" />
+                                <input type="time" class="form-control" name="from"
+                                    value="{{ $interval['from'] }}" />
                             </div>
                         </div>
 
@@ -37,12 +35,13 @@
     </div>
 @else
     <div class="expection-repeater">
-        <div data-repeater-list="exceptions">
+        <div data-repeater-list="intervals">
             <div data-repeater-item>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="date" class="form-control" name="exception" />
+                            <label>From</label>
+                            <input type="time" class="form-control" name="from" />
                         </div>
                     </div>
 

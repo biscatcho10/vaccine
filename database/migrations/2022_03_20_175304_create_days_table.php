@@ -16,7 +16,7 @@ class CreateDaysTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('timetables')->nullable();
+            $table->text('intervals')->nullable();
             $table->boolean('available')->default(true);
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
             $table->timestamps();

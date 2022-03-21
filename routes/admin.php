@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ConditionController;
+use App\Http\Controllers\Admin\DayController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VaccineController;
@@ -37,7 +38,11 @@ Route::middleware(['auth:web'])->group(function () {
     // Conditions
     Route::resource('{vaccine}/condition', ConditionController::class);
 
-    // Settings
+    // Exceptions
     Route::get('{vaccine}/exceptions', [VaccineController::class ,'showexceptionsForm'])->name('exceptions');
     Route::put('{vaccine}/exceptions', [VaccineController::class, 'updateexceptions'])->name('update-exceptions');
+
+    // Day intervals
+    Route::get('{vaccine}/{day}/intervals', [DayController::class ,'intervalForm'])->name('intervals');
+    Route::put('{vaccine}/{day}/intervals', [DayController::class, 'updateInterval'])->name('update-intervals');
 });

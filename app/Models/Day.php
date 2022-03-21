@@ -9,12 +9,17 @@ class Day extends Model
 {
     protected $fillable = [
         "name",
-        "timetables",
+        "intervals",
         "available",
         "vaccine_id",
     ];
 
     protected $casts = [
-        'timetables' => 'array'
+        'intervals' => 'array'
     ];
+
+    public function vaccine()
+    {
+        return $this->belongsTo(Vaccine::class);
+    }
 }
