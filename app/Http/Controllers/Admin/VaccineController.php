@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VaccineRequest;
+use App\Models\Exception;
 use App\Models\Vaccine;
 use App\Repositories\VaccineRepository;
 use Illuminate\Http\Request;
@@ -165,7 +166,11 @@ class VaccineController extends Controller
 
     public function updateexceptions(Request $request, Vaccine $vaccine)
     {
-        $vaccine->update(['exceptions' => $request->exceptions]);
+        foreach ($request->exceptions as $exception) {
+            Exception::updateOrCreate(
+                ['date' => $exception['date'], 'vaccine_id' => $vaccine->id]
+            );
+        }
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
     }

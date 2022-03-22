@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDaysTable extends Migration
+class CreateIntervalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('days', function (Blueprint $table) {
+        Schema::create('intervals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('interval');
             $table->boolean('available')->default(true);
-            $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
+            $table->foreignId('day_id')->constrained('days')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('days');
+        Schema::dropIfExists('intervals');
     }
 }

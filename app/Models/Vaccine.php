@@ -13,16 +13,13 @@ class Vaccine extends Model
         "to",
         "has_diff_ages",
         "diff_ages",
-        "exceptions",
     ];
 
     protected $casts = [
         'diff_ages' => 'array',
-        'exceptions' => 'array',
     ];
 
     /** Begin Relations  **/
-
     public function days()
     {
         return $this->hasMany(Day::class);
@@ -33,6 +30,10 @@ class Vaccine extends Model
         return $this->hasMany(Condition::class);
     }
 
+    public function exceptionsd()
+    {
+        return $this->hasMany(Exception::class, 'vaccine_id');
+    }
     /** End Relations  **/
 
 }

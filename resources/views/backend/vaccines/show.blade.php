@@ -41,7 +41,7 @@
                         <div class="row">
                             @foreach ($vaccine->days as $day)
                                 <a href="{{ route('intervals', [$vaccine, $day]) }}" class="col-1 mx-2">
-                                    <label class="custom-option-item text-center p-1" for="sunday">
+                                    <label class="custom-option-item text-center p-1" for="sunday" style="cursor:pointer">
                                         <i data-feather='calendar'></i>
                                         <span class="custom-option-item-title h4 d-block">{{ $day->name }}</span>
                                     </label>

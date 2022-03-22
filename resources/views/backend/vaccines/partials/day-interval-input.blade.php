@@ -1,6 +1,6 @@
 @include('backend.layouts.partials.session')
 
-@if(!empty($day->intervals))
+@if(count($day->intervals) > 0)
     <div class="expection-repeater">
         <div data-repeater-list="intervals">
             @foreach ($day->intervals as $interval)
@@ -8,8 +8,7 @@
                     <div class="row d-flex align-items-end">
                         <div class="col-md-6 col-12">
                             <div class="mb-1">
-                                <input type="time" class="form-control" name="from"
-                                    value="{{ $interval['from'] }}" />
+                                <input type="time" class="form-control" name="interval"  value="{{ $interval->interval }}" />
                             </div>
                         </div>
 
@@ -41,7 +40,7 @@
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
                             <label>From</label>
-                            <input type="time" class="form-control" name="from" />
+                            <input type="time" class="form-control" name="interval" />
                         </div>
                     </div>
 
