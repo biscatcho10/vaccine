@@ -30,6 +30,11 @@ class Vaccine extends Model
         return $this->hasMany(Condition::class);
     }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
     public function exceptionsd()
     {
         return $this->hasMany(Exception::class, 'vaccine_id');

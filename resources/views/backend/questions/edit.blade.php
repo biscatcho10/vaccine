@@ -1,23 +1,23 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Update Condition
+    Update Question
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Conditions List')
-        @slot('parentUrl', route('condition.index', $vaccine))
-        @slot('page', 'Update Condition')
+        @slot('parent', 'Questions List')
+        @slot('parentUrl', route('question.index', $vaccine))
+        @slot('page', 'Update Question')
     @endcomponent
 
 
-    {{ BsForm::putModel($condition, route('condition.update', [$vaccine, $condition]), ['id' => 'form']) }}
+    {{ BsForm::putModel($question, route('question.update', [$vaccine, $question]), ['id' => 'form']) }}
     @component('backend.components.box')
-        @slot('title', 'Update condition')
+        @slot('title', 'Update Question')
 
-        @include('backend.conditions.partials.form')
+        @include('backend.questions.partials.form')
 
         @slot('footer')
             {{ BsForm::submit()->label('Update')->attribute('class', 'btn btn-primary') }}

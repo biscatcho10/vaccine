@@ -69,6 +69,7 @@
             @include('backend.vaccines.partials.actions.delete')
             @include('backend.vaccines.partials.actions.exceptions')
             @include('backend.vaccines.partials.actions.conditions')
+            @include('backend.vaccines.partials.actions.questions')
         @endslot
     @endcomponent
 

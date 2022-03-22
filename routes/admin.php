@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ConditionController;
 use App\Http\Controllers\Admin\DayController;
 use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VaccineController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,9 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Conditions
     Route::resource('{vaccine}/condition', ConditionController::class);
+
+    // Questions
+    Route::resource('{vaccine}/question', QuestionController::class);
 
     // Exceptions
     Route::get('{vaccine}/exceptions', [VaccineController::class ,'showexceptionsForm'])->name('exceptions');

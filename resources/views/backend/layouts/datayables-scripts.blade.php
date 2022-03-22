@@ -34,7 +34,7 @@
         $("#datatable-buttons")
         .DataTable({
             lengthChange: !1,
-            buttons: ["excel", "pdf"],
+            // buttons: ["excel", "pdf"],
         })
         .buttons()
         .container()

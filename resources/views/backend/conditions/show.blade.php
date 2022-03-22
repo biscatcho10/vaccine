@@ -7,9 +7,9 @@
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', $vaccine->name)
-        @slot('parentUrl', route('vaccine.show', $vaccine))
-        @slot('page', "show condition")
+        @slot('parent', 'Conditions List')
+        @slot('parentUrl', route('condition.index', $vaccine))
+        @slot('page', 'show condition')
     @endcomponent
 
 
