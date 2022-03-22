@@ -23,6 +23,6 @@ class ConditionController extends Controller
             ['page_title' => $request->page_title, 'conditions' => $request->conditions]
         );
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s conditions added successfully.');
     }
 }

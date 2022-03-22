@@ -67,6 +67,7 @@
         @slot('footer')
             @include('backend.vaccines.partials.actions.edit')
             @include('backend.vaccines.partials.actions.delete')
+            <div class="my-2">
             @include('backend.vaccines.partials.actions.exceptions')
             @include('backend.vaccines.partials.actions.conditions')
             @include('backend.vaccines.partials.actions.questions')

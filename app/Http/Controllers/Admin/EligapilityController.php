@@ -22,6 +22,6 @@ class EligapilityController extends Controller
             ['page_title' => $request->page_title, 'eligapilities' => $request->eligapilities]
         );
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s eligapilities added successfully.');
     }
 }
