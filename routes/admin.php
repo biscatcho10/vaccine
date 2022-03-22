@@ -48,6 +48,7 @@ Route::middleware(['auth:web'])->group(function () {
     // Conditions
     Route::get('{vaccine}/Conditions', [ConditionController::class ,'get'])->name('conditions');
     Route::put('{vaccine}/Conditions', [ConditionController::class, 'update'])->name('update-conditions');
+    Route::post('{vaccine}/copy/Conditions', [ConditionController::class, 'copy'])->name('copy-conditions');
 
     // Exceptions
     Route::get('{vaccine}/exceptions', [ExceptionController::class ,'get'])->name('exceptions');

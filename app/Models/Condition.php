@@ -16,4 +16,6 @@ class Condition extends Model
     protected $casts = [
         'conditions' => 'array',
     ];
+
+    
 }

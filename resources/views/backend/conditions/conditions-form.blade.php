@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+@include('backend.conditions.actions.copy')
 
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
@@ -12,11 +13,11 @@
         @slot('page', 'Conditions')
     @endcomponent
 
-
     {{ BsForm::putModel($vaccine, route('update-conditions', $vaccine), ['id' => 'form']) }}
 
     @component('backend.components.box')
         @slot('title', 'Conditions')
+
 
         @include('backend.conditions.conditions-input')
 
@@ -28,4 +29,3 @@
 
 
 @endsection
-
