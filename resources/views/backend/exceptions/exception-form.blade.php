@@ -1,24 +1,24 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Create Condition
+    Update Vaccine
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Conditions List')
-        @slot('parentUrl', route('condition.index', $vaccine))
-        @slot('page', 'Add Condition')
+        @slot('parent', $vaccine->name)
+        @slot('parentUrl', route('vaccine.show', $vaccine))
+        @slot('page', 'Exceptions')
     @endcomponent
 
 
-    {{ BsForm::post(route('condition.store', $vaccine), ['id' => 'form']) }}
-    @csrf
-    @component('backend.components.box')
-        @slot('title', 'Add Condtion')
+    {{ BsForm::putModel($vaccine, route('update-exceptions', $vaccine), ['id' => 'form']) }}
 
-        @include('backend.conditions.partials.form')
+    @component('backend.components.box')
+        @slot('title', 'Exceptions')
+
+        @include('backend.exceptions.exception-input')
 
         @slot('footer')
             {{ BsForm::submit()->label('Save')->attribute('class', 'btn btn-primary') }}
@@ -28,3 +28,4 @@
 
 
 @endsection
+

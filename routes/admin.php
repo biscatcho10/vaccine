@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ConditionController;
-use App\Http\Controllers\Admin\DayController;
+use App\Http\Controllers\Admin\EligapilityController;
+use App\Http\Controllers\Admin\ExceptionController;
+use App\Http\Controllers\Admin\IntervalController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\SettingController;
@@ -36,17 +38,22 @@ Route::middleware(['auth:web'])->group(function () {
     // Vaccines
     Route::resource('vaccine', VaccineController::class);
 
-    // Conditions
-    Route::resource('{vaccine}/condition', ConditionController::class);
-
     // Questions
     Route::resource('{vaccine}/question', QuestionController::class);
 
+    // ELIGABILITY
+    Route::get('{vaccine}/eligapilities', [EligapilityController::class ,'get'])->name('eligapility');
+    Route::put('{vaccine}/eligapilities', [EligapilityController::class, 'update'])->name('update-eligapility');
+
+    // Conditions
+    Route::get('{vaccine}/Conditions', [ConditionController::class ,'get'])->name('conditions');
+    Route::put('{vaccine}/Conditions', [ConditionController::class, 'update'])->name('update-conditions');
+
     // Exceptions
-    Route::get('{vaccine}/exceptions', [VaccineController::class ,'showexceptionsForm'])->name('exceptions');
-    Route::put('{vaccine}/exceptions', [VaccineController::class, 'updateexceptions'])->name('update-exceptions');
+    Route::get('{vaccine}/exceptions', [ExceptionController::class ,'get'])->name('exceptions');
+    Route::put('{vaccine}/exceptions', [ExceptionController::class, 'update'])->name('update-exceptions');
 
     // Day intervals
-    Route::get('{vaccine}/{day}/intervals', [DayController::class ,'intervalForm'])->name('intervals');
-    Route::put('{vaccine}/{day}/intervals', [DayController::class, 'updateInterval'])->name('update-intervals');
+    Route::get('{vaccine}/{day}/intervals', [IntervalController::class ,'get'])->name('intervals');
+    Route::put('{vaccine}/{day}/intervals', [IntervalController::class, 'update'])->name('update-intervals');
 });

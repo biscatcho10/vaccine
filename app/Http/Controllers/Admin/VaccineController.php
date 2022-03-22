@@ -158,20 +158,4 @@ class VaccineController extends Controller
 
         return redirect()->route('vaccine.trashed');
     }
-
-    public function showexceptionsForm(Vaccine $vaccine)
-    {
-        return view('backend.vaccines.exception-form', compact('vaccine'));
-    }
-
-    public function updateexceptions(Request $request, Vaccine $vaccine)
-    {
-        foreach ($request->exceptions as $exception) {
-            Exception::updateOrCreate(
-                ['date' => $exception['date'], 'vaccine_id' => $vaccine->id]
-            );
-        }
-
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
-    }
 }

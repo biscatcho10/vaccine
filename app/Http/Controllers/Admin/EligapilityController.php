@@ -3,24 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ConditionRequest;
-use App\Models\Condition;
+use App\Models\Eligapility;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
-class ConditionController extends Controller
+class EligapilityController extends Controller
 {
     public function get(Vaccine $vaccine)
     {
-        $condition = $vaccine->condition;
-        return view('backend.conditions.conditions-form', compact('condition', 'vaccine'));
+        $eligapility = $vaccine->eligapility;
+        return view('backend.eligapilities.eligapility-form', compact('eligapility', 'vaccine'));
     }
 
     public function update(Request $request, Vaccine $vaccine)
     {
-        Condition::updateOrCreate(
+        Eligapility::updateOrCreate(
             ['vaccine_id' => $vaccine->id],
-            ['page_title' => $request->page_title, 'conditions' => $request->conditions]
+            ['page_title' => $request->page_title, 'eligapilities' => $request->eligapilities]
         );
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');

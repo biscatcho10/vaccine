@@ -70,6 +70,7 @@
             @include('backend.vaccines.partials.actions.exceptions')
             @include('backend.vaccines.partials.actions.conditions')
             @include('backend.vaccines.partials.actions.questions')
+            @include('backend.vaccines.partials.actions.eligapilities')
         @endslot
     @endcomponent
 

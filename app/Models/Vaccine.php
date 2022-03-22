@@ -25,14 +25,19 @@ class Vaccine extends Model
         return $this->hasMany(Day::class);
     }
 
-    public function conditions()
+    public function condition()
     {
-        return $this->hasMany(Condition::class);
+        return $this->hasOne(Condition::class);
     }
 
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function eligapility()
+    {
+        return $this->hasOne(Eligapility::class);
     }
 
     public function exceptionsd()

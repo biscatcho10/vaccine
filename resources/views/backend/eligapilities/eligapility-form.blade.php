@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Add Intervals
+    Update Eligapilities
 @stop
 
 @section('content')
@@ -9,16 +9,16 @@
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
         @slot('parentUrl', route('vaccine.show', $vaccine))
-        @slot('page', $vaccine->name ." / " .$day->name)
+        @slot('page', 'Eligapilities')
     @endcomponent
 
 
-    {{ BsForm::putModel($day, route('update-intervals', [$vaccine, $day]), ['id' => 'form']) }}
+    {{ BsForm::putModel($vaccine, route('update-eligapility', $vaccine), ['id' => 'form']) }}
 
     @component('backend.components.box')
-        @slot('title', 'Add Intervals')
+        @slot('title', 'Eligapilities')
 
-        @include('backend.vaccines.partials.day-interval-input')
+        @include('backend.eligapilities.eligapility-input')
 
         @slot('footer')
             {{ BsForm::submit()->label('Save')->attribute('class', 'btn btn-primary') }}

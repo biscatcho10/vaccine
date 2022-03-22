@@ -8,15 +8,15 @@ use App\Models\Interval;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
-class DayController extends Controller
+class IntervalController extends Controller
 {
-    public function intervalForm(Vaccine $vaccine, Day $day)
+    public function get(Vaccine $vaccine, Day $day)
     {
-        return view('backend.vaccines.intervals-form', compact('vaccine', 'day'));
+        return view('backend.intervals.intervals-form', compact('vaccine', 'day'));
     }
 
 
-    public function updateInterval(Vaccine $vaccine, Day $day, Request $request)
+    public function update(Vaccine $vaccine, Day $day, Request $request)
     {
         foreach ($request->intervals as $interval) {
             Interval::updateOrCreate(

@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Condition extends Model
+class Eligapility extends Model
 {
     protected $fillable = [
         'page_title',
-        'conditions',
+        'eligapilities',
         'vaccine_id'
     ];
 
     protected $casts = [
-        'conditions' => 'array',
+        'eligapilities' => 'array',
     ];
 }
