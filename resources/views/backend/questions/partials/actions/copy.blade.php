@@ -1,4 +1,4 @@
-@if (empty($vaccine->condition))
+@if (!count($vaccine->questions) > 0)
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal"
         data-bs-target="#primary-{{ $vaccine->id }}">
@@ -10,11 +10,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel140">Copy Conditions</h5>
+                    <h5 class="modal-title" id="myModalLabel140">Copy Questions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ BsForm::post(route('copy-conditions', $vaccine), ['id' => 'copy-from']) }}
+                    {{ BsForm::post(route('copy-questions', $vaccine), ['id' => 'copy-from']) }}
                     <div class="form-group">
                         <label>Vaccine</label>
                         <select class="form-control" name="target">

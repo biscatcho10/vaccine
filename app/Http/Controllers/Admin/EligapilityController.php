@@ -11,8 +11,9 @@ class EligapilityController extends Controller
 {
     public function get(Vaccine $vaccine)
     {
+        $vaccines = Vaccine::whereHas('eligapility')->get()->except($vaccine->id);
         $eligapility = $vaccine->eligapility;
-        return view('backend.eligapilities.eligapility-form', compact('eligapility', 'vaccine'));
+        return view('backend.eligapilities.eligapility-form', compact('eligapility', 'vaccine', 'vaccines'));
     }
 
     public function update(Request $request, Vaccine $vaccine)
@@ -23,5 +24,21 @@ class EligapilityController extends Controller
         );
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s eligapilities added successfully.');
+    }
+
+
+    public function copy(Vaccine $vaccine, Request $request)
+    {
+        $vaccines = Vaccine::whereHas('eligapility')->get()->except($vaccine->id);
+        $eligapility = Vaccine::find($request->target)->eligapility;
+        $neweligapility = $eligapility->replicate();
+        $neweligapility->vaccine_id = $vaccine->id;
+        $neweligapility->save();
+        return redirect()->back()->with([
+            'success' => 'vaccine\'s eligapilities copied successfully.',
+            'eligapility' => $neweligapility,
+            'vaccine' => $vaccine,
+            'vaccines' => $vaccines,
+        ]);
     }
 }

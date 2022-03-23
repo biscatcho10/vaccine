@@ -16,7 +16,7 @@ class CreateVaccinesTable extends Migration
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('definded_period');
+            $table->boolean('definded_period')->nullable();
             $table->date('from')->nullable();
             $table->date('to')->nullable();
             $table->boolean('has_diff_ages')->default(false);

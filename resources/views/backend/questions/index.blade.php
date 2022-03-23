@@ -14,7 +14,14 @@
 
     @include('backend.layouts.partials.session')
 
-    @include('backend.questions.partials.actions.create')
+<div class="row">
+    <div class="col">
+        @include('backend.questions.partials.actions.copy')
+    </div>
+    <div class="col">
+        @include('backend.questions.partials.actions.create')
+    </div>
+</div>
 
     <table id="datatable-buttons" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
         <thead>

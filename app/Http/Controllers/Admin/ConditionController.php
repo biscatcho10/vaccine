@@ -11,7 +11,7 @@ class ConditionController extends Controller
 {
     public function get(Vaccine $vaccine)
     {
-        $vaccines = Vaccine::all()->except($vaccine->id);
+        $vaccines = Vaccine::whereHas('condition')->get()->except($vaccine->id);
         $condition = $vaccine->condition;
         return view('backend.conditions.conditions-form', compact('condition', 'vaccine', 'vaccines'));
     }
@@ -28,7 +28,7 @@ class ConditionController extends Controller
 
     public function copy(Vaccine $vaccine, Request $request)
     {
-        $vaccines = Vaccine::all()->except($vaccine->id);
+        $vaccines = Vaccine::whereHas('condition')->get()->except($vaccine->id);
         $condition = Vaccine::find($request->target)->condition;
         $newCondition = $condition->replicate();
         $newCondition->vaccine_id = $vaccine->id;

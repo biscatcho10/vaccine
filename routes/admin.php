@@ -40,10 +40,14 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Questions
     Route::resource('{vaccine}/question', QuestionController::class);
+    Route::post('{vaccine}/copy/questions', [QuestionController::class, 'copy'])->name('copy-questions');
+
 
     // ELIGABILITY
     Route::get('{vaccine}/eligapilities', [EligapilityController::class ,'get'])->name('eligapility');
     Route::put('{vaccine}/eligapilities', [EligapilityController::class, 'update'])->name('update-eligapility');
+    Route::post('{vaccine}/copy/eligapilities', [EligapilityController::class, 'copy'])->name('copy-eligapilities');
+
 
     // Conditions
     Route::get('{vaccine}/Conditions', [ConditionController::class ,'get'])->name('conditions');

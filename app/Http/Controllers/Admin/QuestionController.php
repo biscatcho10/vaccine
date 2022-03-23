@@ -19,8 +19,8 @@ class QuestionController extends Controller
     public function index(Vaccine $vaccine)
     {
         $data = $vaccine->questions()->get();
-
-        return view('backend.questions.index', compact('data', 'vaccine'));
+        $vaccines = Vaccine::whereHas('questions')->get()->except($vaccine->id);
+        return view('backend.questions.index', compact('data', 'vaccine', 'vaccines'));
     }
 
     /**
@@ -143,5 +143,22 @@ class QuestionController extends Controller
         $this->repository->restore($question);
 
         return redirect()->route('question.trashed');
+    }
+
+
+    public function copy(Vaccine $vaccine, Request $request)
+    {
+        $vaccines = Vaccine::whereHas('questions')->get()->except($vaccine->id);
+        $questions = Vaccine::find($request->target)->questions;
+        foreach ($questions as $question) {
+            $newQuestion = $question->replicate();
+            $newQuestion->vaccine_id = $vaccine->id;
+            $newQuestion->save();
+        }
+        return redirect()->back()->with([
+            'success' => 'vaccine\'s questions copied successfully.',
+            'vaccine' => $vaccine,
+            'vaccines' => $vaccines,
+        ]);
     }
 }
