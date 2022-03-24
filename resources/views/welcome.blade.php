@@ -67,7 +67,8 @@
 			<div class="col-lg-8 content-right" id="start">
 				<div id="wizard_container">
 						<!-- /top-wizard -->
-						<form id="wrapped" method="POST">
+						<form action="{{ route('make.request') }}" id="wrapped" method="POST">
+                            @csrf
 							<input id="website" name="website" type="text" value="">
 							<!-- Leave for security protection, read docs for details -->
 							<div id="middle-wizard">
@@ -76,27 +77,27 @@
 									<h3 class="main_question titles">Choose your service</h3>
 									<div id="my_faxen" class="form-group">
 										<div  class="styled-select clearfix ">
-											<select id="products" class="ddslick" name="items[][product]" data-selected="" data-filter-profile="appt">
-												<option >Flu Shot "3 years to 64 years "</option>
-												<option >Medication Review</option>
-												<option >SENIORS FLU SHOT</option>
-												<option >TRAVEL PCR COVID-19 test "For Travelling only**Proof of travel is required" 129.99$ PLUS TAX</option>
-												<option >PCR TEST FOR SYMPTOMATIC &amp; ASYMPTOMATIC PATIENTS *ONLY CERTAIN ELIGBILITY "ABOVE 5 YEAR"</option>
-												<option >Travel Covid-19 Rapid Antigen test -***PROOF OF TRAVEL REQUIRED*** 50$+TAX</option>
-												<option >Moderna  Booster shots " 18 and above only</option>
-												<option >Pediatric Pfizer Covid Vaccine "5-11 year Only " 1st and 2nd dose</option>
-												<option >Pfizer Covid-19 Vaccine "12 and above"</option>
+											<select id="products" class="ddslick" name="vaccine" data-selected="" data-filter-profile="appt">
+												<option value="1" >Flu Shot "3 years to 64 years "</option>
+												<option value="1" >Medication Review</option>
+												<option value="2" >SENIORS FLU SHOT</option>
+												<option value="3" >TRAVEL PCR COVID-19 test "For Travelling only**Proof of travel is required" 129.99$ PLUS TAX</option>
+												<option value="4" >PCR TEST FOR SYMPTOMATIC &amp; ASYMPTOMATIC PATIENTS *ONLY CERTAIN ELIGBILITY "ABOVE 5 YEAR"</option>
+												<option value="5" >Travel Covid-19 Rapid Antigen test -***PROOF OF TRAVEL REQUIRED*** 50$+TAX</option>
+												<option value="6" >Moderna  Booster shots " 18 and above only</option>
+												<option value="7" >Pediatric Pfizer Covid Vaccine "5-11 year Only " 1st and 2nd dose</option>
+												<option value="8" >Pfizer Covid-19 Vaccine "12 and above"</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group option_input">
 										<div class="styled-select clearfix variantss d_nones">
-											<select id="variants_one" class="ddslick d_nones" name="items[][variant]" data-selected="">
+											<select id="variants_one" class="ddslick d_nones" name="age" data-selected="">
 												<option >18 to 69 Years</option>
 												<option >70 Years and above</option>
 												<option >Immuncompromised</option>
 											</select>
-											<select id="variants_two" class="ddslick d_nones" name="items[][variant]" data-selected="">
+											<select id="variants_two" class="ddslick d_nones" name="age" data-selected="">
 												<option >1st</option>
 												<option >2nd</option>
 												<option >Booster"3rd" "18 YEARS AND OLDER"</option>
@@ -107,15 +108,15 @@
 									</div>
 									<div  class="form-group">
 										<div class="overlays"></div>
-   										<input type="button"  class="form-control requireds" id="input">
+   										<input type="button" name="date"  class="form-control requireds" id="input">
 										<i class="icon-hotel-calendar_3"></i>
 									</div>
 									<div class="form-group h-time">
 										<div class="styled-select clearfix">
-											<select id="ChooseTime" class="ddslick" name="items[][time]" data-datepicker="date" data-prompt="Choose a date..." data-selected="">
+											<select id="ChooseTime" class="ddslick" name="date" data-datepicker="date" data-prompt="Choose a date..." data-selected="">
 												<option >Choose a date...</option>
 											</select>
-											<select id="SelectMyTime" class="ddslick overflow-auto d-none"  name="items[][time]" data-datepicker="date" data-prompt="Choose a date..." data-selected="">
+											<select id="SelectMyTime" class="ddslick overflow-auto d-none"  name="time" data-datepicker="date" data-prompt="Choose a date..." data-selected="">
 												<option value="09:00" data-available="1">09:00 am</option>
 												<option value="09:15" data-available="1">09:15 am</option>
 												<option value="09:30" data-available="1">09:30 am</option>
@@ -186,7 +187,7 @@
 								<div class="form_items " >
 									<h3 class="main_question"><strong>3/6</strong>Please fill with your details</h3>
 									  <div class="form-group">
-										<input type="text" data-field="date" readonly class="form-control requireds myTime myDates"  placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">
+										<input type="text" name="dob" data-field="date" readonly class="form-control requireds myTime myDates"  placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">
 										<i class="icon-hotel-calendar_3"></i>
 
 										<div class="overlays"></div>
@@ -195,10 +196,10 @@
 
 									</div>
 									  <div class="form-group ">
-											<input autocomplete="off" id="field-2" placeholder="Address 'street address, city'" data-name="address_'street_address,_city_'_" type="text" name="fields[][address_'street_address,_city_'_]" class="form-control requireds">
+											<input autocomplete="off" id="field-2" placeholder="Address 'street address, city'" data-name="address_'street_address,_city_'_" type="text" name="address" class="form-control requireds">
 									  </div>
 									  <div class="form-group ">
-											<input autocomplete="off" id="field-3" placeholder="HEALTH CARD NUMBER" data-name="health_card_number" type="text" name="fields[][health_card_number]" class="form-control requireds">
+											<input autocomplete="off" id="field-3" placeholder="HEALTH CARD NUMBER" data-name="health_card_number" type="text" name="health_card_number" class="form-control requireds">
 									  </div>
 								</div>
 								<!-- /step-->
@@ -208,7 +209,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3" >
 										<em> • Symptomatic2 people who fall into one of the following groups: o Patient-facing healthcare workers</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -216,7 +217,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em> o Staff, volunteers, residents/inpatients, essential care providers, and visitors in highest risk settings ▪ Highest risk settings include: hospital (including complex continuing care facilities and paramedic services) and congregate living settings, including Long-Term Care, retirement homes, First Nation elder care lodges, group hopes, shelters, hospices and correctional institutions</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -224,7 +225,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em> o Household members of workers in highest risk settings</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -232,7 +233,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center" >
 										<em> o Temporary Foreign Workers in congregate living settings</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -240,7 +241,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>o Patients seeking emergency medical care, at the discretion of the treating clinician</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -248,7 +249,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>o Outpatients for whom COVID-19 treatment is being considered, including: ▪ Immunocompromised individuals not expected to mount an adequate immune response from COVID-19 vaccination or SARS-CoV-2 infection, regardless of vaccination status. ▪ Individuals who are not fully vaccinated and at highest risk of severe disease (anyone aged ≥ 70 years or ≥ 50 years who is Indigenous and/or has additional risk factors)</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -256,7 +257,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center" >
 										<em> o Pregnant people</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -264,7 +265,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>o People who are underhoused or homeless</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -272,7 +273,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>o First responders, including fire, police and paramedics</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -280,7 +281,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>o Elementary and secondary students and education staff who have received a PCR self-collection kit through their school</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -288,7 +289,7 @@
 									<div class="form-group options clearfix d-flex justify-content-between align-items-center">
 										<em>• Symptomatic/asymptomatic people: o From First Nation, Inuit, and Métis communities and individuals travelling into these communities for work o On admission/transfer to or from hospital or congregate living setting o Close contacts and people in the context of confirmed or suspected outbreaks in highest risk4 settings as directed by the local public health unit o Individuals, and one accompanying caregiver, with written prior approval for out-of-country medical services from the General Manager, OHIP o Asymptomatic testing in hospital, long-term care, retirement homes and other congregate living settings and institutions as per provincial guidance and/or Directives, or as directed by public health units.</em>
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" value="Pick up service" name="options[]">
+											<input type="checkbox" value="Pick up service" name="eligapility">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -301,9 +302,9 @@
 									<div id="" class="form-group">
 										<div  class="styled-select clearfix ">
 											<select id="field-5" class="ddslick">
-												<option>I am fully vaccinated against COVID-19 (it has been 14 days or more since your final dose of either a two-dose or a one-dose vaccine series)</option>
-												<option>I have tested postive for covid -19 in the last 90 days (and since have been cleared)</option>
-												<option>None of the Above</option>
+												<option value="1">I am fully vaccinated against COVID-19 (it has been 14 days or more since your final dose of either a two-dose or a one-dose vaccine series)</option>
+												<option value="2">I have tested postive for covid -19 in the last 90 days (and since have been cleared)</option>
+												<option value="3">None of the Above</option>
 											</select>
 										</div>
 									</div>
@@ -312,13 +313,13 @@
 									<div id="" class="form-group">
 										<div  class="styled-select clearfix ">
 											<select id="field-7"  class="ddslick">
-												<option>Fever and/or chillsTemperature of 37.8 degrees Celsius/100 degrees Fahrenheit or higher</option>
-												<option>Cough or barking cough (croup)Continuous, more than usual, making a whistling noise when breathing (not related to asthma, post-infectious reactive airways, COPD, or other known causes or conditions you already have)</option>
-												<option>Shortness of breathOut of breath, unable to breathe deeply (not related to asthma or other known causes or conditions you already have)</option>
-												<option>Decrease or loss of taste or smellNot related to seasonal allergies, neurological disorders, or other known causes or conditions you already have</option>
-												<option>Muscle aches/joint painUnusual, long-lasting (not related to getting a COVID-19 vaccine in the last 48 hours, a sudden injury, fibromyalgia, or other known causes or conditions you already have)</option>
-												<option>Nausea, vomiting, and/or diarrheaNot related to irritable bowel syndrome, anxiety, menstrual cramps, or other known causes or conditions you already have for children under 18 only</option>
-												<option>NONE OF THE ABOVE</option>
+												<option value="1">Fever and/or chillsTemperature of 37.8 degrees Celsius/100 degrees Fahrenheit or higher</option>
+												<option value="2">Cough or barking cough (croup)Continuous, more than usual, making a whistling noise when breathing (not related to asthma, post-infectious reactive airways, COPD, or other known causes or conditions you already have)</option>
+												<option value="3">Shortness of breathOut of breath, unable to breathe deeply (not related to asthma or other known causes or conditions you already have)</option>
+												<option value="4">Decrease or loss of taste or smellNot related to seasonal allergies, neurological disorders, or other known causes or conditions you already have</option>
+												<option value="5">Muscle aches/joint painUnusual, long-lasting (not related to getting a COVID-19 vaccine in the last 48 hours, a sudden injury, fibromyalgia, or other known causes or conditions you already have)</option>
+												<option value="6">Nausea, vomiting, and/or diarrheaNot related to irritable bowel syndrome, anxiety, menstrual cramps, or other known causes or conditions you already have for children under 18 only</option>
+												<option value="7">NONE OF THE ABOVE</option>
 											</select>
 										</div>
 									</div>
@@ -327,8 +328,8 @@
 									<div id="" class="form-group">
 										<div  class="styled-select clearfix ">
 											<select id="field-8" class="ddslick">
-												<option>YES</option>
-												<option>NO</option>
+												<option value="1">YES</option>
+												<option value="2">NO</option>
 											</select>
 										</div>
 									</div>
@@ -358,7 +359,7 @@
 									<div class="form-group options clearfix d-flex justify-content-center align-items-center">
 										<em>PROVES YOUR ELIGABILITY</em>
 										<label class="switch-light switch-ios float-right">
-											<input class="checkBox" type="checkbox" value="Pick up service" name="options[]">
+											<input class="checkBox" type="checkbox" value="Pick up service" name="condiotions">
 											<span><span>No</span><span>Yes</span></span>
 											<a></a>
 										</label>
@@ -370,7 +371,7 @@
 							<div id="bottom-wizard">
 								<button type="button" name="backward" class="backwards">Prev</button>
 								<button type="button" name="forward" class="forwards">Next</button>
-								<button type="button" name="process" class="submits">Submit</button>
+								<button type="submit" name="process" class="submits">Submit</button>
 							</div>
 							<!-- /bottom-wizard -->
 						</form>
