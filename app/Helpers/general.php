@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Storage;
 
 function upload($file, $folder)
 {
-    $profile_img = Image::make($file)->encode('jpg');
+    $profile_img = Image::make($file)->encode('png');
     $img = $file->hashName();
     Storage::disk('local')->put('public/images/'.$folder.'/'. $img, (string)$profile_img, 'public');
     return $img;

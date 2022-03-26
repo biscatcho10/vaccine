@@ -8,21 +8,21 @@
                 r.addClass("d_nones"),
                 'Moderna  Booster shots " 18 and above only' == e(this).text()
                     ? 'Moderna  Booster shots " 18 and above only' ==
-                      e(this).text()
+                        e(this).text()
                         ? (o.removeClass("d_nones"), t.removeClass("d_nones"))
                         : (o.addClass("d_nones"), r.addClass("d_nones"))
                     : 'Pfizer Covid-19 Vaccine "12 and above"' == e(this).text()
-                    ? (o.removeClass("d_nones"), r.removeClass("d_nones"))
-                    : (o.addClass("d_nones"), r.addClass("d_nones"));
+                        ? (o.removeClass("d_nones"), r.removeClass("d_nones"))
+                        : (o.addClass("d_nones"), r.addClass("d_nones"));
         });
     }),
         e(".submits").on("click", function () {
             let o = document.querySelector(".active .checkBox");
             0 == o.checked
                 ? (e(
-                      '<span for="dates" class="error">Required</span>'
-                  ).insertAfter(o),
-                  (o.style.borderColor = "red"))
+                    '<span for="dates" class="error">Required</span>'
+                ).insertAfter(o),
+                    (o.style.borderColor = "red"))
                 : e(".error").remove();
         }),
         e(".forwards").on("click", function () {
@@ -46,18 +46,18 @@
                     }
                 }),
                 null == document.getElementById("tCheckBox") &&
-                    null !==
-                        document.querySelector(
-                            ".appCheckBox.form_items.active"
-                        ) &&
-                    (e('.appCheckBox.form_items.active [type="checkbox"]')
-                        .checked
-                        ? e(".error").remove()
-                        : e(
-                              '<span for="dates" class="error">Required</span>'
-                          ).insertAfter(".forwards")),
+                null !==
+                document.querySelector(
+                    ".appCheckBox.form_items.active"
+                ) &&
+                (e('.appCheckBox.form_items.active [type="checkbox"]')
+                    .checked
+                    ? e(".error").remove()
+                    : e(
+                        '<span for="dates" class="error">Required</span>'
+                    ).insertAfter(".forwards")),
                 0 == e(".error").length &&
-                    (e(".form_items.active").next().addClass("active"),
+                (e(".form_items.active").next().addClass("active"),
                     e(".form_items.active").prev().removeClass("active")),
                 e(".form_items.active .requireds").keydown(function () {
                     e(this).siblings(".error").remove(),
@@ -65,8 +65,8 @@
                 }),
                 document.querySelector(".oneCheckBox.form_items.active"),
                 null !==
-                    document.querySelector(".oneCheckBox.form_items.active") &&
-                    (e(".submits").show(), e(".forwards").hide()),
+                document.querySelector(".oneCheckBox.form_items.active") &&
+                (e(".submits").show(), e(".forwards").hide()),
                 null == document.querySelector(".form_items.active:first-child")
                     ? e(".backwards").show()
                     : e(".backwards").hide();

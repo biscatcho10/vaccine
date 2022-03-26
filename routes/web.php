@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// landing page
+Route::get('/', [VaccineController::class, 'index'])->name('index');
+
 
 // make request for vaccine
 Route::post('request/vaccine', [VaccineController::class, 'makeRequest'])->name('make.request');
