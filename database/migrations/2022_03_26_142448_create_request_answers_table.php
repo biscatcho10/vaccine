@@ -16,7 +16,7 @@ class CreateRequestAnswersTable extends Migration
         Schema::create('request_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
-            $table->integer('patient_hcm');
+            $table->string('patient_hcm');
             $table->foreign('patient_hcm')->references('health_card_num')->on('patients')->onDelete('cascade');
             $table->json('answers');
             $table->timestamps();
