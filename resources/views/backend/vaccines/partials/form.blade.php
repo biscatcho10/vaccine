@@ -93,6 +93,7 @@
 <div class="row my-2 mx-1">
     <div class="form-check">
         <label class="form-check-label">
+            {{-- @dd($vaccine->definded_period) --}}
             <input type="checkbox" value="1" class="form-check-input" name="definded_period"
                 @isset($vaccine) {{ $vaccine->definded_period ? 'checked' : '' }} @endisset>
             Has Defined Period ?

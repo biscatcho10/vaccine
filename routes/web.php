@@ -29,3 +29,6 @@ Route::post('request/vaccine', [VaccineController::class, 'makeRequest'])->name(
 
 // get vaccine data
 Route::get('vaccine/data/{vaccine}', [VaccineController::class, 'vaccineData'])->name('get.vaccine');
+
+Route::get('interval/{vaccine}/{day}', [VaccineController::class, 'dayIntervals'])->name('day.intervals');
+

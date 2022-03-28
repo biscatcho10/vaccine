@@ -59,8 +59,33 @@
 
 <script defer src="{{ asset('frontend/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('frontend/js/rome.js') }}"></script>
-<script defer src="{{ asset('frontend/js/DateTimePicker.js') }}"></script>
+{{-- <script defer src="{{ asset('frontend/js/DateTimePicker.js') }}"></script> --}}
 <script defer src="{{ asset('frontend/js/common_scripts.min.js') }}"></script>
 <script defer src="{{ asset('frontend/js/functions.js') }}"></script>
 <script defer src="{{ asset('frontend/js/min.js') }}"></script>
 <script defer src="{{ asset('frontend/js/backend.js') }}"></script>
+
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var selectedDates = [];
+        datePicker = $('[id*=txtdate]').datepicker({
+            startDate: new Date(),
+            minDate: 0,
+            multidate: true,
+            format: "mm/dd/yyyy",
+            daysOfWeekHighlighted: "5,6",
+            language: 'en',
+        });
+        datePicker.on('changeDate', function (e) {
+            if (e.dates.length <= 3) {
+                selectedDates = e.dates;
+                document.getElementById("<%=Button1.ClientID %>").click();
+            } else {
+                datePicker.data('datepicker').setDates(selectedDates);
+                alert('You can only select 3 dates.');
+            }
+        });
+    });
+</script> --}}

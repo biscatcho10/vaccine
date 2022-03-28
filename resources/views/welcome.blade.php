@@ -22,6 +22,7 @@
 
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
 
+
     <style>
         .content-left-wrapper.bg_hotel:before {
             background: url({{ asset('storage/images/settings/' . $settings['page_image']) }}) center center no-repeat;
@@ -85,7 +86,7 @@
                         @csrf
                         <!-- Leave for security protection, read docs for details -->
                         <div id="middle-wizard">
-                            @include('frontend.vaccine')
+                            @include('frontend.vaccine1')
                             <!-- /step-->
 
                             @include('frontend.user')
