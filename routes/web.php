@@ -26,3 +26,6 @@ Route::get('/', [VaccineController::class, 'index'])->name('index');
 
 // make request for vaccine
 Route::post('request/vaccine', [VaccineController::class, 'makeRequest'])->name('make.request');
+
+// get vaccine data
+Route::get('vaccine/data/{vaccine}', [VaccineController::class, 'vaccineData'])->name('get.vaccine');

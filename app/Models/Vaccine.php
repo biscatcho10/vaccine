@@ -46,4 +46,23 @@ class Vaccine extends Model
     }
     /** End Relations  **/
 
+
+    /** Start Helpers **/
+    public function getWeekends()
+    {
+        $weekDays = [
+            "saturday",
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+        ];
+
+        $workDays = $this->days->pluck('name')->toArray();
+
+        return array_diff($weekDays, $workDays);
+    }
+    /** End Helpers **/
 }

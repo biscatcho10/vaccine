@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontent;
 
 use anlutro\LaravelSettings\Facades\Setting;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\VaccineResource;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,11 @@ class VaccineController extends Controller
     public function makeRequest(Request $request)
     {
         dd($request->all());
+    }
+
+    public function vaccineData(Vaccine $vaccine)
+    {
+        $vaccine = new VaccineResource($vaccine);
+        return response()->json($vaccine);
     }
 }

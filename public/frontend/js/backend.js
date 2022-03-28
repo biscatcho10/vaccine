@@ -1,12 +1,13 @@
-// $('input[name="vaccine"]').change(function (e) {
-//     e.preventDefault();
-//     console.log("bb");
-//     alert("ss")
-// });
-
-// $(document).ready(function () {
-//     $('input[name="vaccine"]').change(function () {
-//         alert("ddddddddd")
-//     });
-// });
-
+$(document).ready(function () {
+    let vaccine = 1;
+     $.ajax({
+        type: "GET",
+        url: BASE_URL+"/vaccine/data/"+vaccine,
+        data: {vaccine:vaccine},
+        dataType: "json",
+        success: function (response) {
+            let vaccine = response;
+            console.log(vaccine);
+        }
+    });
+});
