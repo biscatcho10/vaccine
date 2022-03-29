@@ -1,13 +1,54 @@
+$(function () {
+    $("#dob").datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+});
+
 $("#products").change(function (e) {
     e.preventDefault();
     let vaccine = $(this).val();
     $.ajax({
         type: "GET",
         url: BASE_URL + "/vaccine/data/" + vaccine,
-        data: { vaccine: vaccine },
         dataType: "json",
         success: function (response) {
             let vaccine = response;
+
+            // has exceptions only
+            function exceptions(date) {
+                dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                if ($.inArray(dmy, unavailableDates) == -1) {
+                    return [true, ""];
+                } else {
+                    return [false, "", "Unavailable"];
+                }
+            }
+
+            // has weekend only
+            function weekends(date) {
+                var show = true;
+                if (weekendDays.includes(date.getDay())) show = false
+                return [show];
+            }
+
+            // has exceptions and weekend
+            function disabledDates(date) {
+                dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                var show = true;
+                if (weekendDays.includes(date.getDay())) {
+                    show = false;
+                } else {
+                    if ($.inArray(dmy, unavailableDates) == -1) {
+                        show = true;
+                    } else {
+                        show = false;
+                    }
+                }
+                return [show];
+            }
+
+            // show ages select
             if (vaccine.has_diff_ages) {
                 $(".option_input").show();
                 let ages = vaccine.diff_ages;
@@ -17,13 +58,100 @@ $("#products").change(function (e) {
                 });
             }
 
+            // has defined period
             if (vaccine.definded_period) {
                 let min = vaccine.from;
                 let max = vaccine.to;
-                $('#day').attr('min', min);
-                $('#day').attr('max', max);
+                var unavailableDates = vaccine.exceptions;
+                var offDays = vaccine.weekends;
+                var weekendDays = [];
+                offDays.forEach(off => {
+                    weekendDays.push(dayRank(off));
+                });
 
+
+                if (vaccine.weekends && vaccine.exceptions) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        maxDate: new Date(max),
+                        minDate: new Date(min),
+                        beforeShowDay: disabledDates,
+                    });
+                } else if (vaccine.weekends) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        maxDate: new Date(max),
+                        minDate: new Date(min),
+                        beforeShowDay: weekends,
+
+                    });
+                } else if (vaccine.exceptions) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        maxDate: new Date(max),
+                        minDate: new Date(min),
+                        beforeShowDay: exceptions
+                    });
+                }
+
+            } else {
+                if (vaccine.weekends && vaccine.exceptions) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        minDate: 0,
+                        beforeShowDay: disabledDates,
+                    });
+                } else if (vaccine.weekends) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        minDate: 0,
+                        beforeShowDay: weekends,
+
+                    });
+                } else if (vaccine.exceptions) {
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        minDate: 0,
+                        beforeShowDay: exceptions
+                    });
+                }
             }
+
+            // show ages select
+            if (vaccine.eligapilities) {
+                let eligaps = vaccine.eligapilities;
+                let title = eligaps.title;
+                $("#eligap_title").text(title);
+                eligaps.eligapilities.forEach(eligaps => {
+                    let data = eligaps.eligapility;
+                    $(".appCheckBox").append(`
+                    <div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3">
+                        <em> • ${ data }</em>
+                        <label class="switch-light switch-ios float-right">
+                            <input type="checkbox" value="${ data }" name="eligapility">
+                            <span>
+                                <span>No</span>
+                                <span>Yes</span>
+                            </span>
+                            <a></a>
+                        </label>
+                    </div>
+                    `);
+                });
+            }
+
         }
     });
 
@@ -51,6 +179,11 @@ $("#products").change(function (e) {
 
 
 
+function dayRank(day) {
+    days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    return days.indexOf(day);
+}
+
 function dayname(date) {
     return day = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"][new Date(date).getDay()]
 }
@@ -65,16 +198,4 @@ function timeConvert(time) {
     }
     return time.join(''); // return adjusted time or original string
 }
-
-
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0');
-var yyyy = today.getFullYear();
-
-today = yyyy + '-' + mm + '-' + dd;
-$('#day').attr('min', today);
-
-
-var disabledDates = ["2022-3-28", "2022-3-29", "2022-3-30"]
 

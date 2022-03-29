@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VaccineResource extends JsonResource
@@ -16,7 +17,6 @@ class VaccineResource extends JsonResource
     {
         $data = [
             'name' => $this->name,
-            'exceptions' => $this->exceptionsd->pluck('date')->toArray(),
             'definded_period' => $this->definded_period,
             'has_diff_ages' => $this->has_diff_ages,
             'days' => DayResource::collection($this->days),
@@ -24,6 +24,13 @@ class VaccineResource extends JsonResource
             'conditions' => new ConditionsResource($this->condition),
             'eligapilities' => new EligabilityResource($this->eligapility),
         ];
+
+        if ($this->exceptionsd->count() > 0) {
+            foreach ($this->exceptionsd->pluck('date')->toArray() as $date) {
+                $newExcp[] = Carbon::parse($date)->format('j-n-Y');
+            }
+            $data['exceptions'] = $newExcp;
+        }
 
         if ($this->definded_period) {
             $data['from'] = $this->from;

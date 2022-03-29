@@ -1,19 +1,19 @@
 <div class="form_items">
     <h3 class="main_question"><strong>2/6</strong>Contact information</h3>
     <div class="form-group">
-        <input type="text" name="first_name" class="form-control requireds"  autocomplete="off" placeholder="First Name">
+        <input autocomplete="off" type="text" name="first_name" class="form-control requireds" placeholder="First Name">
         <i class="icon-user"></i>
     </div>
     <div class="form-group">
-        <input type="text" name="last_name" class="form-control requireds"  autocomplete="off" placeholder="Last Name">
+        <input autocomplete="off" type="text" name="last_name" class="form-control requireds" placeholder="Last Name">
         <i class="icon-user"></i>
     </div>
     <div class="form-group">
-        <input type="email" name="email" class="form-control requireds email" autocomplete="off"  placeholder="Email">
+        <input autocomplete="off" type="email" name="email" class="form-control requireds email" placeholder="Email">
         <i class="icon-envelope"></i>
     </div>
     <div class="form-group">
-        <input type="text" name="telephone" class="form-control requireds"  autocomplete="off" placeholder="Telephone">
+        <input autocomplete="off" type="text" name="telephone" class="form-control requireds" placeholder="Telephone">
         <i class="icon-phone"></i>
     </div>
 </div>
@@ -21,16 +21,26 @@
 
 <div class="form_items ">
     <h3 class="main_question"><strong>3/6</strong>Please fill with your details</h3>
-    <div class="form-group">
-        <input type="text" name="dob" data-field="date" readonly class="form-control requireds myTime myDates" placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">
+    <div class="form-group" style="display: none">
+        <input type="text" data-field="date" readonly class="form-control myTime myDates"
+            placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">
         <i class="icon-hotel-calendar_3"></i>
 
         <div class="overlays"></div>
-        <div id="dtBox"> </div>
-
+        <div id="dtBox">
+        </div>
     </div>
+
+    <div class="form-group">
+        <input type="text" name="dob" id="dob" class="form-control" readonly>
+        <i class="icon-hotel-calendar_3"></i>
+        <div class="overlays"></div>
+
+        {{-- <input name="date" id="day" type="text"> --}}
+    </div>
+
     <div class="form-group ">
-        <input type="text" name="address" class="form-control requireds" autocomplete="off" id="field-2" placeholder="Address 'street address, city'">
+        <input type="text" name="address" autocomplete="off" id="field-2" placeholder="Address 'street address, city'" class="form-control requireds">
     </div>
     <div class="form-group ">
         <input type="text" name="health_card_number" class="form-control requireds" autocomplete="off" id="field-3" placeholder="HEALTH CARD NUMBER">
