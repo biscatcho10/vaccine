@@ -24,7 +24,9 @@
     </div>
 
     <div class="form-group">
-        <input type="date" name="date" id="day" class="form-control">
+        {{-- <input type="date" name="date" id="day" class="form-control"> --}}
+        <input type="text" name="date" id="day" class="form-control">
+
         {{-- <input name="date" id="day" type="text"> --}}
     </div>
     <div class="form-group h-time">
