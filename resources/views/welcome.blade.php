@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/DateTimePicker.css') }}" />
     <link href="{{ asset('frontend/css/vendors.css') }}" rel="stylesheet">
-
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
     <style>
         .content-left-wrapper.bg_hotel:before {
@@ -32,7 +32,6 @@
             background-size: cover;
             /* settings */
         }
-
     </style>
 </head>
 
@@ -86,13 +85,13 @@
                         @csrf
                         <!-- Leave for security protection, read docs for details -->
                         <div id="middle-wizard">
-                            @include('frontend.vaccine1')
+                            @include('frontend.vaccine')
                             <!-- /step-->
 
                             @include('frontend.user')
                             <!-- /step-->
 
-                            @include('frontend.eligapility')
+                            @include('frontend.eligapilities')
                             <!-- /step-->
 
                             @include('frontend.questions')
