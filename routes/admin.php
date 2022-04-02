@@ -38,6 +38,10 @@ Route::middleware(['auth:web'])->group(function () {
     // Vaccines
     Route::resource('vaccine', VaccineController::class);
 
+    // Vaccines
+    Route::get('{vaccine}/requests', [VaccineController::class, 'getRequest'])->name('get.requestS');
+    Route::get('{vaccine}/requests/{request}', [VaccineController::class, 'showRequest'])->name('show.request');
+
     // Questions
     Route::resource('{vaccine}/question', QuestionController::class);
     Route::post('{vaccine}/copy/questions', [QuestionController::class, 'copy'])->name('copy-questions');

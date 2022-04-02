@@ -34,7 +34,33 @@
         $("#datatable-buttons")
         .DataTable({
             lengthChange: !1,
-            // buttons: ["excel", "pdf"],
+            buttons: [
+                {
+                    extend: "copyHtml5",
+                    exportOptions: {
+                        cloumns: ':visible'
+                    }
+                },
+                {
+                    extend: "pdfHtml5",
+                    exportOptions: {
+                        cloumns: ':visible'
+                    }
+                },
+                {
+                    extend: "csvHtml5",
+                    exportOptions: {
+                        cloumns: ':visible'
+                    }
+                },
+                {
+                    extend: "excelHtml5",
+                    exportOptions: {
+                        cloumns: ':visible'
+                    }
+                },
+                'colvis'
+            ],
         })
         .buttons()
         .container()

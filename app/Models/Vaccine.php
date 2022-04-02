@@ -44,6 +44,11 @@ class Vaccine extends Model
     {
         return $this->hasMany(Exception::class, 'vaccine_id');
     }
+
+    public function requests()
+    {
+        return $this->hasMany(RequestAnswer::class);
+    }
     /** End Relations  **/
 
 

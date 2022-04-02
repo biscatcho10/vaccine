@@ -18,6 +18,11 @@ class CreateRequestAnswersTable extends Migration
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
             $table->string('patient_hcm');
             $table->foreign('patient_hcm')->references('health_card_num')->on('patients')->onDelete('cascade');
+            $table->text('eligapility');
+            $table->date('day_date');
+            $table->string('day_name');
+            $table->string('day_time');
+            $table->string('age')->nullable();
             $table->json('answers');
             $table->timestamps();
         });

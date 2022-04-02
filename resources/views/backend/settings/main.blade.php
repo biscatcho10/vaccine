@@ -225,6 +225,49 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row my-2">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Button Track Code</label>
+                                                    <textarea
+                                                    type="text" name="btn_track_code"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("button track code is required")}}"
+                                                    placeholder="Enter Track Code"
+                                                    >{{ array_key_exists('btn_track_code', $settings) ? $settings['btn_track_code'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="">Button Google ID footer</label>
+                                                    <textarea
+                                                    type="text" name="btn_google_id_footer"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("button google id footer is required")}}"
+                                                    placeholder="Enter Google ID footer"
+                                                    >{{ array_key_exists('btn_google_id_footer', $settings) ? $settings['btn_google_id_footer'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="">Tranfer Line</label>
+                                                    <textarea
+                                                    type="text" name="transfer_line"
+                                                    class="form-control"
+                                                    rows="3"
+                                                    data-parsley-required
+                                                    data-parsley-required-message = "{{__("transfer line is required")}}"
+                                                    placeholder="Enter Google ID footer"
+                                                    >{{ array_key_exists('transfer_line', $settings) ? $settings['transfer_line'] : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

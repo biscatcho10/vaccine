@@ -21,7 +21,6 @@
     <link href="{{ asset('frontend/css/vendors.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
 
     <style>
         .content-left-wrapper.bg_hotel:before {

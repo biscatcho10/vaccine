@@ -53,7 +53,7 @@
             <div class="content-body">
                 <div class="auth-wrapper auth-basic px-2">
                     <div class="auth-inner my-2">
-                        <!-- Login basic -->
+                        <!-- Forgot Password basic -->
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="index.html" class="brand-logo">
@@ -80,52 +80,26 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Well Pharamacy</h2>
+                                    <h2 class="brand-text text-primary ms-1">Vuexy</h2>
                                 </a>
 
-                                <h4 class="card-title mb-3">Welcome to Well Pharamacy</h4>
+                                <h4 class="card-title mb-1">Forgot Password? 🔒</h4>
+                                <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
 
-                                <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
-                                    @csrf
+                                <form class="auth-forgot-password-form mt-2" action="auth-reset-password-basic.html" method="POST">
                                     <div class="mb-1">
-                                        <label for="login-email" class="form-label">Email</label>
-                                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <label for="forgot-password-email" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="forgot-password-email" name="forgot-password-email" placeholder="john@example.com" aria-describedby="forgot-password-email" tabindex="1" autofocus />
                                     </div>
-
-                                    <div class="mb-1">
-                                        <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">Password</label>
-                                            <a href="{{ route('password.request') }}">
-                                                <small>Forgot Password?</small>
-                                            </a>
-                                        </div>
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                        </div>
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" />
-                                            <label class="form-check-label" for="remember-me"> Remember Me </label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                                    <button class="btn btn-primary w-100" tabindex="2">Send reset link</button>
                                 </form>
 
+                                <p class="text-center mt-2">
+                                    <a href="auth-login-basic.html"> <i data-feather="chevron-left"></i> Back to login </a>
+                                </p>
                             </div>
                         </div>
-                        <!-- /Login basic -->
+                        <!-- /Forgot Password basic -->
                     </div>
                 </div>
 

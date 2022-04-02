@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Patient extends Model
 {
-
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +26,7 @@ class Patient extends Model
 
 
     // attributes
+
     /**
      * @var string[]
      */
@@ -46,5 +48,10 @@ class Patient extends Model
     public function getCreatedAtDateAttribute()
     {
         return date("d/m/Y", strtotime($this->created_at));
+    }
+
+    public function request()
+    {
+        return $this->hasOne(RequestAnswer::class);
     }
 }

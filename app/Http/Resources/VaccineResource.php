@@ -23,6 +23,7 @@ class VaccineResource extends JsonResource
             'weekends' => $this->getWeekends(),
             'conditions' => new ConditionsResource($this->condition),
             'eligapilities' => new EligabilityResource($this->eligapility),
+            'questions' =>  QuestionResource::collection($this->questions),
         ];
 
         if ($this->exceptionsd->count() > 0) {

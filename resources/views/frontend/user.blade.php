@@ -13,7 +13,7 @@
         <i class="icon-envelope"></i>
     </div>
     <div class="form-group">
-        <input autocomplete="off" type="text" name="telephone" class="form-control requireds" placeholder="Telephone">
+        <input autocomplete="off" type="text" name="phone" class="form-control requireds" placeholder="Telephone">
         <i class="icon-phone"></i>
     </div>
 </div>

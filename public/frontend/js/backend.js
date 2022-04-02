@@ -132,15 +132,16 @@ $("#products").change(function (e) {
             // show ages select
             if (vaccine.eligapilities) {
                 let eligaps = vaccine.eligapilities;
+                $("#eligapility_content").empty();
                 let title = eligaps.title;
                 $("#eligap_title").text(title);
                 eligaps.eligapilities.forEach(eligaps => {
                     let data = eligaps.eligapility;
                     $(".appCheckBox").append(`
                     <div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3">
-                        <em> • ${ data }</em>
+                        <em> • ${data}</em>
                         <label class="switch-light switch-ios float-right">
-                            <input type="checkbox" value="${ data }" name="eligapility">
+                            <input type="checkbox" value="${data}" name="eligapility" id="tCheckBox">
                             <span>
                                 <span>No</span>
                                 <span>Yes</span>
@@ -148,6 +149,46 @@ $("#products").change(function (e) {
                             <a></a>
                         </label>
                     </div>
+                    `);
+                });
+            }
+
+
+            // show questions
+            if (vaccine.questions) {
+                let questions = vaccine.questions;
+                $("#question_section").empty();
+                questions.forEach((question, index) => {
+                    $("#question_section").append(`
+                    <div class="styled-select clearfix">
+                        <label class="mt-3">${question.question}</label>
+                        <div class="form-group">
+                            <select name="${question.question}" id="question_${index}" class="form-control">
+                                <option>Select one</option>
+                            </select>
+                        </div>
+                    </div>
+                    `);
+
+                    question.options.forEach(option => {
+                        $("#question_" + index).append(`
+                        <option vlaue="${option.value}">${option.option}</option>
+                    `);
+                    });
+                });
+            }
+
+            // show ages select
+            if (vaccine.conditions) {
+                let conditions = vaccine.conditions;
+                let title = conditions.title;
+                $("#question_page_title").text(title);
+                $("#condition_list").empty();
+                conditions.conditions.forEach(condition => {
+                    $("#condition_list").append(`
+                        <div class="form-group options clearfix d-flex justify-content-between align-items-center">
+                            <em>${condition.condition}</em>
+                        </div>
                     `);
                 });
             }

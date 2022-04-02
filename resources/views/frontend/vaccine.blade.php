@@ -3,7 +3,7 @@
     <h3 class="main_question titles">Choose your service</h3>
     <div id="my_faxen" class="form-group">
 
-        <div class="styled-select clearfix ">
+        <div class="styled-select clearfix">
             <select id="products" name="vaccine" class="form-control">
                 <option>select option</option>
                 @foreach ($vaccines as $key => $vaccine)
