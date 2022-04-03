@@ -31,7 +31,7 @@
                     <td>{{ $request->eligapility }}</td>
                 </tr>
 
-                @if ($request->age != null)
+                @if ($vaccine->has_diff_ages)
                     <tr>
                         <th width="200">Age</th>
                         <td>{{ $request->age }}</td>

@@ -33,15 +33,6 @@
         }
 
     </style>
-
-    {{-- {!! $settings['google_analects'] !!}
-    {!! $settings['facebook_pixel'] !!}
-    {!! $settings['google_id_head'] !!}
-    {!! $settings['google_id_footer'] !!}
-    {!! $settings['track_code'] !!}
-    {!! $settings['btn_track_code'] !!}
-    {!! $settings['btn_google_id_footer'] !!}
-    {!! $settings['transfer_line'] !!} --}}
 </head>
 
 <body>
@@ -63,8 +54,7 @@
                                 src="{{ asset('storage/images/settings/' . $settings['logo']) }}" alt=""></a>
                         <div id="social">
                             <ul>
-                                <li><a href="{{ $settings['facebook_link'] }}"><i class="social_facebook"></i></a>
-                                </li>
+                                <li><a href="{{ $settings['facebook_link'] }}"><i class="social_facebook"></i></a></li>
                                 <li><a href="{{ $settings['twitter_link'] }}"><i class="social_twitter"></i></a></li>
                                 <li><a href="{{ $settings['instagram_link'] }}"><i class="social_instagram"></i></a>
                                 </li>
@@ -89,36 +79,15 @@
             <!-- /content-left -->
 
             <div class="col-lg-8 content-right" id="start">
-                <div id="wizard_container">
-                    <!-- /top-wizard -->
-                    <form action="{{ route('make.request') }}" id="wrapped" method="POST">
-                        @csrf
-                        <!-- Leave for security protection, read docs for details -->
-                        <div id="middle-wizard">
-                            @include('frontend.vaccine')
-                            <!-- /step-->
 
-                            @include('frontend.user')
-                            <!-- /step-->
 
-                            @include('frontend.eligapilities')
-                            <!-- /step-->
-
-                            @include('frontend.questions')
-                            <!-- /step-->
-
-                            @include('frontend.conditions')
-                            <!-- /step-->
-                        </div>
-                        <!-- /middle-wizard -->
-                        <div id="bottom-wizard">
-                            <button type="button" name="backward" class="backwards">Prev</button>
-                            <button type="button" name="forward" class="forwards">Next</button>
-                            <button type="submit" name="process" class="submits">Submit</button>
-                        </div>
-                        <!-- /bottom-wizard -->
-                    </form>
+                <h2 class="title-sec">{{ $settings['thanks_title'] }}</h2>
+                <div class="pragh">
+                    <p>
+                        {{ $settings['thanks_parag'] }}
+                    </p>
                 </div>
+
                 <!-- /Wizard container -->
                 <!-- Footer -->
                 <footer>

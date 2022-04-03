@@ -32,3 +32,4 @@ Route::get('vaccine/data/{vaccine}', [VaccineController::class, 'vaccineData'])-
 
 Route::get('interval/{vaccine}/{day}', [VaccineController::class, 'dayIntervals'])->name('day.intervals');
 
+Route::get("/thanks-page", [VaccineController::class, 'thanks'])->name('get.thanks');

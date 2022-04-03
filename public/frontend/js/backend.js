@@ -101,6 +101,9 @@ $("#products").change(function (e) {
                 }
 
             } else {
+                var unavailableDates = vaccine.exceptions;
+                var offDays = vaccine.weekends;
+                var weekendDays = [];
                 if (vaccine.weekends && vaccine.exceptions) {
                     $("#day").datepicker({
                         changeMonth: true,
@@ -198,7 +201,7 @@ $("#products").change(function (e) {
 
     $("#day").change(function (e) {
         e.preventDefault();
-        let day = dayname($(this).val());
+        let day = $(this).val();
         $.ajax({
             type: "GET",
             url: BASE_URL + "/interval/" + vaccine + "/" + day,
@@ -206,6 +209,7 @@ $("#products").change(function (e) {
             dataType: "json",
             success: function (response) {
                 let intervals = response;
+                console.log(intervals);
                 intervals.forEach(interval => {
                     let data = timeConvert(interval);
                     $("#ChooseTime").append("<option value='" + data + "'>" + data + "</option>");

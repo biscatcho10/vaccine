@@ -17,7 +17,6 @@ class VaccineController extends Controller
 {
     public function index()
     {
-        // dd(Vaccine::pluck('name', 'id')->toArray());
         return view('welcome', [
             'settings' => Setting::all(),
             'page_image' => asset("storage/images/settings/" . Setting::get('page_image')),
@@ -64,9 +63,15 @@ class VaccineController extends Controller
             'actionURL' => url('/'),
         ];
 
+        // send mail to the patient
         Notification::send($patient, new UserConfirmation($details));
 
-        return redirect()->back();
+        if (Setting::get('redirect')) {
+            return redirect(Setting::get('redirect_url'));
+        } else {
+            return redirect()->route('get.thanks');
+        }
+
     }
 
     public function vaccineData(Vaccine $vaccine)
@@ -77,8 +82,26 @@ class VaccineController extends Controller
 
     public function dayIntervals(Vaccine $vaccine, $day)
     {
-        $day = $vaccine->days()->where('name', $day)->first();
+
+        $requests = RequestAnswer::where('day_date', $day)->pluck('day_time')->toArray();
+        $data = [];
+        foreach ($requests as $time) {
+            $data[] = Carbon::parse($time)->format('H:i');
+        }
+        $day_name = lcfirst(Carbon::parse($day)->format("l"));
+        $day = $vaccine->days()->where('name', $day_name)->first();
         $intervals = $day->intervals->pluck('interval')->toArray();
+
+        if($requests){
+            $intervals = array_values(array_diff($intervals, $data));
+        }
+
+
         return response()->json($intervals);
+    }
+
+    public function thanks()
+    {
+        return view('thanks', ['settings' => Setting::all()]);
     }
 }

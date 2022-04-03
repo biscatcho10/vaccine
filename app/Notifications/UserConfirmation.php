@@ -42,11 +42,12 @@ class UserConfirmation extends Notification
      */
     public function toMail($notifiable)
     {
+        $thanks = htmlspecialchars_decode($this->details['thanks'], ENT_HTML5);
         return (new MailMessage)
             ->greeting($this->details['greeting'])
             ->line($this->details['body'])
             ->action($this->details['actionText'], $this->details['actionURL'])
-            ->line($this->details['thanks']);
+            ->line($thanks);
     }
 
     /**

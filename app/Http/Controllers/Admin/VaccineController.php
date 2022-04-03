@@ -9,6 +9,7 @@ use App\Models\RequestAnswer;
 use App\Models\Vaccine;
 use App\Repositories\VaccineRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VaccineController extends Controller
 {
@@ -75,7 +76,18 @@ class VaccineController extends Controller
     {
         $vaccine = $this->repository->find($vaccine);
         $requests = $vaccine->requests;
-        return view('backend.vaccines.show', compact('vaccine', 'requests'));
+        $time = DB::table('request_answers')
+        ->select('day_time')
+        ->where('vaccine_id', $vaccine->id)
+        ->groupBy('day_time')
+        ->orderByRaw('COUNT(*) DESC')
+        ->limit(1)
+        ->get()[0]->day_time;
+
+        $user_count = RequestAnswer::where('vaccine_id', $vaccine->id)->count();
+
+
+        return view('backend.vaccines.show', compact('vaccine', 'requests', 'time', 'user_count'));
     }
 
     /**
