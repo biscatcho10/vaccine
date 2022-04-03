@@ -76,13 +76,19 @@ class VaccineController extends Controller
     {
         $vaccine = $this->repository->find($vaccine);
         $requests = $vaccine->requests;
-        $time = DB::table('request_answers')
-        ->select('day_time')
-        ->where('vaccine_id', $vaccine->id)
-        ->groupBy('day_time')
-        ->orderByRaw('COUNT(*) DESC')
-        ->limit(1)
-        ->get()[0]->day_time;
+
+        if ($vaccine->requests->count() > 0) {
+            $time = DB::table('request_answers')
+                ->select('day_time')
+                ->where('vaccine_id', $vaccine->id)
+                ->groupBy('day_time')
+                ->orderByRaw('COUNT(*) DESC')
+                ->limit(1)
+                ->get()[0]->day_time;
+        } else {
+            $time = "No times yet";
+        }
+
 
         $user_count = RequestAnswer::where('vaccine_id', $vaccine->id)->count();
 
@@ -115,8 +121,7 @@ class VaccineController extends Controller
     public function update(VaccineRequest $request, Vaccine $vaccine)
     {
         if (!$request->definded_period) {
-            $request->merge(['definded_period' => false, 'from' => null, 'to' => null ]);
-
+            $request->merge(['definded_period' => false, 'from' => null, 'to' => null]);
         }
         $vaccine = $this->repository->update($vaccine, $request->except('_token'));
 
@@ -190,5 +195,4 @@ class VaccineController extends Controller
         $request = $vaccine->requests->find($id);
         return view('backend.vaccines.show-request', compact('request', 'vaccine'));
     }
-
 }
