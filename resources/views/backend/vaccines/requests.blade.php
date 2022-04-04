@@ -16,6 +16,7 @@
                 <th>Phone Number</th>
                 <th>Health Card Number</th>
                 <th>Day Date</th>
+                <th>Time</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                     <th>{{ $request->patient()->phone }}</th>
                     <th>{{ $request->patient_hcm }}</th>
                     <th>{{ $request->day_date }}</th>
+                    <th>{{ $request->day_time }}</th>
                     <th>
                         <a href="{{ route('show.request', [$vaccine ,$request]) }}"
                             class="btn btn-outline-warning waves-effect waves-light btn-sm">

@@ -4,6 +4,14 @@
     Users
 @stop
 
+@push('css')
+    <style>
+        .dt-button-collection.dropdown-menu{
+            display: block !important;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     @component('backend.components.breadcrumbs')
@@ -36,7 +44,7 @@
                 <th>
                     @include('backend.users.partials.actions.show')
                     @include('backend.users.partials.actions.edit')
-                    @include('backend.users.partials.actions.delete')
+                    {{-- @include('backend.users.partials.actions.delete') --}}
                 </th>
             </tr>
             @endforeach

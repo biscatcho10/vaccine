@@ -50,7 +50,7 @@
 
         @slot('footer')
             @include('backend.users.partials.actions.edit')
-            @include('backend.users.partials.actions.delete')
+            {{-- @include('backend.users.partials.actions.delete') --}}
         @endslot
     @endcomponent
 
