@@ -132,7 +132,7 @@ $("#products").change(function (e) {
                 }
             }
 
-            // show ages select
+            // show eligapilities
             if (vaccine.eligapilities) {
                 let eligaps = vaccine.eligapilities;
                 $("#eligapility_content").empty();
@@ -140,7 +140,7 @@ $("#products").change(function (e) {
                 $("#eligap_title").text(title);
                 eligaps.eligapilities.forEach(eligaps => {
                     let data = eligaps.eligapility;
-                    $(".appCheckBox").append(`
+                    $("#eligapility_content").append(`
                     <div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3">
                         <em> • ${data}</em>
                         <label class="switch-light switch-ios float-right">
@@ -209,7 +209,7 @@ $("#products").change(function (e) {
             dataType: "json",
             success: function (response) {
                 let intervals = response;
-                console.log(intervals);
+                $("#ChooseTime").empty();
                 intervals.forEach(interval => {
                     let data = timeConvert(interval);
                     $("#ChooseTime").append("<option value='" + data + "'>" + data + "</option>");
