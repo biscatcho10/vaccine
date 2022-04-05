@@ -19,7 +19,7 @@
                         <div class="col-10">
 
                             <div class="mb-1">
-                                <input type="text" class="form-control" name="eligapility" value="{{ $eligapility['eligapility'] }}" />
+                                <input type="text" class="form-control" name="eligapility" value="{{ $eligapility['eligapility'] }}" required/>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                 <div class="row d-flex align-items-end">
                     <div class="col-10">
                         <div class="mb-1">
-                            <input type="text" class="form-control" name="eligapility" />
+                            <input type="text" class="form-control" name="eligapility" required/>
                         </div>
                     </div>
 

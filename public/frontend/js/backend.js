@@ -20,6 +20,13 @@ $("#products").change(function (e) {
         success: function (response) {
             let vaccine = response;
 
+            $(".date-div").empty();
+            $(".date-div").append(`
+            <div class="overlays"></div>
+            <input type="text" name="day_date" id="day" class="form-control" readonly>
+            <i class="icon-hotel-calendar_3"></i>
+            `);
+
             // has exceptions only
             function exceptions(date) {
                 dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -30,7 +37,9 @@ $("#products").change(function (e) {
                 }
             }
 
+
             // has weekend only
+            var weekendDays = [];
             function weekends(date) {
                 var show = true;
                 if (weekendDays.includes(date.getDay())) show = false
@@ -73,13 +82,12 @@ $("#products").change(function (e) {
                 let max = vaccine.to;
                 var unavailableDates = vaccine.exceptions;
                 var offDays = vaccine.weekends;
-                var weekendDays = [];
                 offDays.forEach(off => {
                     weekendDays.push(dayRank(off));
                 });
 
 
-                if (vaccine.weekends && vaccine.exceptions) {
+                if (vaccine.weekends.length > 0 && vaccine.exceptions) {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,
@@ -88,7 +96,7 @@ $("#products").change(function (e) {
                         minDate: new Date(min),
                         beforeShowDay: disabledDates,
                     });
-                } else if (vaccine.weekends) {
+                } else if (vaccine.weekends.length > 0) {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,
@@ -112,8 +120,11 @@ $("#products").change(function (e) {
             } else {
                 var unavailableDates = vaccine.exceptions;
                 var offDays = vaccine.weekends;
-                var weekendDays = [];
-                if (vaccine.weekends && vaccine.exceptions) {
+                offDays.forEach(off => {
+                    weekendDays.push(dayRank(off));
+                });
+
+                if (vaccine.weekends.length > 0 && vaccine.exceptions) {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,
@@ -121,7 +132,7 @@ $("#products").change(function (e) {
                         minDate: 0,
                         beforeShowDay: disabledDates,
                     });
-                } else if (vaccine.weekends) {
+                } else if (vaccine.weekends.length > 0) {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,

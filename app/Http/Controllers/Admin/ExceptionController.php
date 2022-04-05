@@ -17,10 +17,12 @@ class ExceptionController extends Controller
     public function update(Request $request, Vaccine $vaccine)
     {
         $vaccine->exceptionsd->each->delete();
-        foreach ($request->exceptions as $exception) {
-            Exception::updateOrCreate(
-                ['date' => $exception['date'], 'vaccine_id' => $vaccine->id]
-            );
+        if ($request->exceptions) {
+            foreach ($request->exceptions as $exception) {
+                Exception::updateOrCreate(
+                    ['date' => $exception['date'], 'vaccine_id' => $vaccine->id]
+                );
+            }
         }
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');

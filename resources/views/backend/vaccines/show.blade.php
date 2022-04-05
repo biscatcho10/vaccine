@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="my-auto">
-                                <h4 class="fw-bolder mb-0">{{$user_count}}</h4>
+                                <h4 class="fw-bolder mb-0">{{ $user_count }}</h4>
                                 <p class="card-text font-small-3 mb-0">Users</p>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <div class="my-auto">
-                                <h4 class="fw-bolder mb-0">Time : {{$time}}</h4>
+                                <h4 class="fw-bolder mb-0">Time : {{ $time }}</h4>
                                 <p class="card-text font-small-3 mb-0">Most requested time</p>
                             </div>
                         </div>
@@ -135,16 +135,17 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <th width="200">Different Ages</th>
-                    @if ($vaccine->has_diff_ages)
+                @if ($vaccine->has_diff_ages)
+                    <tr>
+                        <th width="200">Different Ages</th>
                         <td>
                             @foreach ($vaccine->diff_ages as $age)
                                 <span class="badge rounded-pill badge-light-primary">{{ $age['age'] }}</span>
                             @endforeach
                         </td>
-                    @endif
-                </tr>
+                    </tr>
+                @endif
+
             </tbody>
         </table>
 

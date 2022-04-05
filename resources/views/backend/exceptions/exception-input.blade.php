@@ -10,7 +10,7 @@
                         <div class="col-md-6 col-12">
                             <div class="mb-1">
                                 <input type="date" class="form-control" name="date"
-                                    value="{{ $exception->date }}" />
+                                    value="{{ $exception->date }}" required/>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="date" class="form-control" name="date" />
+                            <input type="date" class="form-control" name="date" required/>
                         </div>
                     </div>
 
