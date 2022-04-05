@@ -10,6 +10,7 @@ $(function () {
 });
 
 $("#products").change(function (e) {
+
     e.preventDefault();
     let vaccine = $(this).val();
     $.ajax({
