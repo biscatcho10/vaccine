@@ -123,6 +123,9 @@ class VaccineController extends Controller
         if (!$request->definded_period) {
             $request->merge(['definded_period' => false, 'from' => null, 'to' => null]);
         }
+        if (!$request->has_diff_ages) {
+            $request->merge(['has_diff_ages' => false, 'diff_ages' => null]);
+        }
         $vaccine = $this->repository->update($vaccine, $request->except('_token'));
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine updated successfully.');

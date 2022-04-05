@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/DateTimePicker.css') }}" />
     <link href="{{ asset('frontend/css/vendors.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/jquery-nice-select-1.1.0/css/nice-select.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <style>

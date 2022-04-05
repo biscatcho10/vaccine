@@ -15,7 +15,6 @@
     </div>
     <div class="form-group option_input" style="display: none">
         <select id="age" class="form-control" name="age">
-            <option>Select one age</option>
         </select>
     </div>
 

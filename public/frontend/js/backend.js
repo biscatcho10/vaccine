@@ -1,3 +1,7 @@
+// $(document).ready(function () {
+//     $('select').niceSelect();
+// });
+
 $(function () {
     $("#dob").datepicker({
         changeMonth: true,
@@ -52,10 +56,14 @@ $("#products").change(function (e) {
             if (vaccine.has_diff_ages) {
                 $(".option_input").show();
                 let ages = vaccine.diff_ages;
+                $("#age").append("<option>Select one</option>");
                 ages.forEach(age => {
                     let data = age.age;
                     $("#age").append("<option value='" + data + "'>" + data + "</option>");
                 });
+            }else{
+                $("#age").empty();
+                $(".option_input").hide();
             }
 
             // has defined period
@@ -185,7 +193,7 @@ $("#products").change(function (e) {
             if (vaccine.conditions) {
                 let conditions = vaccine.conditions;
                 let title = conditions.title;
-                $("#question_page_title").text(title);
+                $("#condition_page_title").text(title);
                 $("#condition_list").empty();
                 conditions.conditions.forEach(condition => {
                     $("#condition_list").append(`

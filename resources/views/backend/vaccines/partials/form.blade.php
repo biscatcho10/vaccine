@@ -102,43 +102,74 @@
 </div>
 
 <div class="row" id="url_input"
-@isset($vaccine) @if ($vaccine->definded_period != true)  style="display: none" @endif @else
+    @isset($vaccine) @if ($vaccine->definded_period != true)  style="display: none" @endif @else
 style="display: none" @endisset>
-<div class="col-6">
-    <label>From</label>
-    <input type="date" name="from" value="{{ $vaccine->from ?? '' }}" class="form-control">
-</div>
+    <div class="col-6">
+        <label>From</label>
+        <input type="date" name="from" value="{{ $vaccine->from ?? '' }}" class="form-control">
+    </div>
 
-<div class="col-6">
-    <label>To</label>
-    <input type="date" name="to" value="{{ $vaccine->to ?? '' }}" class="form-control">
-</div>
+    <div class="col-6">
+        <label>To</label>
+        <input type="date" name="to" value="{{ $vaccine->to ?? '' }}" class="form-control">
+    </div>
 </div>
 
 <hr>
 
 
 <div class="row my-2 mx-1">
-<div class="form-check">
-    <label class="form-check-label">
-        <input type="checkbox" value="1" class="form-check-input" name="has_diff_ages"
-            @isset($vaccine) {{ $vaccine->has_diff_ages ? 'checked' : '' }} @endisset>
-        Has Different Ages ?
-    </label>
-</div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="checkbox" value="1" class="form-check-input" name="has_diff_ages"
+                @isset($vaccine) {{ $vaccine->has_diff_ages ? 'checked' : '' }} @endisset>
+            Has Different Ages ?
+        </label>
+    </div>
 </div>
 
 
-@isset($vaccine)
-<div class="age-repeater">
-    <div data-repeater-list="diff_ages">
-        @foreach ($vaccine->diff_ages as $age)
+@if(isset($vaccine) && $vaccine->has_diff_ages)
+    <div class="age-repeater">
+        <div data-repeater-list="diff_ages">
+            @foreach ($vaccine->diff_ages as $age)
+                <div data-repeater-item>
+                    <div class="row d-flex align-items-end">
+                        <div class="col-md-4 col-12">
+                            <div class="mb-1">
+                                <input type="text" class="form-control" name="age" value="{{ $age['age'] }}"
+                                    placeholder="Enter Age Name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-12 mb-25">
+                            <div class="mb-1">
+                                <button class="btn btn-outline-danger text-nowrap px-1 btn-sm" data-repeater-delete
+                                    type="button">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                    <i data-feather="plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+@else
+    <div class="age-repeater" style="display: none">
+        <div data-repeater-list="diff_ages">
             <div data-repeater-item>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control" name="age" value="{{ $age['age'] }}"
-                                placeholder="Enter Age Name" />
+                            <input type="text" class="form-control" name="age" placeholder="Enter Age Name" />
                         </div>
                     </div>
 
@@ -152,107 +183,76 @@ style="display: none" @endisset>
                     </div>
                 </div>
             </div>
-        @endforeach
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
-                <i data-feather="plus"></i>
-            </button>
         </div>
-    </div>
-</div>
-@else
-<div class="age-repeater" style="display: none">
-    <div data-repeater-list="diff_ages">
-        <div data-repeater-item>
-            <div class="row d-flex align-items-end">
-                <div class="col-md-4 col-12">
-                    <div class="mb-1">
-                        <input type="text" class="form-control" name="age" placeholder="Enter Age Name" />
-                    </div>
-                </div>
-
-                <div class="col-md-2 col-12 mb-25">
-                    <div class="mb-1">
-                        <button class="btn btn-outline-danger text-nowrap px-1 btn-sm" data-repeater-delete
-                            type="button">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                    <i data-feather="plus"></i>
+                </button>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
-                <i data-feather="plus"></i>
-            </button>
-        </div>
-    </div>
-</div>
-@endisset
+@endif
 
 
 @push('js')
-<!-- BEGIN: Page Vendor JS-->
-<script src="{{ asset('backend/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js') }}"></script>
-<!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('backend/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js') }}"></script>
+    <!-- END: Page Vendor JS-->
 
-<script>
-    $(document).ready(function() {
-        $('[name="definded_period"]').change(function(e) {
-            e.preventDefault();
-            var value = $('[name="definded_period"]').is(':checked');
-            if (value) {
-                $("#url_input").show();
-            } else {
-                $("#url_input").hide();
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $('[name="has_diff_ages"]').change(function(e) {
-            e.preventDefault();
-            var value = $('[name="has_diff_ages"]').is(':checked');
-            if (value) {
-                $(".age-repeater").show();
-            } else {
-                $(".age-repeater").hide();
-            }
-        });
-    });
-
-    $(function() {
-        'use strict';
-        // form repeater jquery
-        $('.age-repeater, .repeater-default').repeater({
-            show: function() {
-                $(this).slideDown();
-                // Feather Icons
-                if (feather) {
-                    feather.replace({
-                        width: 14,
-                        height: 14
-                    });
+    <script>
+        $(document).ready(function() {
+            $('[name="definded_period"]').change(function(e) {
+                e.preventDefault();
+                var value = $('[name="definded_period"]').is(':checked');
+                if (value) {
+                    $("#url_input").show();
+                } else {
+                    $("#url_input").hide();
                 }
-            },
-            hide: function(deleteElement) {
-                Swal.fire({
-                    title: 'Warning!',
-                    text: ' The element will be deleted!',
-                    icon: 'warning',
-                    customClass: {
-                        confirmButton: 'btn btn-primary'
-                    },
-                    buttonsStyling: false
-                }).then((result) => {
-                    $(this).slideUp(deleteElement);
-                })
-            }
+            });
         });
-    });
-</script>
+
+        $(document).ready(function() {
+            $('[name="has_diff_ages"]').change(function(e) {
+                e.preventDefault();
+                var value = $('[name="has_diff_ages"]').is(':checked');
+                if (value) {
+                    $(".age-repeater").show();
+                } else {
+                    $(".age-repeater").hide();
+                }
+            });
+        });
+
+        $(function() {
+            'use strict';
+            // form repeater jquery
+            $('.age-repeater, .repeater-default').repeater({
+                show: function() {
+                    $(this).slideDown();
+                    // Feather Icons
+                    if (feather) {
+                        feather.replace({
+                            width: 14,
+                            height: 14
+                        });
+                    }
+                },
+                hide: function(deleteElement) {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: ' The element will be deleted!',
+                        icon: 'warning',
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        },
+                        buttonsStyling: false
+                    }).then((result) => {
+                        $(this).slideUp(deleteElement);
+                    })
+                }
+            });
+        });
+    </script>
 @endpush
