@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RequestAnswer;
 use App\Models\User;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
@@ -36,21 +37,29 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        $time = DB::table('request_answers')
-        ->select('day_time')
-        ->groupBy('day_time')
-        ->orderByRaw('COUNT(*) DESC')
-        ->limit(1)
-        ->get()[0]->day_time;
 
-        $data = DB::table('request_answers')
-        ->select('vaccine_id')
-        ->groupBy('vaccine_id')
-        ->orderByRaw('COUNT(*) DESC')
-        ->limit(1)
-        ->get();
+        if (RequestAnswer::count() > 0) {
+            $time = DB::table('request_answers')
+                ->select('day_time')
+                ->groupBy('day_time')
+                ->orderByRaw('COUNT(*) DESC')
+                ->limit(1)
+                ->get()[0]->day_time;
 
-        $vaccine = Vaccine::find($data[0]->vaccine_id)->name;
+            $data = DB::table('request_answers')
+                ->select('vaccine_id')
+                ->groupBy('vaccine_id')
+                ->orderByRaw('COUNT(*) DESC')
+                ->limit(1)
+                ->get();
+
+            $vaccine = Vaccine::find($data[0]->vaccine_id)->name;
+        } else {
+            $time = "No times yet";
+            $data = "No vaccines yet";
+        }
+
+
         $user_count = User::count();
         return view('backend.home', compact('vaccine', 'user_count', 'time'));
     }
@@ -61,5 +70,4 @@ class HomeController extends Controller
         session()->put('locale', $locale);
         return redirect()->back();
     }
-
 }

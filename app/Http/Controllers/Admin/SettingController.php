@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use anlutro\LaravelSettings\Facade as Setting;
+use anlutro\LaravelSettings\Facades\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
