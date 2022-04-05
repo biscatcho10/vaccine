@@ -115,6 +115,14 @@ $("#products").change(function (e) {
                         minDate: new Date(min),
                         beforeShowDay: exceptions
                     });
+                }else{
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        maxDate: new Date(max),
+                        minDate: new Date(min),
+                    });
                 }
 
             } else {
@@ -148,6 +156,13 @@ $("#products").change(function (e) {
                         dateFormat: "yy-mm-dd",
                         minDate: 0,
                         beforeShowDay: exceptions
+                    });
+                }else{
+                    $("#day").datepicker({
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: "yy-mm-dd",
+                        minDate: 0,
                     });
                 }
             }
