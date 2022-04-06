@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontent;
 
 use anlutro\LaravelSettings\Facades\Setting;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VaccineFormRequest;
 use App\Http\Resources\VaccineResource;
 use App\Models\Patient;
 use App\Models\RequestAnswer;
@@ -24,7 +25,7 @@ class VaccineController extends Controller
         ]);
     }
 
-    public function makeRequest(Request $request)
+    public function makeRequest(VaccineFormRequest $request)
     {
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process');
         // create patient

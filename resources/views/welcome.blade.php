@@ -35,14 +35,10 @@
 
     </style>
 
-    {{-- {!! $settings['google_analects'] !!}
+    {!! $settings['google_analects'] !!}
     {!! $settings['facebook_pixel'] !!}
     {!! $settings['google_id_head'] !!}
-    {!! $settings['google_id_footer'] !!}
     {!! $settings['track_code'] !!}
-    {!! $settings['btn_track_code'] !!}
-    {!! $settings['btn_google_id_footer'] !!}
-    {!! $settings['transfer_line'] !!} --}}
 </head>
 
 <body>
@@ -90,6 +86,8 @@
             <!-- /content-left -->
 
             <div class="col-lg-8 content-right" id="start">
+                @include('backend.layouts.partials.session')
+
                 <div id="wizard_container">
                     <!-- /top-wizard -->
                     <form action="{{ route('make.request') }}" id="wrapped" method="POST">
@@ -115,7 +113,11 @@
                         <div id="bottom-wizard">
                             <button type="button" name="backward" class="backwards">Prev</button>
                             <button type="button" name="forward" class="forwards">Next</button>
-                            <button type="submit" name="process" class="submits">Submit</button>
+                            <button type="submit"
+                            {!! $settings['btn_track_code'] !!}
+                            {!! $settings['btn_google_id_footer'] !!}
+                            {!! $settings['transfer_line'] !!}
+                            name="process" class="submits">Submit</button>
                         </div>
                         <!-- /bottom-wizard -->
                     </form>
@@ -137,7 +139,7 @@
 
     @include('frontend.scripts')
 
-
+    {!! $settings['google_id_footer'] !!}
 </body>
 
 </html>
