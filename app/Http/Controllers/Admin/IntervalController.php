@@ -21,21 +21,22 @@ class IntervalController extends Controller
     public function update(Vaccine $vaccine, Day $day, Request $request)
     {
         if ($request->intervals) {
+            $day->intervals()->delete();
             foreach ($request->intervals as $interval) {
                 Interval::updateOrCreate(
                     ['day_id' => $day->id, 'interval' => $interval['interval']],
                     ['available' => true]
                 );
             }
-
-            return redirect()->route('vaccine.show', $vaccine)->with('success', 'day intervals added successfully.');
+        } elseif ($request->intervals == null) {
+            $day->intervals()->delete();
         }
 
-        return redirect()->route('vaccine.show', $vaccine)->with('error', 'please fill date input.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'day intervals added successfully.');
     }
 
 
-    public function copy(Vaccine $vaccine, Day $day ,Request $request)
+    public function copy(Vaccine $vaccine, Day $day, Request $request)
     {
         $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($request->target)->pluck('name', 'id')->toArray();
         $intervals = Day::find($request->target)->intervals;
