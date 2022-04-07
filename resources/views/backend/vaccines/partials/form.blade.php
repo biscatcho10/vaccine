@@ -93,9 +93,8 @@
 <div class="row my-2 mx-1">
     <div class="form-check">
         <label class="form-check-label">
-            {{-- @dd($vaccine->definded_period) --}}
             <input type="checkbox" value="1" class="form-check-input" name="definded_period"
-                @isset($vaccine) {{ $vaccine->definded_period ? 'checked' : '' }} @endisset>
+                @isset($vaccine) {{ $vaccine->definded_period && ($vaccine->from != null || $vaccine->to != null) ? 'checked' : '' }} @endisset>
             Has Defined Period ?
         </label>
     </div>
@@ -122,7 +121,7 @@ style="display: none" @endisset>
     <div class="form-check">
         <label class="form-check-label">
             <input type="checkbox" value="1" class="form-check-input" name="has_diff_ages"
-                @isset($vaccine) {{ $vaccine->has_diff_ages ? 'checked' : '' }} @endisset>
+                @isset($vaccine) {{ $vaccine->has_diff_ages && $vaccine->diff_ages != null ? 'checked' : '' }} @endisset>
             Has Different Ages ?
         </label>
     </div>
@@ -138,7 +137,7 @@ style="display: none" @endisset>
                         <div class="col-md-4 col-12">
                             <div class="mb-1">
                                 <input type="text" class="form-control" name="age" value="{{ $age['age'] }}"
-                                    placeholder="Enter Age Name" />
+                                    placeholder="Enter Age Name" required/>
                             </div>
                         </div>
 
@@ -169,7 +168,7 @@ style="display: none" @endisset>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control" name="age" placeholder="Enter Age Name" />
+                            <input type="text" class="form-control" name="age" placeholder="Enter Age Name" required/>
                         </div>
                     </div>
 

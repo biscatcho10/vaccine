@@ -10,7 +10,7 @@
 
 <label class="mb-1">Conditions</label>
 
-@isset($condition)
+@if($condition && $condition->conditions != null)
     <div class="expection-repeater">
         <div data-repeater-list="conditions">
             @foreach ($condition->conditions as $condition)
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-@endisset
+@endif
 
 
 @push('js')

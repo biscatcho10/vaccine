@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use anlutro\LaravelSettings\Facades\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -29,14 +31,14 @@ class SettingController extends Controller
             request()->validate([
                 'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            $request_data['logo'] = upload($request->logo, "settings");
+            $request_data['logo'] = $this->upload($request->logo, "settings");
         }
 
         if ($request->hasFile('page_image') && $request->file('page_image')->isValid()) {
             request()->validate([
                 'page_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            $request_data['page_image'] = upload($request->page_image, "settings");
+            $request_data['page_image'] = $this->upload($request->page_image, "settings");
         }
 
 
@@ -51,4 +53,11 @@ class SettingController extends Controller
         return redirect()->back()->with('success', __('Settings has been saved successfully'));
     }
 
+    function upload($file, $folder)
+    {
+        $profile_img = Image::make($file)->encode('png');
+        $img = $file->hashName();
+        Storage::disk('local')->put('public/images/' . $folder . '/' . $img, (string)$profile_img, 'public');
+        return $img;
+    }
 }

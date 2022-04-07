@@ -8,7 +8,7 @@
                     <div class="row d-flex align-items-end">
                         <div class="col-md-6 col-12">
                             <div class="mb-1">
-                                <input type="time" class="form-control" name="interval"  value="{{ $interval->interval }}" />
+                                <input type="time" class="form-control" name="interval"  value="{{ $interval->interval }}" required/>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
                             <label>From</label>
-                            <input type="time" class="form-control" name="interval" />
+                            <input type="time" class="form-control" name="interval"  required/>
                         </div>
                     </div>
 

@@ -61,6 +61,13 @@ class VaccineController extends Controller
      */
     public function store(VaccineRequest $request)
     {
+        if (!$request->definded_period) {
+            $request->merge(['definded_period' => false, 'from' => null, 'to' => null]);
+        }
+        if (!$request->has_diff_ages) {
+            $request->merge(['has_diff_ages' => false, 'diff_ages' => null]);
+        }
+
         $vaccine = $this->repository->create($request->except('_token'));
 
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine created successfully.');

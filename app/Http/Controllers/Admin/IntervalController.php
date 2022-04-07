@@ -18,13 +18,15 @@ class IntervalController extends Controller
 
     public function update(Vaccine $vaccine, Day $day, Request $request)
     {
-        foreach ($request->intervals as $interval) {
-            Interval::updateOrCreate(
-                ['day_id' => $day->id, 'interval' => $interval['interval']],
-                ['available' => true]
-            );
-        }
+        if ($request->intervals) {
+            foreach ($request->intervals as $interval) {
+                Interval::updateOrCreate(
+                    ['day_id' => $day->id, 'interval' => $interval['interval']],
+                    ['available' => true]
+                );
+            }
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'day intervals added successfully.');
+            return redirect()->route('vaccine.show', $vaccine)->with('success', 'day intervals added successfully.');
+        }
     }
 }
