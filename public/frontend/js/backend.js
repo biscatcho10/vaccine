@@ -58,9 +58,11 @@ $("#products").change(function (e) {
                 return [show];
             }
 
+
             // show ages select
-            if (vaccine.has_diff_ages) {
+            if (vaccine.has_diff_ages && vaccine.diff_ages) {
                 $(".option_input").show();
+                $("#age").empty();
                 let ages = vaccine.diff_ages;
                 $("#age").append("<option>Select one</option>");
                 ages.forEach(age => {
