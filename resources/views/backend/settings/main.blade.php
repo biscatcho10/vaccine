@@ -5,13 +5,12 @@
 @stop
 
 @push('css')
-<!---Internal Fileupload css-->
+    <!-<!---Internal Fileupload css-->
 <link href="{{ asset('backend/app-assets/vendors/js/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 
 @section('content')
-
     @component('backend.components.breadcrumbs')
         @slot('page', 'Settings')
     @endcomponent
@@ -443,5 +442,3 @@
             }
         });
     });
-    </script>
-@endpush
