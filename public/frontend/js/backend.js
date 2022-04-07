@@ -10,8 +10,11 @@ $(function () {
 });
 
 $("#products").change(function (e) {
-
     e.preventDefault();
+
+    // reset datepicker
+    $("#day").datepicker("destroy");
+
     let vaccine = $(this).val();
     $.ajax({
         type: "GET",
@@ -19,13 +22,6 @@ $("#products").change(function (e) {
         dataType: "json",
         success: function (response) {
             let vaccine = response;
-
-            // $(".date-div").empty();
-            // $(".date-div").append(`
-            // <div class="overlays"></div>
-            // <input type="text" name="day_date" id="day" class="form-control" readonly>
-            // <i class="icon-hotel-calendar_3"></i>
-            // `);
 
             // has exceptions only
             function exceptions(date) {

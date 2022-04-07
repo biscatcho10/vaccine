@@ -12,7 +12,9 @@ class IntervalController extends Controller
 {
     public function get(Vaccine $vaccine, Day $day)
     {
-        return view('backend.intervals.intervals-form', compact('vaccine', 'day'));
+        $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($day->id)->pluck('name', 'id')->toArray();
+
+        return view('backend.intervals.intervals-form', compact('vaccine', 'day', 'days'));
     }
 
 
@@ -28,5 +30,24 @@ class IntervalController extends Controller
 
             return redirect()->route('vaccine.show', $vaccine)->with('success', 'day intervals added successfully.');
         }
+
+        return redirect()->route('vaccine.show', $vaccine)->with('error', 'please fill date input.');
+    }
+
+
+    public function copy(Vaccine $vaccine, Day $day ,Request $request)
+    {
+        $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($request->target)->pluck('name', 'id')->toArray();
+        $intervals = Day::find($request->target)->intervals;
+        foreach ($intervals as $interval) {
+            $newInterval = $interval->replicate();
+            $newInterval->day_id = $day->id;
+            $newInterval->save();
+        }
+        return redirect()->back()->with([
+            'success' => 'Day\'s intervals copied successfully.',
+            'vaccine' => $vaccine,
+            'days' => $days,
+        ]);
     }
 }

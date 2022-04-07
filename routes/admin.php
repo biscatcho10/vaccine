@@ -65,4 +65,6 @@ Route::middleware(['auth:web'])->group(function () {
     // Day intervals
     Route::get('{vaccine}/{day}/intervals', [IntervalController::class ,'get'])->name('intervals');
     Route::put('{vaccine}/{day}/intervals', [IntervalController::class, 'update'])->name('update-intervals');
+    Route::post('{vaccine}/{day}/copy/intervals', [IntervalController::class, 'copy'])->name('copy-intervals');
+
 });
