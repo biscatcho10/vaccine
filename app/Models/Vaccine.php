@@ -47,7 +47,7 @@ class Vaccine extends Model
 
     public function requests()
     {
-        return $this->hasMany(RequestAnswer::class);
+        return $this->hasMany(RequestAnswer::class)->orderBy('created_at', 'desc');
     }
     /** End Relations  **/
 
