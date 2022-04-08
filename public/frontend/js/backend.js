@@ -63,15 +63,26 @@ $("#products").change(function (e) {
             if (vaccine.has_diff_ages && vaccine.diff_ages) {
                 $(".option_input").show();
                 $("#age").empty();
+                $(".option_input .list").empty();
                 let ages = vaccine.diff_ages;
-                $("#age").append("<option>Select one</option>");
+                $("#age").append("<option>Select one age</option>");
+                $(".option_input .nice-select span").text('Select one age');
                 ages.forEach(age => {
                     let data = age.age;
                     $("#age").append("<option value='" + data + "'>" + data + "</option>");
+                    $(".option_input .list").append(
+                        `<li data-value="${data}" class="option selected"  onclick="
+                            $('#age').val($('.option_input .current').text());
+
+                            $('#age option').removeAttr('selected')
+                            document.querySelectorAll('#age option')[$(this).index()+1].setAttribute('selected', true)
+                        ">${data}</li>`
+                    );
                 });
             }else{
                 $("#age").empty();
                 $(".option_input").hide();
+
             }
 
             // has defined period
@@ -177,7 +188,7 @@ $("#products").change(function (e) {
                     <div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3">
                         <em> • ${data}</em>
                         <label class="switch-light switch-ios float-right">
-                            <input type="checkbox" value="${data}" name="eligapility" id="tCheckBox">
+                            <input type="checkbox" onclick='clickCheckbox(this)' value="${data}" name="eligapility" id="">
                             <span>
                                 <span>No</span>
                                 <span>Yes</span>
@@ -199,9 +210,16 @@ $("#products").change(function (e) {
                     <div class="styled-select clearfix">
                         <label class="mt-3">${question.question}</label>
                         <div class="form-group">
-                            <select name="${question.question}" id="question_${index}" class="form-control">
+                            <select style='display:none;' name="${question.question}" id="question_${index}" class="form-control">
                                 <option>Select one</option>
                             </select>
+                            <input type="hidden">
+                            <div class="nice-select nice-select-${index} form-control" tabindex="0">
+                                <span class="current">Select one</span>
+                                <ul class="list list_question">
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     `);
@@ -210,11 +228,24 @@ $("#products").change(function (e) {
                         $("#question_" + index).append(`
                         <option vlaue="${option.value}">${option.option}</option>
                     `);
+
+
+                    $(`.nice-select-${index} .list_question`).append(`
+                        <li class="option selected" onclick="
+                            // console.log($(this).text());
+                            // // $(this).parent().parent().siblings('input').val($(this).text());
+                            // console.log($(this).parent().parent().siblings('select').val());
+                            $('#question_${index} option').removeAttr('selected')
+                            document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
+                        ">${option.option}</li>
+                    `);
+
+
                     });
                 });
             }
 
-            // show ages select
+            // show conditions select
             if (vaccine.conditions) {
                 let conditions = vaccine.conditions;
                 let title = conditions.title;
@@ -245,9 +276,27 @@ $("#products").change(function (e) {
                 let intervals = response;
                 console.log(response);
                 $("#ChooseTime").empty();
+                $(".myTime ul").empty();
+                if (response == '') {
+                    console.log('mohamed');
+                    $(".myTime span").text('Choose a time');
+                }
                 intervals.forEach(interval => {
                     let data = timeConvert(interval);
                     $("#ChooseTime").append("<option value='" + data + "'>" + data + "</option>");
+                    $(".myTime ul").append(
+                        `
+                        <li class="option selected" data-value="${data}" onclick="
+                            document.querySelectorAll('#ChooseTime option').forEach(e => {
+                                e.removeAttribute('selected')
+                            })
+                            document.querySelectorAll('#ChooseTime option')[$(this).index()+1].setAttribute('selected', true)
+                            $('#ChooseTime').val($('.myTime .current').text());
+
+                            ">${data}</li>
+
+                        `
+                    );
                 });
             }
         });

@@ -60,6 +60,7 @@
 <script src="{{ asset('frontend/js/rome.js') }}"></script>
 <script defer src="{{ asset('frontend/js/DateTimePicker.js') }}"></script>
 <script defer src="{{ asset('frontend/js/common_scripts.min.js') }}"></script>
+<script defer src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
 <script defer src="{{ asset('frontend/js/functions.js') }}"></script>
 <script defer src="{{ asset('frontend/js/min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
