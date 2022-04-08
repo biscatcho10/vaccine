@@ -16,6 +16,7 @@
     <div class="form-group option_input" style="display: none">
         <select id="age" class="form-control" name="age">
         </select>
+        {{-- <input type="hidden" name="_age" id="age_value"> --}}
     </div>
 
     <div class="form-group" style="display: none">
@@ -32,10 +33,10 @@
     </div>
 
 
-    <div class="form-group h-time">
+    <div class="form-group h-time myTime">
         <div class="styled-select clearfix">
             <select id="ChooseTime" class="form-control" name="day_time">
-                <option>Choose a date...</option>
+                <option>Choose a time</option>
             </select>
         </div>
     </div>
