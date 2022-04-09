@@ -65,7 +65,7 @@ class VaccineController extends Controller
         ];
 
         // send mail to the patient
-        // Notification::send($patient, new UserConfirmation($details));
+        Notification::send($patient, new UserConfirmation($details));
 
         if (Setting::get('redirect')) {
             return redirect(Setting::get('redirect_url'));

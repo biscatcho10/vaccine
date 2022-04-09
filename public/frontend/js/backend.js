@@ -1,11 +1,10 @@
-// $(document).ready(function () {
-//     $('select').niceSelect();
-// });
-
 $(function () {
     $("#dob").datepicker({
+        dateFormat: 'yy-mm-dd',
+        showButtonPanel: true,
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        yearRange: '1900:2022',
     });
 });
 
@@ -82,7 +81,6 @@ $("#products").change(function (e) {
             }else{
                 $("#age").empty();
                 $(".option_input").hide();
-
             }
 
             // has defined period

@@ -69,5 +69,11 @@ class Vaccine extends Model
 
         return array_diff($weekDays, $workDays);
     }
+
+
+    public function getCreatedAtDateAttribute()
+    {
+        return date("d/m/Y", strtotime($this->created_at));
+    }
     /** End Helpers **/
 }
