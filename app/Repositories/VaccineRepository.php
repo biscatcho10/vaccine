@@ -17,7 +17,7 @@ class VaccineRepository implements CrudRepository
      */
     public function all()
     {
-        return Vaccine::get();
+        return Vaccine::orderBy('created_at', 'desc')->get();
     }
 
     /**

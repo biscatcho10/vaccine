@@ -56,15 +56,15 @@
         <table class="table table-middle">
             <tbody>
                 <tr>
-                    <th width="200">Patient Name</th>
+                    <th width="300">Patient Name</th>
                     <td>{{ $request->patient()->name }}</td>
                 </tr>
                 <tr>
-                    <th width="200">Patient Phone</th>
+                    <th width="300">Patient Phone</th>
                     <td>{{ $request->patient()->phone }}</td>
                 </tr>
                 <tr>
-                    <th width="200">Patient Health Card Number</th>
+                    <th width="300">Patient Health Card Number</th>
                     <td>{{ $request->patient_hcm }}</td>
                 </tr>
             </tbody>
@@ -79,7 +79,7 @@
             <tbody>
                 @foreach ($request->answers as $question => $answer)
                     <tr>
-                        <th width="200">{{ $question }}</th>
+                        <th width="300">{{  str_replace('_', ' ', $question) }}</th>
                         <td>{{ $answer }}</td>
                     </tr>
                 @endforeach

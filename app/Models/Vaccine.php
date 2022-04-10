@@ -47,7 +47,7 @@ class Vaccine extends Model
 
     public function requests()
     {
-        return $this->hasMany(RequestAnswer::class);
+        return $this->hasMany(RequestAnswer::class)->orderBy('created_at', 'desc');
     }
     /** End Relations  **/
 
@@ -68,6 +68,12 @@ class Vaccine extends Model
         $workDays = $this->days->pluck('name')->toArray();
 
         return array_diff($weekDays, $workDays);
+    }
+
+
+    public function getCreatedAtDateAttribute()
+    {
+        return date("d/m/Y", strtotime($this->created_at));
     }
     /** End Helpers **/
 }

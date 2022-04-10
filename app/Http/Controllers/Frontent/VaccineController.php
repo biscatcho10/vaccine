@@ -65,7 +65,7 @@ class VaccineController extends Controller
         ];
 
         // send mail to the patient
-        // Notification::send($patient, new UserConfirmation($details));
+        Notification::send($patient, new UserConfirmation($details));
 
         if (Setting::get('redirect')) {
             return redirect(Setting::get('redirect_url'));
@@ -83,18 +83,23 @@ class VaccineController extends Controller
 
     public function dayIntervals(Vaccine $vaccine, $day)
     {
-
         $requests = RequestAnswer::where('day_date', $day)->pluck('day_time')->toArray();
         $data = [];
         foreach ($requests as $time) {
             $data[] = Carbon::parse($time)->format('H:i');
         }
+
         $day_name = lcfirst(Carbon::parse($day)->format("l"));
-        $day = $vaccine->days()->where('name', $day_name)->first();
-        $intervals = $day->intervals->pluck('interval')->toArray();
+        $_day = $vaccine->days()->where('name', $day_name)->first();
+        $intervals = $_day->intervals->pluck('interval')->toArray();
 
         if($requests){
             $intervals = array_values(array_diff($intervals, $data));
+            if (empty($intervals)) {
+                $vaccine->exceptionsd()->create([
+                    'date' => $day
+                ]);
+            }
         }
 
 
