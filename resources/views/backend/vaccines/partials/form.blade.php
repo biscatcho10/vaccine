@@ -100,7 +100,7 @@
     </div>
 </div>
 
-<div class="row" id="url_input"
+<div class="row" id="period_inputs"
     @isset($vaccine) @if ($vaccine->definded_period != true)  style="display: none" @endif @else
 style="display: none" @endisset>
     <div class="col-6">
@@ -136,8 +136,8 @@ style="display: none" @endisset>
                     <div class="row d-flex align-items-end">
                         <div class="col-md-4 col-12">
                             <div class="mb-1">
-                                <input type="text" class="form-control" name="age" value="{{ $age['age'] }}"
-                                    placeholder="Enter Age Name" required/>
+                                <input type="text" class="form-control age" name="age" value="{{ $age['age'] }}"
+                                    placeholder="Enter Age Name" />
                             </div>
                         </div>
 
@@ -168,7 +168,7 @@ style="display: none" @endisset>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control" name="age" placeholder="Enter Age Name" required/>
+                            <input type="text" class="form-control age" name="age" placeholder="Enter Age Name"/>
                         </div>
                     </div>
 
@@ -205,21 +205,26 @@ style="display: none" @endisset>
                 e.preventDefault();
                 var value = $('[name="definded_period"]').is(':checked');
                 if (value) {
-                    $("#url_input").show();
+                    $("#period_inputs").show();
+                    $('[name="from"]').attr("required", true);
+                    $('[name="to"]').attr("required", true);
                 } else {
-                    $("#url_input").hide();
+                    $("#period_inputs").hide();
+                    $('[name="from"]').attr("required", false);
+                    $('[name="to"]').attr("required", false);
                 }
             });
-        });
 
-        $(document).ready(function() {
+
             $('[name="has_diff_ages"]').change(function(e) {
                 e.preventDefault();
                 var value = $('[name="has_diff_ages"]').is(':checked');
                 if (value) {
                     $(".age-repeater").show();
+                    $('.age').attr("required", true);
                 } else {
                     $(".age-repeater").hide();
+                    $('.age').attr("required", false);
                 }
             });
         });

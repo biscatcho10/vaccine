@@ -1,3 +1,1 @@
-function thisMyTime() {
-    $("#ChooseTime").addClass("d-none"), $("#SelectMyTime").show();
-}
+function thisMyTime(){$("#ChooseTime").addClass("d-none"),$("#SelectMyTime").show()}

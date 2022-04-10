@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class UserConfirmation extends Notification
 {
@@ -42,7 +43,7 @@ class UserConfirmation extends Notification
      */
     public function toMail($notifiable)
     {
-        $thanks = htmlspecialchars_decode($this->details['thanks'], ENT_HTML5);
+        $thanks = new HtmlString($this->details['thanks']);
         return (new MailMessage)
             ->greeting($this->details['greeting'])
             ->line($this->details['body'])

@@ -17,7 +17,7 @@ class VaccineRepository implements CrudRepository
      */
     public function all()
     {
-        return Vaccine::get();
+        return Vaccine::orderBy('created_at', 'desc')->get();
     }
 
     /**
@@ -29,6 +29,14 @@ class VaccineRepository implements CrudRepository
     public function create(array $data)
     {
         $vaccine = Vaccine::create($data);
+
+        if ($data['from'] == null && $data['to'] == null) {
+            $vaccine->update(['definded_period' => 0]);
+        }
+
+        if (!isset($data['diff_ages'])) {
+            $vaccine->update(['has_diff_ages' => 0]);
+        }
 
         foreach ($data['available_days'] as $day) {
             $vaccine->days()->create(['name' => $day]);
@@ -65,8 +73,15 @@ class VaccineRepository implements CrudRepository
 
         $vaccine->update($data);
 
-        $vaccine->days()->delete();
+        if ($data['from'] == null && $data['to'] == null) {
+            $vaccine->update(['definded_period' => 0]);
+        }
 
+        if (!isset($data['diff_ages'])) {
+            $vaccine->update(['has_diff_ages' => 0]);
+        }
+
+        $vaccine->days()->delete();
         foreach ($data['available_days'] as $day) {
             $vaccine->days()->create(['name' => $day]);
         }

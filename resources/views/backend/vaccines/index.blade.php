@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Creation Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
             @foreach ($data as $vaccine)
             <tr>
                 <th>{{$vaccine->name}}</th>
+                <th>{{$vaccine->created_at_date}}</th>
                 <th>
                     @include('backend.vaccines.partials.actions.show')
                     @include('backend.vaccines.partials.actions.edit')

@@ -359,40 +359,96 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#accordionMargin7" aria-expanded="false"
                                         aria-controls="accordionMargin7">
-                                        Redirect To
+                                        Mail Settings
                                     </button>
                                 </h2>
                                 <div id="accordionMargin7" class="accordion-collapse collapse"
                                     aria-labelledby="headingMargin7" data-bs-parent="#accordionMargin" style="">
                                     <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Mailer</label>
+                                                <input type="text" name="MAIL_MAILER" class="form-control" placeholder="Enter mail mailer"
+                                                    value="{{ array_key_exists('MAIL_MAILER', $settings) ? $settings['MAIL_MAILER'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Host</label>
+                                                <input type="text" name="MAIL_HOST" class="form-control" placeholder="Enter mail host"
+                                                    value="{{ array_key_exists('MAIL_HOST', $settings) ? $settings['MAIL_HOST'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Posrt</label>
+                                                <input type="text" name="MAIL_PORT" class="form-control" placeholder="Enter mail port"
+                                                    value="{{ array_key_exists('MAIL_PORT', $settings) ? $settings['MAIL_PORT'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Username</label>
+                                                <input type="text" name="MAIL_USERNAME" class="form-control" placeholder="Enter mail username"
+                                                    value="{{ array_key_exists('MAIL_USERNAME', $settings) ? $settings['MAIL_USERNAME'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Password</label>
+                                                <input type="text" name="MAIL_PASSWORD" class="form-control" placeholder="Enter mail password"
+                                                    value="{{ array_key_exists('MAIL_PASSWORD', $settings) ? $settings['MAIL_PASSWORD'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail Encryption</label>
+                                                <input type="text" name="MAIL_ENCRYPTION" class="form-control" placeholder="Enter mail encryption"
+                                                    value="{{ array_key_exists('MAIL_ENCRYPTION', $settings) ? $settings['MAIL_ENCRYPTION'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail From Address</label>
+                                                <input type="email" name="MAIL_FROM_ADDRESS" class="form-control" placeholder="Enter mail from address"
+                                                    value="{{ array_key_exists('MAIL_FROM_ADDRESS', $settings) ? $settings['MAIL_FROM_ADDRESS'] : '' }}">
+                                            </div>
+                                            <div class="form-group col-12 mt-2">
+                                                <label>Mail From Name</label>
+                                                <input type="text" name="MAIL_FROM_NAME" class="form-control" placeholder="Enter mail from name"
+                                                    value="{{ array_key_exists('MAIL_FROM_NAME', $settings) ? $settings['MAIL_FROM_NAME'] : '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin8" aria-expanded="false"
+                                        aria-controls="accordionMargin8">
+                                        Redirect To
+                                    </button>
+                                </h2>
+                                <div id="accordionMargin8" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin8" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
                                         <div class="row my-2 mx-1">
                                             <div class="form-check">
                                                 <label class="form-check-label">
                                                     {{-- @dd($settings['redirect'] == true) --}}
-                                                    <input type="checkbox" class="form-check-input" value="1" name="redirect" id="redirect" @if (array_key_exists('redirect', $settings)) {{ $settings['redirect'] == true ? "checked" : ""  }}  @endif>
+                                                    <input type="checkbox" class="form-check-input" value="1"
+                                                        name="redirect" id="redirect"
+                                                        @if (array_key_exists('redirect', $settings)) {{ $settings['redirect'] == true ? 'checked' : '' }} @endif>
                                                     Redirect to another link ?
                                                 </label>
                                             </div>
                                         </div>
 
-                                          <div class="row" id="url_input"
-                                            @if (array_key_exists('redirect', $settings))
-                                                @if ($settings['redirect'] != true)
-                                                    style="display: none"
-                                                @endif
-                                            @else
-                                                style="display: none"
-                                            @endif>
+                                        <div class="row" id="url_input"
+                                            @if (array_key_exists('redirect', $settings)) @if ($settings['redirect'] != true)
+                                                    style="display: none" @endif
+                                        @else style="display: none" @endif>
                                             <div class="col-12">
                                                 <input type="text" name="redirect_url" class="form-control"
-                                                placeholder="Enter New Link"
-                                                value="{{ array_key_exists('redirect_url', $settings) ? $settings['redirect_url'] : '' }}">
+                                                    placeholder="Enter New Link"
+                                                    value="{{ array_key_exists('redirect_url', $settings) ? $settings['redirect_url'] : '' }}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
 
 
 
