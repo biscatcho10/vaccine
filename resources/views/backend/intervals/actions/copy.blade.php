@@ -1,4 +1,4 @@
-@if (count($day->intervals) == 0)
+{{-- @if (count($day->intervals) == 0) --}}
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#primary-{{ $vaccine->id }}">
         <i class="fas fa-copy"></i>
@@ -35,4 +35,4 @@
         </div>
     </div>
 
-@endif
+{{-- @endif --}}

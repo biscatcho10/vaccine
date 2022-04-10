@@ -1,4 +1,4 @@
-@if (empty($vaccine->eligapility))
+{{-- @if (empty($vaccine->eligapility)) --}}
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal"
         data-bs-target="#primary-{{ $vaccine->id }}">
@@ -37,4 +37,4 @@
         </div>
     </div>
 
-@endif
+{{-- @endif --}}

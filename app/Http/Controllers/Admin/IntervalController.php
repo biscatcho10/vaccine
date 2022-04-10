@@ -40,10 +40,13 @@ class IntervalController extends Controller
     {
         $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($request->target)->pluck('name', 'id')->toArray();
         $intervals = Day::find($request->target)->intervals;
+        // $day_intervals = $day->intervals()->pluck('interval')->toArray();
         foreach ($intervals as $interval) {
-            $newInterval = $interval->replicate();
-            $newInterval->day_id = $day->id;
-            $newInterval->save();
+            // if (!in_array($interval->interval, $day_intervals)) {
+                $newInterval = $interval->replicate();
+                $newInterval->day_id = $day->id;
+                $newInterval->save();
+            // }
         }
         return redirect()->back()->with([
             'success' => 'Day\'s intervals copied successfully.',
