@@ -8,3 +8,25 @@ body,html{height:100%}html *{-webkit-font-smoothing:antialiased;-moz-osx-font-sm
         max-height: 100px;
     }
 }
+
+.nice-select-0{
+    display: flex !important;
+    column-gap: 10px;
+}
+.more_select{
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    height: 100%;
+    padding-left: 10px;
+    outline: 0.01px solid #999;
+}
+.more_select div{
+    width: 25px;
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
