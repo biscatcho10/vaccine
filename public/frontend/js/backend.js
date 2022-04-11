@@ -1,3 +1,4 @@
+
 $(function () {
     $("#dob").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -205,17 +206,22 @@ $("#products").change(function (e) {
                 $("#question_section").empty();
                 questions.forEach((question, index) => {
                     let type = question.type;
+                    let select = "Select one";
+
+                    if (type == "multiple") {
+                        select = "Select one or more";
+                    }
 
                     $("#question_section").append(`
                         <div class="styled-select clearfix">
                             <label class="mt-3">${question.question}</label>
                             <div class="form-group group${type}">
                                 <select style='display:none;' name="${question.question}[]" id="question_${index}" class="form-control" multiple>
-                                    <option>Select one</option>
+                                    <option>${select}</option>
                                 </select>
                                 <input id='' type="hidden">
                                 <div class="nice-select nice-select-${index} form-control" tabindex="0">
-                                    <span class="current">Select one</span>
+                                    <span class="current">${select}</span>
                                     <ul class="list list_question"></ul>
                                 </div>
                             </div>
@@ -336,10 +342,6 @@ $("#products").change(function (e) {
     });
 
 });
-
-
-
-
 
 function dayRank(day) {
     days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
