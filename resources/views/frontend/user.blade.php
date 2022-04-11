@@ -22,7 +22,7 @@
 <div class="form_items ">
     <h3 class="main_question"><strong>3/6</strong>Please fill with your details</h3>
     <div class="form-group" style="display: none">
-        <input type="text" data-field="date" readonly class="form-control myTime myDates"
+        <input type="text" data-field="date" readonly class="form-control myTime myDates "
             placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">
         <i class="icon-hotel-calendar_3"></i>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" name="dob" id="dob" class="form-control" readonly>
+        <input type="text" name="dob" id="dob" class="form-control requireds" readonly>
         <i class="icon-hotel-calendar_3"></i>
         <div class="overlays"></div>
 

@@ -9,7 +9,7 @@ body,html{height:100%}html *{-webkit-font-smoothing:antialiased;-moz-osx-font-sm
     }
 }
 
-.nice-select-0{
+.groupmultiple .nice-select{
     display: flex !important;
     column-gap: 10px;
 }

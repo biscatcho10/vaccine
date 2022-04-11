@@ -204,10 +204,12 @@ $("#products").change(function (e) {
                 let questions = vaccine.questions;
                 $("#question_section").empty();
                 questions.forEach((question, index) => {
+                    let type = question.type;
+
                     $("#question_section").append(`
                         <div class="styled-select clearfix">
                             <label class="mt-3">${question.question}</label>
-                            <div class="form-group">
+                            <div class="form-group group${type}">
                                 <select style='display:none;' name="${question.question}[]" id="question_${index}" class="form-control" multiple>
                                     <option>Select one</option>
                                 </select>
@@ -225,102 +227,54 @@ $("#products").change(function (e) {
                             <option vlaue="${option.value}">${option.option}</option>
                         `);
 
-                        $(`.nice-select-${index} .list_question`).append(`
+                        $(`.groupsingle .nice-select-${index} .list_question`).append(`
                             <li data-value='${option.value}' class="option selected" onclick="
-                                // $('#question_${index} option').removeAttr('selected')
+                                $('#question_${index} option').removeAttr('selected')
                                 document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
-                                $(this).hide()
-
                                 ">${option.option}</li>
+                        `);
+
+                        $(`.groupmultiple .nice-select-${index} .list_question`).append(`
+                            <li data-value='${option.value}' class="option selected" onclick="
+                                    document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
+                                    $(this).hide()
+                            ">${option.option}</li>
                         `);
 
 
                     });
                 });
 
-                $(`.nice-select-0 .list_question li`).on('click',function (e) {
-                    $('.nice-select-0 span.current').hide();
+                $(`.groupmultiple .list_question li`).on('click',function (e) {
+                    $(this).parent().siblings('span.current').hide();
                     let thisVal = $(this).text();
-                    $(this).parents('.nice-select-0 ul').before(`
-                        <span class='more_select'>${thisVal}<div aria-hidden="true" data-icon="M" class="fs1" class='icon_remove' onclick="
-                            $(this).parent().remove()
-                            let values = $(this).parent().text()
-
-                            document.querySelectorAll('.nice-select-0 ul li').forEach(e => {
-                                if(values == e.innerText){
-                                     $(e).show();
-                                }
-                            });
-
-                            document.querySelectorAll('#question_0 option').forEach(e => {
-                                if(values == e.value){
-                                    e.removeAttribute('selected')
-                                }
-                            });
-                            if ($('.more_select').length == 0) {
-                                $('.nice-select-0 span.current').show();
-                                $('.nice-select-0 span.current').text('Select one');
-                            }
-                        "></div></span>
+                    $(this).parents('.groupmultiple ul').before(`
+                        <span class='more_select'>${thisVal}<div aria-hidden="true" data-icon="M" class="fs1" class='icon_remove' ></div></span>
                     `)
+                    $('.groupmultiple .more_select div').on('click',function (w) {
+                        $(this).parent().remove()
+                        let values = $(this).parent().text()
+                        document.querySelectorAll('.groupmultiple ul li').forEach(e => {
+                            if(values == e.innerText){
+                                $(e).show();
+                            }
+                        });
+
+                        document.querySelectorAll('.groupmultiple option').forEach(e => {
+                            if(values == e.value){
+                                e.removeAttribute('selected')
+                            }
+                        });
+
+                        document.querySelectorAll('.groupmultiple').forEach(e => {
+                            if($(e).find('.more_select').eq(0).length == 0){
+                                $(e).find('span.current').show();
+                                $(e).find('span.current').text('Select one');
+                            }
+                        });
+                    })
                 })
             }
-
-
-            // if (vaccine.questions) {
-            //     let questions = vaccine.questions;
-            //     $("#question_section").empty();
-            //     questions.forEach((question, index) => {
-            //         $("#question_section").append(`
-            //         <div class="styled-select clearfix">
-            //             <label class="mt-3">${question.question}</label>
-            //             <div class="form-group">
-
-            //                 <div  name="${question.question}" id="question_${index}" class="form-control" multiple>
-
-            //                 </div>
-            //                 <input id='' type="hidden">
-
-            //                 <div class="nice-select nice-select-${index} form-control" tabindex="0">
-            //                     <span class="current">Select one</span>
-            //                     <ul class="list list_question">
-
-            //                     </ul>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //         `);
-
-            //         question.options.forEach(option => {
-            //             $("#question_" + index).append(`
-            //                 <input type="checkbox" name="name${option.value}" id="id${option.value}" value='${option.option}' placeholder='${option.option}' />
-            //             `);
-
-            //             $(`.nice-select-${index} .list_question`).append(`
-            //                 <label for='id${option.value}' class="option selected" onclick="
-            //                     // $('#question_${index} option').removeAttr('selected')
-            //                     // document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
-            //                 ">${option.option}</label>
-            //             `);
-
-
-            //         });
-            //     });
-
-            //     $(`.nice-select-0 .list_question label`).on('click',function (e) {
-            //         $('.nice-select-0 span.current').hide();
-            //         let thisVal = $(this).text();
-            //         $(this).parents('.nice-select-0 ul').before(`
-            //             <span class='more_select'>${thisVal} <div aria-hidden="true" data-icon="M" class="fs1" class='icon_remove' onclick="
-            //                 $(this).parent().remove()
-            //                 if ($('.more_select').length == 0) {
-            //                     $('.nice-select-0 span.current').show();
-            //                     $('.nice-select-0 span.current').text('Select one');
-            //                 }
-            //             "></div></span>
-            //         `)
-            //     })
-            // }
 
             // show conditions select
             if (vaccine.conditions) {
