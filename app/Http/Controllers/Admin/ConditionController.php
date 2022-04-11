@@ -30,6 +30,8 @@ class ConditionController extends Controller
     {
         $vaccines = Vaccine::whereHas('condition')->get()->except($vaccine->id);
         $condition = Vaccine::find($request->target)->condition;
+        // delete old
+        $vaccine->condition()->delete();
         $newCondition = $condition->replicate();
         $newCondition->vaccine_id = $vaccine->id;
         $newCondition->save();

@@ -26,6 +26,10 @@
                     <td>{{ $question->question }}</td>
                 </tr>
                 <tr>
+                    <th width="200">Type</th>
+                    <td>{{ $question->type }}</td>
+                </tr>
+                <tr>
                     <th width="200">Options</th>
                     <td>
                         <ul class="list-group">

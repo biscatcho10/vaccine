@@ -15,13 +15,9 @@
     <!-- GOOGLE WEB FONT -->
 
     <!-- BASE CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/rome.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/DateTimePicker.css') }}" />
     <link href="{{ asset('frontend/css/vendors.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <style>
         .content-left-wrapper.bg_hotel:before {
@@ -32,8 +28,13 @@
             background-size: cover;
             /* settings */
         }
-
     </style>
+
+
+    {!! $settings['google_analects'] !!}
+    {!! $settings['facebook_pixel'] !!}
+    {!! $settings['google_id_head'] !!}
+    {!! $settings['track_code'] !!}
 </head>
 
 <body>
@@ -51,11 +52,13 @@
             <div class="col-lg-4 content-left">
                 <div class="content-left-wrapper bg_hotel">
                     <div class="wrapper">
-                        <a href="{{ route('index') }}" id="logo"><img
-                                src="{{ asset('storage/images/settings/' . $settings['logo']) }}" alt=""></a>
+                        <a href="{{ route('index') }}" id="logo">
+                            <img src="{{ asset('storage/images/settings/' . $settings['logo']) }}" alt="">
+                        </a>
                         <div id="social">
                             <ul>
-                                <li><a href="{{ $settings['facebook_link'] }}"><i class="social_facebook"></i></a></li>
+                                <li><a href="{{ $settings['facebook_link'] }}"><i class="social_facebook"></i></a>
+                                </li>
                                 <li><a href="{{ $settings['twitter_link'] }}"><i class="social_twitter"></i></a></li>
                                 <li><a href="{{ $settings['instagram_link'] }}"><i class="social_instagram"></i></a>
                                 </li>
@@ -80,15 +83,12 @@
             <!-- /content-left -->
 
             <div class="col-lg-8 content-right" id="start">
-
-
-                <h2 class="title-sec">{{ $settings['thanks_title'] }}</h2>
-                <div class="pragh">
-                    <p>
-                        {{ $settings['thanks_parag'] }}
-                    </p>
+                <div id="wizard_container">
+                    <div class="thanks">
+                        <div class="title">{{ $settings['thanks_title'] }}</div>
+                        <p>{{ $settings['thanks_parag'] }}</p>
+                    </div>
                 </div>
-
                 <!-- /Wizard container -->
                 <!-- Footer -->
                 <footer>
@@ -104,9 +104,11 @@
     </div>
     <!-- /container-fluid -->
 
-    @include('frontend.scripts')
 
+    <script defer src="{{ asset('frontend/js/jquery-3.2.1.min.js') }}"></script>
+    <script defer src="{{ asset('frontend/js/functions.js') }}"></script>
 
+    {!! $settings['google_id_footer'] !!}
 </body>
 
 </html>
