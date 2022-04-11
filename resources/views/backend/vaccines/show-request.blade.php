@@ -77,10 +77,11 @@
 
         <table class="table table-middle">
             <tbody>
-                @foreach ($request->answers as $question => $answer)
+                @foreach ($request->answers as $question => $answers)
+                    {{-- @dd($answers) --}}
                     <tr>
                         <th width="300">{{  str_replace('_', ' ', $question) }}</th>
-                        <td>{{ $answer }}</td>
+                        <td>{{ implode(" / ", $answers) }}</td>
                     </tr>
                 @endforeach
             </tbody>

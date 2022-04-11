@@ -27,6 +27,7 @@
         <thead>
             <tr>
                 <th>Question</th>
+                <th>Type</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
             @foreach ($data as $question)
             <tr>
                 <th>{{$question->question}}</th>
+                <th>{{ucfirst($question->type)}}</th>
                 <th>
                     @include('backend.questions.partials.actions.show')
                     @include('backend.questions.partials.actions.edit')
