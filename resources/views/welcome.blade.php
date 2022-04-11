@@ -33,7 +33,6 @@
             background-size: cover;
             /* settings */
         }
-
     </style>
 
     {!! $settings['google_analects'] !!}
@@ -57,8 +56,9 @@
             <div class="col-lg-4 content-left">
                 <div class="content-left-wrapper bg_hotel">
                     <div class="wrapper">
-                        <a href="{{ route('index') }}" id="logo"><img
-                                src="{{ asset('storage/images/settings/' . $settings['logo']) }}" alt=""></a>
+                        <a href="{{ route('index') }}" id="logo">
+                            <img src="{{ asset('storage/images/settings/' . $settings['logo']) }}" alt="">
+                        </a>
                         <div id="social">
                             <ul>
                                 <li><a href="{{ $settings['facebook_link'] }}"><i class="social_facebook"></i></a>

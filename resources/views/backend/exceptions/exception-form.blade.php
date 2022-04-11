@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+@include('backend.exceptions.actions.copy')
 
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)

@@ -40,6 +40,8 @@ class IntervalController extends Controller
     {
         $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($request->target)->pluck('name', 'id')->toArray();
         $intervals = Day::find($request->target)->intervals;
+        // delete old intervals
+        $day->intervals()->delete();
         foreach ($intervals as $interval) {
             $newInterval = $interval->replicate();
             $newInterval->day_id = $day->id;

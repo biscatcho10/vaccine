@@ -10,11 +10,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel140">Copy Eligapilities</h5>
+                    <h5 class="modal-title" id="myModalLabel140">Copy Exceptions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ BsForm::post(route('copy-eligapilities', $vaccine), ['id' => 'copy-from']) }}
+                    {{ BsForm::post(route('copy-exceptions', $vaccine), ['id' => 'copy-from']) }}
                     <div class="form-group">
                         <label>Vaccine</label>
                         <select class="form-control" name="target">

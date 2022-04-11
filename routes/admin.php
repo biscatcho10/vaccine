@@ -54,13 +54,15 @@ Route::middleware(['auth:web'])->group(function () {
 
 
     // Conditions
-    Route::get('{vaccine}/Conditions', [ConditionController::class ,'get'])->name('conditions');
-    Route::put('{vaccine}/Conditions', [ConditionController::class, 'update'])->name('update-conditions');
-    Route::post('{vaccine}/copy/Conditions', [ConditionController::class, 'copy'])->name('copy-conditions');
+    Route::get('{vaccine}/conditions', [ConditionController::class ,'get'])->name('conditions');
+    Route::put('{vaccine}/conditions', [ConditionController::class, 'update'])->name('update-conditions');
+    Route::post('{vaccine}/copy/conditions', [ConditionController::class, 'copy'])->name('copy-conditions');
 
     // Exceptions
     Route::get('{vaccine}/exceptions', [ExceptionController::class ,'get'])->name('exceptions');
     Route::put('{vaccine}/exceptions', [ExceptionController::class, 'update'])->name('update-exceptions');
+    Route::post('{vaccine}/copy/exceptions', [ExceptionController::class, 'copy'])->name('copy-exceptions');
+
 
     // Day intervals
     Route::get('{vaccine}/{day}/intervals', [IntervalController::class ,'get'])->name('intervals');

@@ -31,6 +31,8 @@ class EligapilityController extends Controller
     {
         $vaccines = Vaccine::whereHas('eligapility')->get()->except($vaccine->id);
         $eligapility = Vaccine::find($request->target)->eligapility;
+        // delete old
+        $vaccine->eligapility()->delete();
         $neweligapility = $eligapility->replicate();
         $neweligapility->vaccine_id = $vaccine->id;
         $neweligapility->save();

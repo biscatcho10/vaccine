@@ -56,7 +56,7 @@ class HomeController extends Controller
             $vaccine = Vaccine::find($data[0]->vaccine_id)->name;
         } else {
             $time = "No times yet";
-            $data = "No vaccines yet";
+            $vaccine = "No vaccines yet";
         }
 
 

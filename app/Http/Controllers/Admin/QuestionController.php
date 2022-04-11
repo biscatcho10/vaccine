@@ -42,6 +42,9 @@ class QuestionController extends Controller
      */
     public function store(Vaccine $vaccine, QuestionRequest $request)
     {
+        if (!$request->type) {
+            $request->merge(["type" => "single"]);
+        }
         $question = $vaccine->questions()->create($request->except('_token'));
 
         return redirect()->route('question.show', [$vaccine, $question])->with('success', 'question created successfully.');
@@ -82,6 +85,9 @@ class QuestionController extends Controller
      */
     public function update(QuestionRequest $request, Vaccine $vaccine, Question $question)
     {
+        if (!$request->type) {
+            $request->merge(["type" => "single"]);
+        }
         $question = $vaccine->questions()->find($question->id);
 
         $question->update($request->except('_token'));
@@ -150,6 +156,8 @@ class QuestionController extends Controller
     {
         $vaccines = Vaccine::whereHas('questions')->get()->except($vaccine->id);
         $questions = Vaccine::find($request->target)->questions;
+        // delete old
+        $vaccine->questions()->delete();
         foreach ($questions as $question) {
             $newQuestion = $question->replicate();
             $newQuestion->vaccine_id = $vaccine->id;
