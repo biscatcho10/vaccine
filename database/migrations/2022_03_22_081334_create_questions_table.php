@@ -16,6 +16,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('question');
+            $table->enum('type', ['single', 'multiple'])->default('single');
             $table->text('options');
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
             $table->timestamps();

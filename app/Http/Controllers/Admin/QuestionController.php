@@ -42,6 +42,7 @@ class QuestionController extends Controller
      */
     public function store(Vaccine $vaccine, QuestionRequest $request)
     {
+        dd($request->all());
         $question = $vaccine->questions()->create($request->except('_token'));
 
         return redirect()->route('question.show', [$vaccine, $question])->with('success', 'question created successfully.');

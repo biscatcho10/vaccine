@@ -8,6 +8,7 @@ class Question extends Model
 {
     protected $fillable = [
         "question",
+        "type",
         "options",
         "vaccine_id",
     ];

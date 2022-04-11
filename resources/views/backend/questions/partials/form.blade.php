@@ -1,7 +1,10 @@
 @include('backend.layouts.partials.session')
 <div class="row mb-1">
-    <div class="col-">
+    <div class="col-12">
         {{ BsForm::text('question')->required()->attribute(['data-parsley-maxlength' => '191'])->label('Question') }}
+    </div>
+    <div class="col-12">
+        {{ BsForm::checkbox('type', "multiple")->checked(false)->label("Multiple ?") }}
     </div>
 </div>
 
