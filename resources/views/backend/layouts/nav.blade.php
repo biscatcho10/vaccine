@@ -2,11 +2,11 @@
     <div class="navbar-container d-flex content">
         <ul class="nav navbar-nav align-items-center ms-auto">
 
-            <li class="nav-item d-none d-lg-block">
+            {{-- <li class="nav-item d-none d-lg-block">
                 <a class="nav-link nav-link-style">
                     <i class="ficon" data-feather="sun"></i>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item dropdown dropdown-user">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#"
