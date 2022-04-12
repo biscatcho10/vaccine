@@ -23,7 +23,7 @@
     </div>
 </div>
 
-    <table id="qdatatable-buttons" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
         <thead>
             <tr>
                 <th>Question</th>

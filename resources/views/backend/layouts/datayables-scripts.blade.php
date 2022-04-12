@@ -58,9 +58,5 @@ src="{{ asset('backend/app-assets/vendors/js/datatables/datatables.net-responsiv
             .buttons()
             .container()
             .appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)");
-
-        $("#qdatatable").DataTable(),
-            $("#qdatatable-buttons")
-            .DataTable()
     });
 </script>
