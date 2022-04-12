@@ -56,11 +56,11 @@
                         <!-- Login basic -->
                         <div class="card mb-0">
                             @php
-                                // $logo = anlutro\LaravelSettings\Facades\Setting::get('logo')
+                                $logo = anlutro\LaravelSettings\Facades\Setting::get('logo')
                             @endphp
                             <div class="card-body">
                                 <a href="" class="brand-logo">
-                                    {{-- <img src="{{ asset('storage/images/settings/' . $logo) }}" width="150px"> --}}
+                                    <img src="{{ asset('storage/images/settings/' . $logo) }}" width="150px">
                                 </a>
 
                                 <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
