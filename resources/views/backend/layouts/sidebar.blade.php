@@ -4,7 +4,7 @@
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="{{route('index')}}">
                     @php
-                        $logo = anlutro\LaravelSettings\Facades\Setting::get('logo')
+                        // $logo = anlutro\LaravelSettings\Facades\Setting::get('logo')
                     @endphp
                     <img src="{{ asset('storage/images/settings/' . $logo) }}" width="150px">
                 </a>
