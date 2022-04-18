@@ -318,7 +318,7 @@ $("#products").change(function (e) {
 
             // show comment
             if (vaccine.need_comment == 1) {
-                $('.c_approved').before(`<div class="form-group">
+                $('#question_section').append(`<div class="form-group">
                     <label for="exampleFormControlTextarea1">Feed Back</label>
                         <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type your comment..."></textarea>
                     </div>
