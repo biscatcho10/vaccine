@@ -28,7 +28,7 @@ class VaccineController extends Controller
     public function makeRequest(VaccineFormRequest $request)
     {
         // dd($request->all());
-        $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process');
+        $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
         // create patient
         $patient =Patient::create([
             'first_name' => $request->first_name,
@@ -48,7 +48,8 @@ class VaccineController extends Controller
             'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
             'patient_hcm' => $patient->health_card_num,
             'eligapility' => $request->eligapility,
-            'answers' => $answer
+            'comment' => $request->comment,
+            'answers' => $answer,
         ]);
 
         if ($request->age && $request->age != null ) {
@@ -61,8 +62,8 @@ class VaccineController extends Controller
         // send confirmation email
         $email_template = Setting::get('email_template');
         $vaccine_name = Vaccine::find($request->vaccine)->name;
-        $email_template = str_replace('{user_name}', $request->user_name, $email_template);
-        $email_template = str_replace('{vaccine_name}', $vaccine_name, $email_template);
+        $email_template = str_replace('{user_name}', $patient->name, $email_template);
+        $email_template = str_replace('{vaccine}', $vaccine_name, $email_template);
         $email_template = str_replace('{day_date}', $request->day_date, $email_template);
         $email_template = str_replace('{day_time}', $request->day_time, $email_template);
 
@@ -120,4 +121,5 @@ class VaccineController extends Controller
     {
         return view('thanks', ['settings' => Setting::all()]);
     }
+    
 }

@@ -78,15 +78,37 @@
         <table class="table table-middle">
             <tbody>
                 @foreach ($request->answers as $question => $answers)
-                    {{-- @dd($answers) --}}
-                    <tr>
-                        <th width="300">{{  str_replace('_', ' ', $question) }}</th>
-                        <td>{{ implode(" / ", $answers) }}</td>
-                    </tr>
+                    @if (is_array($answers))
+                        <tr>
+                            <th width="300">{{ str_replace('_', ' ', $question) }}</th>
+                            <td>{{ implode(' / ', $answers) }}</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <th width="300">{{ str_replace('_', ' ', $question) }}</th>
+                            <td>{{ $answers }}</td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
     @endcomponent
+
+    @if ($request->comment != null)
+        @component('backend.components.box')
+            @slot('bodyClass', 'p-0')
+            @slot('title', 'Comment')
+
+            <table class="table table-middle">
+                <tbody>
+                    <tr>
+                        <th width="300">Comment</th>
+                        <td>{{ $request->comment }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        @endcomponent
+    @endif
 
 
 

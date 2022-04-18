@@ -282,9 +282,15 @@
                                         <div class="row mt-2">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="">Email Template</label>
+                                                    <label>Email Template</label>
                                                     <textarea type="text" name="email_template" class="form-control ckeditor"
                                                         rows="3">{{ array_key_exists('email_template', $settings) ? $settings['email_template'] : '' }}</textarea>
+
+                                                        <small class="form-text text-muted">Be carefull use these variables in your template
+                                                            {user_name} /
+                                                            {vaccine} /
+                                                            {day_date} /
+                                                            {day_time}</small>
                                                 </div>
                                             </div>
                                         </div>
