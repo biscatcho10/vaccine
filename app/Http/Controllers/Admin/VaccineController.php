@@ -67,6 +67,12 @@ class VaccineController extends Controller
         if (!$request->has_diff_ages) {
             $request->merge(['has_diff_ages' => false, 'diff_ages' => null]);
         }
+        if (!$request->require_hcm) {
+            $request->merge(['require_hcm' => false]);
+        }
+        if (!$request->need_comment) {
+            $request->merge(['need_comment' => false]);
+        }
 
         $vaccine = $this->repository->create($request->except('_token'));
 
@@ -132,6 +138,12 @@ class VaccineController extends Controller
         }
         if (!$request->has_diff_ages) {
             $request->merge(['has_diff_ages' => false, 'diff_ages' => null]);
+        }
+        if (!$request->require_hcm) {
+            $request->merge(['require_hcm' => false]);
+        }
+        if (!$request->need_comment) {
+            $request->merge(['need_comment' => false]);
         }
         $vaccine = $this->repository->update($vaccine, $request->except('_token'));
 

@@ -89,6 +89,17 @@
 </div>
 
 <hr>
+<div class="row mb-1">
+    <div class="col-6">
+        {{ BsForm::checkbox('require_hcn', 1)->checked(isset($vaccine) ? ($vaccine->require_hcn == 1 ? true : false) : false)->label('Require Health Card Number ?') }}
+    </div>
+    <div class="col-6">
+        {{ BsForm::checkbox('need_comment', 1)->checked(isset($vaccine) ? ($vaccine->need_comment == 1 ? true : false) : false)->label('Need Comment ?') }}
+    </div>
+</div>
+
+<hr>
+
 
 <div class="row my-2 mx-1">
     <div class="form-check">
@@ -128,7 +139,7 @@ style="display: none" @endisset>
 </div>
 
 
-@if(isset($vaccine) && $vaccine->has_diff_ages)
+@if (isset($vaccine) && $vaccine->has_diff_ages)
     <div class="age-repeater">
         <div data-repeater-list="diff_ages">
             @foreach ($vaccine->diff_ages as $age)
@@ -168,7 +179,7 @@ style="display: none" @endisset>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control age" name="age" placeholder="Enter Age Name"/>
+                            <input type="text" class="form-control age" name="age" placeholder="Enter Age Name" />
                         </div>
                     </div>
 

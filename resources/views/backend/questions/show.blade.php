@@ -27,20 +27,27 @@
                 </tr>
                 <tr>
                     <th width="200">Type</th>
-                    <td>{{ $question->type }}</td>
+                    <td>{{ ucfirst($question->input_type) }}</td>
                 </tr>
-                <tr>
-                    <th width="200">Options</th>
-                    <td>
-                        <ul class="list-group">
-                            @foreach ($question->options as $option)
-                            <li>
-                                {{ $option['option'] }}
-                            </li>
-                            @endforeach
-                        </ul>
-                    </td>
-                </tr>
+                @if ($question->input_type == 'select')
+                    <tr>
+                        <th width="200">Select Type</th>
+                        <td>{{ ucfirst($question->select_type) }}</td>
+                    </tr>
+
+                    <tr>
+                        <th width="200">Options</th>
+                        <td>
+                            <ul class="list-group">
+                                @foreach ($question->options as $option)
+                                    <li>
+                                        {{ $option['option'] }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </td>
+                    </tr>
+                @endif
             </tbody>
         </table>
 

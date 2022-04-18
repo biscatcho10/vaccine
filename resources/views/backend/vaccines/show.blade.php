@@ -119,6 +119,18 @@
                         <td>{{ $vaccine->to }}</td>
                     </tr>
                 @endif
+                @if ($vaccine->require_hcn)
+                    <tr>
+                        <th width="200">Require Health Card Number ?</th>
+                        <td> @if ($vaccine->require_hcn) <i class="fas fa-check-circle text-success fa-lg"></i> @else No @endif</td>
+                    </tr>
+                @endif
+                @if ($vaccine->need_comment)
+                    <tr>
+                        <th width="200">Need Comment ?</th>
+                        <td> @if ($vaccine->need_comment) <i class="fas fa-check-circle text-success fa-lg"></i> @else No @endif</td>
+                    </tr>
+                @endif
                 <tr>
                     <th width="200">Available Days</th>
                     <td>

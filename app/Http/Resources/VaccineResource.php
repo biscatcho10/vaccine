@@ -19,6 +19,8 @@ class VaccineResource extends JsonResource
             'name' => $this->name,
             'definded_period' => $this->definded_period,
             'has_diff_ages' => $this->has_diff_ages,
+            'require_hcn' => $this->require_hcn,
+            'need_comment' => $this->need_comment,
             'days' => DayResource::collection($this->days),
             'weekends' => $this->getWeekends(),
             'conditions' => new ConditionsResource($this->condition),

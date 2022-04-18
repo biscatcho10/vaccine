@@ -56,10 +56,19 @@ class VaccineController extends Controller
             ]);
         }
 
+
+        // send confirmation email
+        $email_template = Setting::get('email_template');
+        $vaccine_name = Vaccine::find($request->vaccine)->name;
+        $email_template = str_replace('{user_name}', $request->user_name, $email_template);
+        $email_template = str_replace('{vaccine_name}', $vaccine_name, $email_template);
+        $email_template = str_replace('{day_date}', $request->day_date, $email_template);
+        $email_template = str_replace('{day_time}', $request->day_time, $email_template);
+
         $details = [
             'greeting' => 'Hi ' . $patient->name,
             'body' => Setting::get('email_subject'),
-            'thanks' => Setting::get('email_template'),
+            'thanks' => $email_template,
             'actionText' => 'Well Pharamacy',
             'actionURL' => url('/'),
         ];

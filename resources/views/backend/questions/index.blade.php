@@ -37,7 +37,7 @@
             @foreach ($data as $question)
             <tr>
                 <th>{{$question->question}}</th>
-                <th>{{ucfirst($question->type)}}</th>
+                <th>{{ucfirst($question->input_type)}}</th>
                 <th>
                     @include('backend.questions.partials.actions.show')
                     @include('backend.questions.partials.actions.edit')

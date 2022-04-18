@@ -14,10 +14,14 @@ class QuestionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'question' => $this->question,
-            'type' => $this->type,
-            'options' => $this->options,
+            'input_type' => $this->input_type,
         ];
+        if ($this->input_type == "select") {
+            $data['select_type'] = $this->select_type;
+            $data['options'] = $this->options;
+        }
+        return $data;
     }
 }

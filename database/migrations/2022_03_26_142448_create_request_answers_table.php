@@ -19,6 +19,7 @@ class CreateRequestAnswersTable extends Migration
             $table->string('patient_hcm');
             $table->foreign('patient_hcm')->references('health_card_num')->on('patients')->onDelete('cascade');
             $table->text('eligapility');
+            $table->text('comment')->nullable();
             $table->date('day_date');
             $table->string('day_name');
             $table->string('day_time');

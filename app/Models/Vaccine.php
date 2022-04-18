@@ -9,6 +9,8 @@ class Vaccine extends Model
     protected $fillable = [
         "name",
         "definded_period",
+        "require_hcn",
+        "need_comment",
         "from",
         "to",
         "has_diff_ages",

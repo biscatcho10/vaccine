@@ -79,7 +79,7 @@ $("#products").change(function (e) {
                         ">${data}</li>`
                     );
                 });
-            }else{
+            } else {
                 $("#age").empty();
                 $(".option_input").hide();
             }
@@ -123,7 +123,7 @@ $("#products").change(function (e) {
                         minDate: new Date(min),
                         beforeShowDay: exceptions
                     });
-                }else{
+                } else {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,
@@ -165,7 +165,7 @@ $("#products").change(function (e) {
                         minDate: 0,
                         beforeShowDay: exceptions
                     });
-                }else{
+                } else {
                     $("#day").datepicker({
                         changeMonth: true,
                         numberOfMonths: 1,
@@ -205,75 +205,85 @@ $("#products").change(function (e) {
                 let questions = vaccine.questions;
                 $("#question_section").empty();
                 questions.forEach((question, index) => {
-                    let type = question.type;
-                    let select = "Select one";
+                    let type = question.input_type;
 
-                    if (type == "multiple") {
-                        select = "Select one or more";
-                    }
+                    if (type == 'select') {
+                        let select = "Select one";
 
-                    $("#question_section").append(`
-                        <div class="styled-select clearfix">
-                            <label class="mt-3">${question.question}</label>
-                            <div class="form-group group${type}">
-                                <select style='display:none;' name="${question.question}[]" id="question_${index}" class="form-control" multiple>
-                                    <option>${select}</option>
-                                </select>
-                                <input id='' type="hidden">
-                                <div class="nice-select nice-select-${index} form-control" tabindex="0">
-                                    <span class="current">${select}</span>
-                                    <ul class="list list_question"></ul>
+                        if (question.select_type == "multiple") {
+                            select = "Select one or more";
+                        }
+
+                        $("#question_section").append(`
+                            <div class="styled-select clearfix">
+                                <label class="mt-3">${question.question}</label>
+                                <div class="form-group group${type}">
+                                    <select style='display:none;' name="${question.question}[]" id="question_${index}" class="form-control" multiple>
+                                        <option>${select}</option>
+                                    </select>
+                                    <input id='' type="hidden">
+                                    <div class="nice-select nice-select-${index} form-control" tabindex="0">
+                                        <span class="current">${select}</span>
+                                        <ul class="list list_question"></ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `);
-
-                    question.options.forEach(option => {
-                        $("#question_" + index).append(`
-                            <option vlaue="${option.value}">${option.option}</option>
                         `);
 
-                        $(`.groupsingle .nice-select-${index} .list_question`).append(`
-                            <li data-value='${option.value}' class="option selected" onclick="
-                                $('#question_${index} option').removeAttr('selected')
-                                document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
-                                ">${option.option}</li>
-                        `);
+                        question.options.forEach(option => {
+                            $("#question_" + index).append(`
+                                <option vlaue="${option.value}">${option.option}</option>
+                            `);
 
-                        $(`.groupmultiple .nice-select-${index} .list_question`).append(`
-                            <li data-value='${option.value}' class="option selected" onclick="
+                            $(`.groupsingle .nice-select-${index} .list_question`).append(`
+                                <li data-value='${option.value}' class="option selected" onclick="
+                                    $('#question_${index} option').removeAttr('selected')
                                     document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
-                                    $(this).hide()
-                            ">${option.option}</li>
+                                    ">${option.option}</li>
+                            `);
+
+                            $(`.groupmultiple .nice-select-${index} .list_question`).append(`
+                                <li data-value='${option.value}' class="option selected" onclick="
+                                        document.querySelectorAll('#question_${index} option')[$(this).index()+1].setAttribute('selected', true)
+                                        $(this).hide()
+                                ">${option.option}</li>
+                            `);
+
+
+                        });
+                    } else {
+                        $("#question_section").append(`
+                            <div class="form-group">
+                                <label>${question.question}</label>
+                                <input type="text" name="${question.question}" class="form-control">
+                            </div>
                         `);
-
-
-                    });
+                    }
                 });
 
-                $(`.groupmultiple .list_question li`).on('click',function (e) {
+                $(`.groupmultiple .list_question li`).on('click', function (e) {
                     $(this).parent().siblings('span.current').hide();
                     let thisVal = $(this).text();
                     $(this).parents('.groupmultiple ul').before(`
                         <span class='more_select'>${thisVal}<div aria-hidden="true" data-icon="M" class="fs1" class='icon_remove' ></div></span>
                     `)
-                    $('.groupmultiple .more_select div').on('click',function (w) {
+                    $('.groupmultiple .more_select div').on('click', function (w) {
                         $(this).parent().remove()
                         let values = $(this).parent().text()
                         document.querySelectorAll('.groupmultiple ul li').forEach(e => {
-                            if(values == e.innerText){
+                            if (values == e.innerText) {
                                 $(e).show();
                             }
                         });
 
                         document.querySelectorAll('.groupmultiple option').forEach(e => {
-                            if(values == e.value){
+                            if (values == e.value) {
                                 e.removeAttribute('selected')
                             }
                         });
 
                         document.querySelectorAll('.groupmultiple').forEach(e => {
-                            if($(e).find('.more_select').eq(0).length == 0){
+                            if ($(e).find('.more_select').eq(0).length == 0) {
                                 $(e).find('span.current').show();
                                 $(e).find('span.current').text('Select one');
                             }

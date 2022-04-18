@@ -17,6 +17,8 @@ class CreateVaccinesTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('definded_period')->nullable();
+            $table->boolean('require_hcn')->default(false);
+            $table->boolean('need_comment')->default(false);
             $table->date('from')->nullable();
             $table->date('to')->nullable();
             $table->boolean('has_diff_ages')->default(false);

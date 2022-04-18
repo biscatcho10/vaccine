@@ -11,6 +11,7 @@ class RequestAnswer extends Model
         "vaccine_id",
         "patient_hcm",
         "eligapility",
+        "comment",
         "day_date",
         "day_time",
         "day_name",

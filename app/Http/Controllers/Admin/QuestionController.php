@@ -8,6 +8,8 @@ use App\Models\Question;
 use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class QuestionController extends Controller
 {
 
@@ -42,10 +44,14 @@ class QuestionController extends Controller
      */
     public function store(Vaccine $vaccine, QuestionRequest $request)
     {
-        if (!$request->type) {
-            $request->merge(["type" => "single"]);
+        if ($request->input_type == "text") {
+            $question = $vaccine->questions()->create($request->only('question', 'input_type'));
+        } else {
+            if (!$request->select_type) {
+                $request->merge(["select_type" => "single"]);
+            }
+            $question = $vaccine->questions()->create($request->except('_token'));
         }
-        $question = $vaccine->questions()->create($request->except('_token'));
 
         return redirect()->route('question.show', [$vaccine, $question])->with('success', 'question created successfully.');
     }
@@ -85,12 +91,22 @@ class QuestionController extends Controller
      */
     public function update(QuestionRequest $request, Vaccine $vaccine, Question $question)
     {
-        if (!$request->type) {
-            $request->merge(["type" => "single"]);
-        }
         $question = $vaccine->questions()->find($question->id);
 
-        $question->update($request->except('_token'));
+        if ($request->input_type == "text") {
+            $request->merge([
+                "select_type" => 'single',
+                "options" => null,
+            ]);
+            $question->update($request->all());
+
+        } else {
+            if (!$request->select_type) {
+                $request->merge(["select_type" => "single"]);
+            }
+            $question->update($request->except('_token'));
+        }
+
 
         return redirect()->route('question.show', [$vaccine, $question])->with('success', 'question updated successfully.');
     }
