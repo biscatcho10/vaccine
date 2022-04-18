@@ -7,10 +7,7 @@
 
     </div>
 
-
-
-
-    <div class="form-group options clearfix d-flex justify-content-center align-items-center">
+    <div class="form-group c_approved options clearfix d-flex justify-content-center align-items-center">
         <em>PROVES YOUR ELIGABILITY</em>
         <label class="switch-light switch-ios float-right">
             <input class="checkBox" type="checkbox" value="1" name="condition_approved">

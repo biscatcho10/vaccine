@@ -22,6 +22,7 @@ $("#products").change(function (e) {
         dataType: "json",
         success: function (response) {
             let vaccine = response;
+            console.log(vaccine);
 
             // has exceptions only
             function exceptions(date) {
@@ -175,6 +176,10 @@ $("#products").change(function (e) {
                 }
             }
 
+            if (vaccine.require_hcn == 1) {
+                $('.health_card_').addClass('requireds')
+            }
+
             // show eligapilities
             if (vaccine.eligapilities) {
                 let eligaps = vaccine.eligapilities;
@@ -207,17 +212,20 @@ $("#products").change(function (e) {
                 questions.forEach((question, index) => {
                     let type = question.input_type;
 
+
                     if (type == 'select') {
+                        let select_type = question.select_type;
+
                         let select = "Select one";
 
-                        if (question.select_type == "multiple") {
+                        if (select_type == "multiple") {
                             select = "Select one or more";
                         }
 
                         $("#question_section").append(`
                             <div class="styled-select clearfix">
                                 <label class="mt-3">${question.question}</label>
-                                <div class="form-group group${type}">
+                                <div class="form-group group${select_type}">
                                     <select style='display:none;' name="${question.question}[]" id="question_${index}" class="form-control" multiple>
                                         <option>${select}</option>
                                     </select>
@@ -251,11 +259,12 @@ $("#products").change(function (e) {
 
 
                         });
-                    } else {
+                    }
+                     else {
                         $("#question_section").append(`
                             <div class="form-group">
                                 <label>${question.question}</label>
-                                <input type="text" name="${question.question}" class="form-control">
+                                <input type="text" name="${question.question}" class="form-control requireds">
                             </div>
                         `);
                     }
@@ -307,6 +316,14 @@ $("#products").change(function (e) {
                 });
             }
 
+            // show comment
+            if (vaccine.need_comment == 1) {
+                $('.c_approved').before(`<div class="form-group">
+                    <label for="exampleFormControlTextarea1">Feed Back</label>
+                        <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type your comment..."></textarea>
+                    </div>
+                `);
+            }
 
 
         }

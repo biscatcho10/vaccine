@@ -43,6 +43,6 @@
         <input type="text" name="address" autocomplete="off" id="field-2" placeholder="Address 'street address, city'" class="form-control requireds">
     </div>
     <div class="form-group ">
-        <input type="text" name="health_card_number" class="form-control requireds" autocomplete="off" id="field-3" placeholder="HEALTH CARD NUMBER">
+        <input type="text" name="health_card_number" class="form-control health_card_" autocomplete="off" id="field-3" placeholder="HEALTH CARD NUMBER">
     </div>
 </div>

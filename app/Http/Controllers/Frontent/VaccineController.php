@@ -27,6 +27,7 @@ class VaccineController extends Controller
 
     public function makeRequest(VaccineFormRequest $request)
     {
+        // dd($request->all());
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process');
         // create patient
         $patient =Patient::create([
