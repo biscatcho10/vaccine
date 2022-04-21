@@ -76,7 +76,7 @@ class VaccineController extends Controller
 
         $vaccine = $this->repository->create($request->except('_token'));
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine created successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'service created successfully.');
     }
 
     /**
@@ -147,7 +147,7 @@ class VaccineController extends Controller
         }
         $vaccine = $this->repository->update($vaccine, $request->except('_token'));
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine updated successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'service updated successfully.');
     }
 
     /**
@@ -161,7 +161,7 @@ class VaccineController extends Controller
     {
         $this->repository->delete($vaccine);
 
-        return redirect()->route('vaccine.index')->with('success', 'vaccine deleted successfully.');
+        return redirect()->route('vaccine.index')->with('success', 'service deleted successfully.');
     }
 
 

@@ -23,7 +23,7 @@ class EligapilityController extends Controller
             ['page_title' => $request->page_title, 'eligapilities' => $request->eligapilities]
         );
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s eligapilities added successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'service\'s acknowledgments added successfully.');
     }
 
 
@@ -37,7 +37,7 @@ class EligapilityController extends Controller
         $neweligapility->vaccine_id = $vaccine->id;
         $neweligapility->save();
         return redirect()->back()->with([
-            'success' => 'vaccine\'s eligapilities copied successfully.',
+            'success' => 'service\'s acknowledgments copied successfully.',
             'eligapility' => $neweligapility,
             'vaccine' => $vaccine,
             'vaccines' => $vaccines,

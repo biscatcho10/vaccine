@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <div class="my-auto">
-                                    <h4 class="fw-bolder mb-0">Vaccine : {{$vaccine}}</h4>
+                                    <h4 class="fw-bolder mb-0">Service : {{$vaccine}}</h4>
                                     <p class="card-text font-small-3 mb-0">Most requested</p>
                                 </div>
                             </div>

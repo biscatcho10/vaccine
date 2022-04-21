@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Show Vaccine Request
+    Show Service Request
 @stop
 
 @section('content')

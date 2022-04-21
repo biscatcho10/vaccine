@@ -1,13 +1,13 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Update Vaccine
+    Update Service
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Vaccines')
+        @slot('parent', 'Services')
         @slot('parentUrl', route('vaccine.index'))
         @slot('page', 'Update Vaccine')
     @endcomponent
@@ -15,7 +15,7 @@
 
     {{ BsForm::putModel($vaccine, route('vaccine.update', $vaccine), ['id' => 'form']) }}
     @component('backend.components.box')
-        @slot('title', 'Update Vaccine')
+        @slot('title', 'Update Service')
 
         @include('backend.vaccines.partials.form')
 

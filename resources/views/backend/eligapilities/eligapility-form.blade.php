@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Update Eligapilities
+    Update Acknowledgments
 @stop
 
 @section('content')
@@ -10,14 +10,14 @@
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
         @slot('parentUrl', route('vaccine.show', $vaccine))
-        @slot('page', 'Eligapilities')
+        @slot('page', 'Acknowledgments')
     @endcomponent
 
 
     {{ BsForm::putModel($vaccine, route('update-eligapility', $vaccine), ['id' => 'form']) }}
 
     @component('backend.components.box')
-        @slot('title', 'Eligapilities')
+        @slot('title', 'Acknowledgments')
 
         @include('backend.eligapilities.eligapility-input')
 

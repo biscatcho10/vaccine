@@ -1,13 +1,13 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Show Vaccine
+    Show Service
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Vaccines')
+        @slot('parent', 'Services')
         @slot('parentUrl', route('vaccine.index'))
         @slot('page', $vaccine->name)
     @endcomponent
@@ -99,7 +99,7 @@
 
     @component('backend.components.box')
         @slot('bodyClass', 'p-0')
-        @slot('title', 'Vaccine Info')
+        @slot('title', 'Service Info')
 
         @include('backend.layouts.partials.session')
 

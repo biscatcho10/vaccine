@@ -26,7 +26,7 @@ class ExceptionController extends Controller
             }
         }
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'vaccine\'s exceptions added successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'service\'s blocked dates added successfully.');
     }
 
 
@@ -42,7 +42,7 @@ class ExceptionController extends Controller
             $newException->save();
         }
         return redirect()->back()->with([
-            'success' => 'vaccine\'s exceptions copied successfully.',
+            'success' => 'service\'s blocked dates copied successfully.',
             'vaccine' => $vaccine,
             'vaccines' => $vaccines,
         ]);

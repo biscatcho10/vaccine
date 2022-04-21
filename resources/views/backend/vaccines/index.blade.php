@@ -1,12 +1,12 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Vaccines
+    Services
 @stop
 
 @section('content')
     @component('backend.components.breadcrumbs')
-        @slot('page', 'Vaccines')
+        @slot('page', 'Services')
     @endcomponent
 
     @include('backend.layouts.partials.session')

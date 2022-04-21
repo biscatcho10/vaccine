@@ -10,14 +10,14 @@
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
         @slot('parentUrl', route('vaccine.show', $vaccine))
-        @slot('page', 'Exceptions')
+        @slot('page', 'Blocked Dates')
     @endcomponent
 
 
     {{ BsForm::putModel($vaccine, route('update-exceptions', $vaccine), ['id' => 'form']) }}
 
     @component('backend.components.box')
-        @slot('title', 'Exceptions')
+        @slot('title', 'Blocked Dates')
 
         @include('backend.exceptions.exception-input')
 

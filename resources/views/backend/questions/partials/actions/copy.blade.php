@@ -16,9 +16,9 @@
                 <div class="modal-body">
                     {{ BsForm::post(route('copy-questions', $vaccine), ['id' => 'copy-from']) }}
                     <div class="form-group">
-                        <label>Vaccine</label>
+                        <label>Service</label>
                         <select class="form-control" name="target">
-                            <option>Select one vaccine</option>
+                            <option>Select one Service</option>
                             @foreach ($vaccines as $vaccine)
                                 <option value="{{ $vaccine->id }}"> {{ $vaccine->name }} </option>
                             @endforeach

@@ -1,12 +1,12 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Vaccine Requests
+    Service Requests
 @stop
 
 @section('content')
     @component('backend.components.breadcrumbs')
-        @slot('page', 'Vaccine Requests')
+        @slot('page', 'Service Requests')
     @endcomponent
 
     <table id="datatable-buttons" class="table dt-responsive nowrap"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">

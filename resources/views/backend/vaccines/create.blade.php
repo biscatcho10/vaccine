@@ -1,22 +1,22 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Create Vaccine
+    Create Service
 @stop
 
 @section('content')
 
     @component('backend.components.breadcrumbs')
-        @slot('parent', 'Vaccines')
+        @slot('parent', 'Services')
         @slot('parentUrl', route('vaccine.index'))
-        @slot('page', 'Add Vaccine')
+        @slot('page', 'Add Service')
     @endcomponent
 
 
     {{ BsForm::post(route('vaccine.store'), ['id' => 'form']) }}
     @csrf
     @component('backend.components.box')
-        @slot('title', 'Add Vaccine')
+        @slot('title', 'Add Service')
 
         @include('backend.vaccines.partials.form')
 

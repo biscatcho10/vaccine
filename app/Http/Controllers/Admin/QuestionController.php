@@ -180,7 +180,7 @@ class QuestionController extends Controller
             $newQuestion->save();
         }
         return redirect()->back()->with([
-            'success' => 'vaccine\'s questions copied successfully.',
+            'success' => 'Service\'s questions copied successfully.',
             'vaccine' => $vaccine,
             'vaccines' => $vaccines,
         ]);
