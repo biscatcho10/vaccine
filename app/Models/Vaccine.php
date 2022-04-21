@@ -9,6 +9,7 @@ class Vaccine extends Model
     protected $fillable = [
         "name",
         "definded_period",
+        "amount",
         "require_hcn",
         "need_comment",
         "from",
@@ -50,6 +51,11 @@ class Vaccine extends Model
     public function requests()
     {
         return $this->hasMany(RequestAnswer::class)->orderBy('created_at', 'desc');
+    }
+
+    public function waitingLists()
+    {
+        return $this->hasMany(WaitingList::class);
     }
     /** End Relations  **/
 

@@ -217,4 +217,13 @@ class VaccineController extends Controller
         $request = $vaccine->requests->find($id);
         return view('backend.vaccines.show-request', compact('request', 'vaccine'));
     }
+
+    public function cancelRequest(Vaccine $vaccine, $id)
+    {
+        $request = $vaccine->requests->find($id);
+        $request->delete();
+        // update vaccine amount
+        $vaccine->update(['amount' => $vaccine->amount + 1]);
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'Request canceled successfully.');
+    }
 }

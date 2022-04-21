@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\IntervalController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\VaccineController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +48,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('{vaccine}/copy/questions', [QuestionController::class, 'copy'])->name('copy-questions');
 
 
-    // ELIGABILITY
+    // ELIGIBILITY
     Route::get('{vaccine}/eligapilities', [EligapilityController::class ,'get'])->name('eligapility');
     Route::put('{vaccine}/eligapilities', [EligapilityController::class, 'update'])->name('update-eligapility');
     Route::post('{vaccine}/copy/eligapilities', [EligapilityController::class, 'copy'])->name('copy-eligapilities');
@@ -68,5 +69,13 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('{vaccine}/{day}/intervals', [IntervalController::class ,'get'])->name('intervals');
     Route::put('{vaccine}/{day}/intervals', [IntervalController::class, 'update'])->name('update-intervals');
     Route::post('{vaccine}/{day}/copy/intervals', [IntervalController::class, 'copy'])->name('copy-intervals');
+
+    // Stock
+    Route::get('stock', [StockController::class ,'getStock'])->name('stock');
+    Route::get('stock/{vaccine}', [StockController::class ,'getStockVaccine'])->name('get-stock-vaccine');
+    Route::put('stock/{vaccine}', [StockController::class ,'updateStock'])->name('update-stock-vaccine');
+
+    // cancel request
+    Route::get('{vaccine}/requests/{request}/cancel', [VaccineController::class, 'cancelRequest'])->name('cancel-request');
 
 });

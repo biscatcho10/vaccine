@@ -9,6 +9,7 @@ use App\Http\Resources\VaccineResource;
 use App\Models\Patient;
 use App\Models\RequestAnswer;
 use App\Models\Vaccine;
+use App\Models\WaitingList;
 use App\Notifications\UserConfirmation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,10 +28,9 @@ class VaccineController extends Controller
 
     public function makeRequest(VaccineFormRequest $request)
     {
-        // dd($request->all());
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
         // create patient
-        $patient =Patient::create([
+        $patient = Patient::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -40,50 +40,47 @@ class VaccineController extends Controller
             'health_card_num' => $request->health_card_number,
         ]);
 
-        // create patient request
-        $request_answer = RequestAnswer::create([
-            'vaccine_id' => $request->vaccine,
-            'day_date' => $request->day_date,
-            'day_time' => $request->day_time,
-            'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
-            'patient_hcm' => $patient->health_card_num,
-            'eligapility' => $request->eligapility,
-            'comment' => $request->comment,
-            'answers' => $answer,
-        ]);
+        // get vaccine
+        $vaccine = Vaccine::find($request->vaccine);
 
-        if ($request->age && $request->age != null ) {
-            $request_answer->update([
-                'age' => $request->age
+        if ($vaccine->amount > 0) {
+            // create patient request
+            $request_answer = RequestAnswer::create([
+                'vaccine_id' => $request->vaccine,
+                'day_date' => $request->day_date,
+                'day_time' => $request->day_time,
+                'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
+                'patient_hcm' => $patient->health_card_num,
+                'eligapility' => $request->eligapility,
+                'comment' => $request->comment,
+                'answers' => $answer,
             ]);
-        }
+            if ($request->age && $request->age != null) {
+                $request_answer->update([
+                    'age' => $request->age
+                ]);
+            }
 
+            // update vaccine amount
+            $vaccine->update([
+                'amount' => $vaccine->amount - 1
+            ]);
 
-        // send confirmation email
-        $email_template = Setting::get('email_template');
-        $vaccine_name = Vaccine::find($request->vaccine)->name;
-        $email_template = str_replace('{user_name}', $patient->name, $email_template);
-        $email_template = str_replace('{vaccine}', $vaccine_name, $email_template);
-        $email_template = str_replace('{day_date}', $request->day_date, $email_template);
-        $email_template = str_replace('{day_time}', $request->day_time, $email_template);
+            // send confirmation email
+            $this->sendEmail($patient, $request);
 
-        $details = [
-            'greeting' => 'Hi ' . $patient->name,
-            'body' => Setting::get('email_subject'),
-            'thanks' => $email_template,
-            'actionText' => 'Well Pharamacy',
-            'actionURL' => url('/'),
-        ];
-
-        // send mail to the patient
-        Notification::send($patient, new UserConfirmation($details));
-
-        if (Setting::get('redirect')) {
-            return redirect(Setting::get('redirect_url'));
+            if (Setting::get('redirect')) {
+                return redirect(Setting::get('redirect_url'));
+            } else {
+                return redirect()->route('get.thanks');
+            }
         } else {
-            return redirect()->route('get.thanks');
+            $waitingLists = WaitingList::create([
+                'vaccine_id' => $request->vaccine,
+                'patient_id' => $patient->id
+            ]);
+            return redirect()->route('get.thanks')->with('error_msg', 'Sorry, this vaccine is out of stock, You are added to the waiting list, we will notify you when the vaccine is available');
         }
-
     }
 
     public function vaccineData(Vaccine $vaccine)
@@ -104,7 +101,7 @@ class VaccineController extends Controller
         $_day = $vaccine->days()->where('name', $day_name)->first();
         $intervals = $_day->intervals->pluck('interval')->toArray();
 
-        if($requests){
+        if ($requests) {
             $intervals = array_values(array_diff($intervals, $data));
             if (empty($intervals)) {
                 $vaccine->exceptionsd()->create([
@@ -121,5 +118,26 @@ class VaccineController extends Controller
     {
         return view('thanks', ['settings' => Setting::all()]);
     }
-    
+
+    public function sendEmail($patient, $request)
+    {
+
+        $email_template = Setting::get('email_template');
+        $vaccine_name = Vaccine::find($request->vaccine)->name;
+        $email_template = str_replace('{user_name}', $patient->name, $email_template);
+        $email_template = str_replace('{vaccine}', $vaccine_name, $email_template);
+        $email_template = str_replace('{day_date}', $request->day_date, $email_template);
+        $email_template = str_replace('{day_time}', $request->day_time, $email_template);
+
+        $details = [
+            'greeting' => 'Hi ' . $patient->name,
+            'body' => Setting::get('email_subject'),
+            'thanks' => $email_template,
+            'actionText' => 'Well Pharamacy',
+            'actionURL' => url('/'),
+        ];
+
+        // send mail to the patient
+        Notification::send($patient, new UserConfirmation($details));
+    }
 }

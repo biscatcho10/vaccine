@@ -5,12 +5,13 @@
 @stop
 
 @section('content')
-
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
         @slot('parentUrl', route('vaccine.show', $vaccine))
         @slot('page', 'Request')
     @endcomponent
+
+    @include('backend.vaccines.partials.actions.cancel')
 
     @component('backend.components.box')
         @slot('bodyClass', 'p-0')

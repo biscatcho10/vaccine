@@ -54,4 +54,21 @@ class Patient extends Model
     {
         return $this->hasOne(RequestAnswer::class);
     }
+
+    /** Begin Relations **/
+    public function vaccines()
+    {
+        return $this->hasMany(Vaccine::class);
+    }
+
+    public function waitingLists()
+    {
+        return $this->hasMany(WaitingList::class);
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(RequestAnswer::class);
+    }
+    
 }

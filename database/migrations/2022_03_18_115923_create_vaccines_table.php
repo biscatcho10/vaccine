@@ -16,6 +16,7 @@ class CreateVaccinesTable extends Migration
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('amount')->default(0);
             $table->boolean('definded_period')->nullable();
             $table->boolean('require_hcn')->default(false);
             $table->boolean('need_comment')->default(false);

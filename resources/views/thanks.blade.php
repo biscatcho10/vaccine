@@ -86,7 +86,11 @@
                 <div id="wizard_container">
                     <div class="thanks">
                         <div class="title">{{ $settings['thanks_title'] }}</div>
+                        @if (session('error_msg'))
+                            <p>{{ session('error_msg') }}</p>
+                        @else
                         <p>{{ $settings['thanks_parag'] }}</p>
+                        @endif
                     </div>
                 </div>
                 <!-- /Wizard container -->

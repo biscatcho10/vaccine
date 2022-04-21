@@ -28,6 +28,8 @@
 
             @include('backend.vaccines.sidebar')
 
+            @include('backend.stock.sidebar')
+
             @include('backend.settings.sidebar')
 
         </ul>
