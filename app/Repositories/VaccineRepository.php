@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Contracts\CrudRepository;
+use App\Models\Day;
 use App\Models\Vaccine;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -81,9 +82,14 @@ class VaccineRepository implements CrudRepository
             $vaccine->update(['has_diff_ages' => 0]);
         }
 
-        $vaccine->days()->delete();
+
         foreach ($data['available_days'] as $day) {
-            $vaccine->days()->create(['name' => $day]);
+            $day = Day::updateOrCreate(['vaccine_id' => $vaccine->id, 'name' => $day], ['name' => $day]);
+        }
+
+        $minus = array_diff($vaccine->days->pluck('name')->toArray(), $data['available_days']);
+        foreach ($minus as $day) {
+            $vaccine->days()->where('name', $day)->delete();
         }
 
 

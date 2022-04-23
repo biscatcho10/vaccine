@@ -16,6 +16,12 @@ class SettingController extends Controller
         return view('backend.settings.main', ['settings' => $settings]);
     }
 
+    public function mailSettingsForm()
+    {
+        $settings = Setting::all();
+        return view('backend.settings.mail', ['settings' => $settings]);
+    }
+
 
     public function updateSettings(Request $request)
     {

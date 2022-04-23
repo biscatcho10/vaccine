@@ -59,4 +59,33 @@ src="{{ asset('backend/app-assets/vendors/js/datatables/datatables.net-responsiv
             .container()
             .appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)");
     });
+    $(document).ready(function() {
+            $("#datatable-buttons1")
+            .DataTable({
+                lengthChange: !1,
+                buttons: [{
+                        extend: "pdfHtml5",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+
+                        }
+                    },
+                    {
+                        extend: "csvHtml5",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: "excelHtml5",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    }
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#datatable-buttons1_wrapper .col-md-6:eq(0)");
+    });
 </script>

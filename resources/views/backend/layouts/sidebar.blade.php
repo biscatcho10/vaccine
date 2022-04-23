@@ -28,7 +28,11 @@
 
             @include('backend.vaccines.sidebar')
 
+            @include('backend.requests.sidebar')
+
             @include('backend.stock.sidebar')
+
+            @include('backend.waiting-lists.sidebar')
 
             @include('backend.settings.sidebar')
 

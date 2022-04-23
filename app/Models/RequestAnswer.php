@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RequestAnswer extends Model
 {
+    use Filterable;
+    
     protected $fillable = [
         "vaccine_id",
         "patient_hcm",

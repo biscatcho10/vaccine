@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\VaccineController;
+use App\Http\Controllers\Admin\WaitingListController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Settings
     Route::get('settings', [SettingController::class ,'showSettingsForm'])->name('settings');
+    Route::get('mail-settings', [SettingController::class ,'mailSettingsForm'])->name('mail.settings');
     Route::post('settings', [SettingController::class, 'updateSettings'])->name('update-settings');
 
     // Users
@@ -40,7 +42,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::resource('vaccine', VaccineController::class);
 
     // Vaccines
-    Route::get('{vaccine}/requests', [VaccineController::class, 'getRequest'])->name('get.requestS');
+    Route::get('requests', [VaccineController::class, 'allRequests'])->name('all.requests');
+    Route::get('{vaccine}/requests', [VaccineController::class, 'getRequest'])->name('get.requests');
     Route::get('{vaccine}/requests/{request}', [VaccineController::class, 'showRequest'])->name('show.request');
 
     // Questions
@@ -77,5 +80,9 @@ Route::middleware(['auth:web'])->group(function () {
 
     // cancel request
     Route::get('{vaccine}/requests/{request}/cancel', [VaccineController::class, 'cancelRequest'])->name('cancel-request');
+
+    // Waiting list
+    Route::get('waiting-list', [WaitingListController::class, 'waitingList'])->name('waiting-list');
+    Route::get('{vaccine}/waiting-list', [WaitingListController::class, 'waitingListVaccine'])->name('waiting-list-vaccine');
 
 });

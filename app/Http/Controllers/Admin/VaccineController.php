@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\RequestFilter;
 use App\Http\Requests\VaccineRequest;
 use App\Models\Exception;
 use App\Models\RequestAnswer;
@@ -19,15 +20,18 @@ class VaccineController extends Controller
      * @var VaccineRepository
      */
     private $repository;
+    private $filter;
+
 
     /**
      * AdminController constructor.
      *
      * @param VaccineRepository $repository
      */
-    public function __construct(VaccineRepository $repository)
+    public function __construct(VaccineRepository $repository, RequestFilter $filter)
     {
         $this->repository = $repository;
+        $this->filter = $filter;
     }
 
     /**
@@ -205,17 +209,28 @@ class VaccineController extends Controller
     }
 
 
+    /**
+     *  Display a listing of the resource.
+     */
+    public function allRequests()
+    {
+        $services = Vaccine::all();
+        $requests = RequestAnswer::filter($this->filter)->get();
+        return view('backend.requests.index', compact('requests', 'services'));
+    }
+
+
     public function getRequest(Vaccine $vaccine)
     {
         $requests = $vaccine->requests;
-        return view('backend.vaccines.requests', compact('requests', 'vaccine'));
+        return view('backend.requests.vaccine-requests', compact('requests', 'vaccine'));
     }
 
 
     public function showRequest(Vaccine $vaccine, $id)
     {
         $request = $vaccine->requests->find($id);
-        return view('backend.vaccines.show-request', compact('request', 'vaccine'));
+        return view('backend.requests.show', compact('request', 'vaccine'));
     }
 
     public function cancelRequest(Vaccine $vaccine, $id)

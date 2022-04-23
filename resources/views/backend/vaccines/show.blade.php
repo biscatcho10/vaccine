@@ -22,7 +22,7 @@
                     <div class="d-flex align-items-center">
                         <p class="card-text font-small-2 me-25 mb-0">
                             @if (count($requests) > 0)
-                                <a href="{{ route('get.requestS', $vaccine) }}"
+                                <a href="{{ route('get.requests', $vaccine) }}"
                                     class="btn btn-outline-primary waves-effect waves-light btn-sm float-right m-1">
                                     <i data-feather="eye"></i> All Request
                                 </a>
@@ -180,7 +180,7 @@
         @slot('bodyClass', 'p-0')
 
         @if (count($requests) > 0)
-            <a href="{{ route('get.requestS', $vaccine) }}"
+            <a href="{{ route('get.requests', $vaccine) }}"
                 class="btn btn-outline-primary waves-effect waves-light btn-sm float-right m-1">
                 <i data-feather="eye"></i> All Request
             </a>

@@ -130,9 +130,8 @@ class VaccineController extends Controller
         $email_template = str_replace('{day_time}', $request->day_time, $email_template);
 
         $details = [
-            'greeting' => 'Hi ' . $patient->name,
-            'body' => Setting::get('email_subject'),
-            'thanks' => $email_template,
+            'subject' => Setting::get('email_subject'),
+            'body' => $email_template,
             'actionText' => 'Well Pharamacy',
             'actionURL' => url('/'),
         ];
