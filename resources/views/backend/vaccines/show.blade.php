@@ -131,6 +131,12 @@
                         <td> @if ($vaccine->need_comment) <i class="fas fa-check-circle text-success fa-lg"></i> @else No @endif</td>
                     </tr>
                 @endif
+                @if ($vaccine->out_of_stock)
+                    <tr>
+                        <th width="200">Out of Stock ?</th>
+                        <td> @if ($vaccine->out_of_stock) <i class="fas fa-check-circle text-success fa-lg"></i> @else No @endif</td>
+                    </tr>
+                @endif
                 <tr>
                     <th width="200">Available Days</th>
                     <td>

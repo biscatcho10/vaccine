@@ -9,7 +9,9 @@ class WaitingList extends Model
 {
     protected $fillable = [
         'vaccine_id',
-        'patient_id',
+        'user_name',
+        'user_email',
+        'notification_sent',
     ];
 
     public function vaccine()
@@ -17,8 +19,4 @@ class WaitingList extends Model
         return $this->belongsTo(Vaccine::class);
     }
 
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
-    }
 }

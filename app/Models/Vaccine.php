@@ -12,6 +12,7 @@ class Vaccine extends Model
         "amount",
         "require_hcn",
         "need_comment",
+        "out_of_stock",
         "from",
         "to",
         "has_diff_ages",

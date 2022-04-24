@@ -90,11 +90,14 @@
 
 <hr>
 <div class="row mb-1">
-    <div class="col-6">
+    <div class="col-4">
         {{ BsForm::checkbox('require_hcn', 1)->checked(isset($vaccine) ? ($vaccine->require_hcn == 1 ? true : false) : false)->label('Require Health Card Number ?') }}
     </div>
-    <div class="col-6">
+    <div class="col-4">
         {{ BsForm::checkbox('need_comment', 1)->checked(isset($vaccine) ? ($vaccine->need_comment == 1 ? true : false) : false)->label('Need Comment ?') }}
+    </div>
+    <div class="col-4">
+        {{ BsForm::checkbox('out_of_stock', 1)->checked(isset($vaccine) ? ($vaccine->out_of_stock == 1 ? true : false) : false)->label('Out of Stock ?') }}
     </div>
 </div>
 

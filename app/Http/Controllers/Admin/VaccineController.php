@@ -77,6 +77,9 @@ class VaccineController extends Controller
         if (!$request->need_comment) {
             $request->merge(['need_comment' => false]);
         }
+        if (!$request->out_of_stock) {
+            $request->merge(['out_of_stock' => false]);
+        }
 
         $vaccine = $this->repository->create($request->except('_token'));
 
@@ -148,6 +151,9 @@ class VaccineController extends Controller
         }
         if (!$request->need_comment) {
             $request->merge(['need_comment' => false]);
+        }
+        if (!$request->out_of_stock) {
+            $request->merge(['out_of_stock' => false]);
         }
         $vaccine = $this->repository->update($vaccine, $request->except('_token'));
 

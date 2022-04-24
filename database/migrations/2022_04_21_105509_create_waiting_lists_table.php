@@ -18,7 +18,9 @@ class CreateWaitingListsTable extends Migration
         Schema::create('waiting_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Vaccine::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Patient::class)->constrained()->onDelete('cascade');
+            $table->string('user_name');
+            $table->string('user_email');
+            $table->boolean('notification_sent')->default(false);
             $table->timestamps();
         });
     }

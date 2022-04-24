@@ -31,6 +31,7 @@ src="{{ asset('backend/app-assets/vendors/js/datatables/datatables.net-responsiv
 <script>
     $(document).ready(function() {
         $("#datatable").DataTable(),
+        $("#datatable1").DataTable(),
             $("#datatable-buttons")
             .DataTable({
                 lengthChange: !1,

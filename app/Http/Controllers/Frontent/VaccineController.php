@@ -29,21 +29,23 @@ class VaccineController extends Controller
     public function makeRequest(VaccineFormRequest $request)
     {
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
-        // create patient
-        $patient = Patient::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
-            'address' => $request->address,
-            'health_card_num' => $request->health_card_number,
-        ]);
 
         // get vaccine
         $vaccine = Vaccine::find($request->vaccine);
 
         if ($vaccine->amount > 0) {
+
+            // create patient
+            $patient = Patient::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
+                'address' => $request->address,
+                'health_card_num' => $request->health_card_number,
+            ]);
+
             // create patient request
             $request_answer = RequestAnswer::create([
                 'vaccine_id' => $request->vaccine,
@@ -68,18 +70,19 @@ class VaccineController extends Controller
 
             // send confirmation email
             $this->sendEmail($patient, $request);
-
-            if (Setting::get('redirect')) {
-                return redirect(Setting::get('redirect_url'));
-            } else {
-                return redirect()->route('get.thanks');
-            }
+            
         } else {
             $waitingLists = WaitingList::create([
                 'vaccine_id' => $request->vaccine,
-                'patient_id' => $patient->id
+                'user_name' => $request->first_name . " " . $request->last_name,
+                'user_email' => $request->email,
             ]);
-            return redirect()->route('get.thanks')->with('error_msg', 'Sorry, this vaccine is out of stock, You are added to the waiting list, we will notify you when the vaccine is available');
+        }
+
+        if (Setting::get('redirect')) {
+            return redirect(Setting::get('redirect_url'));
+        } else {
+            return redirect()->route('get.thanks');
         }
     }
 

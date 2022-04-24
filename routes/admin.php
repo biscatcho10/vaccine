@@ -85,4 +85,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('waiting-list', [WaitingListController::class, 'waitingList'])->name('waiting-list');
     Route::get('{vaccine}/waiting-list', [WaitingListController::class, 'waitingListVaccine'])->name('waiting-list-vaccine');
 
+    // send emails to waiting list
+    Route::get('{vaccine}/waiting-list/send-emails', [WaitingListController::class, 'sendEmails'])->name('send-emails');
+
 });
