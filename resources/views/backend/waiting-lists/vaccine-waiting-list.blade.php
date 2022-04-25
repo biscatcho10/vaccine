@@ -9,6 +9,8 @@
         @slot('page', 'Service Requests')
     @endcomponent
 
+    @include('backend.layouts.partials.session')
+
 
      <!-- Nav tabs -->
      <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
@@ -29,7 +31,7 @@
             <table id="datatable" class="table dt-responsive nowrap"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th>User</th>
+                        <th>User Name</th>
                         <th>Email</th>
                         <th>Service</th>
                     </tr>
@@ -55,7 +57,7 @@
             <table id="datatable1" class="table dt-responsive nowrap"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th>User</th>
+                        <th>User Name</th>
                         <th>Email</th>
                         <th>Service</th>
                     </tr>

@@ -11,6 +11,9 @@ $(function () {
 
 $("#products").change(function (e) {
     e.preventDefault();
+    let form = $("#wrapped");
+    let old_url = BASE_URL + "/request/vaccine";
+    let new_url = BASE_URL + "/waiting-list/vaccine";
 
     // reset datepicker
     $("#day").datepicker("destroy");
@@ -23,6 +26,9 @@ $("#products").change(function (e) {
         success: function (response) {
             let vaccine = response;
             console.log(vaccine);
+            // change form action
+            vaccine.out_of_stock == 1 ? form.attr('action', new_url) : form.attr('action', old_url);
+
 
             // has exceptions only
             function exceptions(date) {
@@ -260,7 +266,7 @@ $("#products").change(function (e) {
 
                         });
                     }
-                     else {
+                    else {
                         $("#question_section").append(`
                             <div class="form-group">
                                 <label>${question.question}</label>

@@ -1,4 +1,4 @@
-@if ($vaccine->amount > $vaccine->waitingLists()->count())
+@if ($vaccine->amount > $vaccine->waitingLists()->where('notification_sent', 0)->count() && $vaccine->waitingLists()->where('notification_sent', 0)->count() > 0)
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
         data-bs-target="#success-{{ $vaccine->id }}">
@@ -11,7 +11,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel140">Delete Service</h5>
+                    <h5 class="modal-title" id="myModalLabel140">Send Mail</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-footer">
                     {{ BsForm::get(route('send-emails', $vaccine)) }}
-                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Accept</button>
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Send</button>
                     {{ BsForm::close() }}
                 </div>
             </div>

@@ -30,54 +30,43 @@ class VaccineController extends Controller
     {
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
 
-        // get vaccine
-        $vaccine = Vaccine::find($request->vaccine);
+        // create patient
+        $patient = Patient::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
+            'address' => $request->address,
+            'health_card_num' => $request->health_card_number,
+        ]);
 
-        if ($vaccine->amount > 0) {
-
-            // create patient
-            $patient = Patient::create([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
-                'address' => $request->address,
-                'health_card_num' => $request->health_card_number,
-            ]);
-
-            // create patient request
-            $request_answer = RequestAnswer::create([
-                'vaccine_id' => $request->vaccine,
-                'day_date' => $request->day_date,
-                'day_time' => $request->day_time,
-                'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
-                'patient_hcm' => $patient->health_card_num,
-                'eligapility' => $request->eligapility,
-                'comment' => $request->comment,
-                'answers' => $answer,
-            ]);
-            if ($request->age && $request->age != null) {
-                $request_answer->update([
-                    'age' => $request->age
-                ]);
-            }
-
-            // update vaccine amount
-            $vaccine->update([
-                'amount' => $vaccine->amount - 1
-            ]);
-
-            // send confirmation email
-            $this->sendEmail($patient, $request);
-            
-        } else {
-            $waitingLists = WaitingList::create([
-                'vaccine_id' => $request->vaccine,
-                'user_name' => $request->first_name . " " . $request->last_name,
-                'user_email' => $request->email,
+        // create patient request
+        $request_answer = RequestAnswer::create([
+            'vaccine_id' => $request->vaccine,
+            'day_date' => $request->day_date,
+            'day_time' => $request->day_time,
+            'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
+            'patient_hcm' => $patient->health_card_num,
+            'eligapility' => $request->eligapility,
+            'comment' => $request->comment,
+            'answers' => $answer,
+        ]);
+        if ($request->age && $request->age != null) {
+            $request_answer->update([
+                'age' => $request->age
             ]);
         }
+
+        // update vaccine amount
+        $vaccine = Vaccine::find($request->vaccine);
+        $vaccine->update([
+            'amount' => $vaccine->amount - 1
+        ]);
+
+        // send confirmation email
+        $this->sendEmail($patient, $request);
+
 
         if (Setting::get('redirect')) {
             return redirect(Setting::get('redirect_url'));
@@ -85,6 +74,23 @@ class VaccineController extends Controller
             return redirect()->route('get.thanks');
         }
     }
+
+
+    public function makeRequestWl(Request $request)
+    {
+        $waitingLists = WaitingList::create([
+            'vaccine_id' => $request->vaccine,
+            'user_name' => $request->first_name . " " . $request->last_name,
+            'user_email' => $request->email,
+        ]);
+
+        if (Setting::get('redirect')) {
+            return redirect(Setting::get('redirect_url'));
+        } else {
+            return redirect()->route('get.thanks');
+        }
+    }
+
 
     public function vaccineData(Vaccine $vaccine)
     {

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use anlutro\LaravelSettings\Facades\Setting;
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
+use App\Mail\AlertWaitingList;
 use App\Models\Vaccine;
-use App\Notifications\AlertWaitingList;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WaitingListController extends Controller
 {
@@ -29,9 +28,9 @@ class WaitingListController extends Controller
     {
         $waitingListsCount = $vaccine->waitingLists()->count();
         if ($vaccine->amount > $waitingListsCount) {
-            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->orderBy('created_at', 'asc')->get();
+            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->get();
         }else {
-            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->orderBy('created_at', 'asc')->take($waitingListsCount)->get();
+            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->take($waitingListsCount)->get();
         }
 
         foreach ($waitingLists as $waitingList) {
@@ -40,6 +39,8 @@ class WaitingListController extends Controller
             $waitingList->notification_sent = true;
             $waitingList->save();
         }
+
+        return redirect()->back()->withSuccess('Emails sent successfully');
     }
 
     public function sendEmail($vaccine, $name, $email)
@@ -53,7 +54,7 @@ class WaitingListController extends Controller
             'actionText' => 'Well Pharamacy',
             'actionURL' => url('/'),
         ];
-        // send mail to the patient
-        Notification::send($email, new AlertWaitingList($details));
+
+        Mail::to($email)->send(new AlertWaitingList($details));
     }
 }
