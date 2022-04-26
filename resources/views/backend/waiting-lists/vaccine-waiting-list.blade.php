@@ -6,14 +6,16 @@
 
 @section('content')
     @component('backend.components.breadcrumbs')
-        @slot('page', 'Service Requests')
+        @slot('parent', "Waiting Lists")
+        @slot('parentUrl', route('waiting-list'))
+        @slot('page', $vaccine->name)
     @endcomponent
 
     @include('backend.layouts.partials.session')
 
 
-     <!-- Nav tabs -->
-     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab-fill" data-bs-toggle="tab" href="#home-fill" role="tab"
                 aria-controls="home-fill" aria-selected="false">Waiting List</a>
@@ -28,7 +30,8 @@
     <div class="tab-content pt-1">
         <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill">
             @include('backend.waiting-lists.partials.actions.send')
-            <table id="datatable" class="table dt-responsive nowrap"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table dt-responsive nowrap"
+                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>User Name</th>
@@ -54,7 +57,8 @@
             </table>
         </div>
         <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
-            <table id="datatable1" class="table dt-responsive nowrap"  style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable1" class="table dt-responsive nowrap"
+                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>User Name</th>

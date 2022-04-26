@@ -22,6 +22,9 @@ class StockController extends Controller
 
     public function updateStock(Vaccine $vaccine, Request $request)
     {
+        $request->validate([
+            'amount' => 'required|numeric'
+        ]);
         $vaccine->amount = $request->amount;
         $vaccine->save();
         return redirect()->back()->with('success', 'Stock updated successfully');

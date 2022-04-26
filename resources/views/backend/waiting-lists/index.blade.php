@@ -6,7 +6,7 @@
 
 @section('content')
     @component('backend.components.breadcrumbs')
-        @slot('page', "Service's Waiting List")
+        @slot('page', "Waiting Lists")
     @endcomponent
 
     <div class="container">

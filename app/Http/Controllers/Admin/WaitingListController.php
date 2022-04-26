@@ -30,7 +30,7 @@ class WaitingListController extends Controller
         if ($vaccine->amount > $waitingListsCount) {
             $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->get();
         }else {
-            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->take($waitingListsCount)->get();
+            $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->take($vaccine->amount)->get();
         }
 
         foreach ($waitingLists as $waitingList) {
