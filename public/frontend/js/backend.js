@@ -1,3 +1,4 @@
+let token = $('input[name="_token"]').val();
 
 $(function () {
     $("#dob").datepicker({
@@ -15,8 +16,15 @@ $("#products").change(function (e) {
     let old_url = BASE_URL + "/request/vaccine";
     let new_url = BASE_URL + "/waiting-list/vaccine";
 
-    $('form input').val('')
+    $('form input:not([name="__token"])').val('')
 
+    // $("#ChooseTime").empty();
+    // $(".myTime ul").empty();
+    // $(".myTime .current").text('Choose a time');
+    $('form input').val('')
+    $("#ChooseTime").val('');
+    $(".myTime span").text('Choose a time');
+    $('input[name="_token"]').val(token);
 
     // reset datepicker
     $("#day").datepicker("destroy");
