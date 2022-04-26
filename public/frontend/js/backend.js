@@ -1,3 +1,4 @@
+let token = $('input[name="_token"]').val();
 
 $(function () {
     $("#dob").datepicker({
@@ -16,6 +17,11 @@ $("#products").change(function (e) {
     let new_url = BASE_URL + "/waiting-list/vaccine";
 
     $('form input').val('')
+    $("#ChooseTime").val('');
+    $(".myTime span").text('Choose a time');
+    $('input[name="_token"]').val(token);
+
+
 
 
     // reset datepicker
