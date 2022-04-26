@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Melkin, Booking and Reservation form Wizard by Ansonika.">
     <meta name="author" content="Ansonika">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Well Plus Compounding Pharmacy</title>
 
     <!-- Favicons-->
@@ -133,8 +132,9 @@
                 <!-- Footer -->
                 <footer>
                     <span class="text-center">© Copy Right 2022 Well Pharmacy, All Right Reserved.</span>
-                    <span><a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative
-                            Twinkles</a></span>
+                    <span>
+                        <a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative Twinkles</a>
+                    </span>
                 </footer>
                 <!-- Footer -->
             </div>

@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:web'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('locale/{locale}', [HomeController::class, 'changeLanguage']);
-    Route::resource('admin', AdminController::class);
+    // Route::resource('admin', AdminController::class);
 
     // Settings
     Route::get('settings', [SettingController::class ,'showSettingsForm'])->name('settings');

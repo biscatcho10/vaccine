@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VaccineFormRequest extends FormRequest
+class WaitinglistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,21 +29,6 @@ class VaccineFormRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'dob' => 'required',
-            'address' => 'required',
-            'health_card_number' => 'required|unique:request_answers,patient_hcm',
-            'day_date' => 'required',
-            'day_time' => 'required',
-            'day_date' => 'required',
-            'eligapility' => 'required',
-        ];
-    }
-
-
-    public function messages()
-    {
-        return [
-            'eligapility.required' => 'Please select one of the Acknowlegment options',
         ];
     }
 }

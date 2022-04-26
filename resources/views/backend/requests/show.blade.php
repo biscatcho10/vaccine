@@ -73,29 +73,31 @@
                 </tbody>
             </table>
         @endcomponent
+        @if (!empty($request->answers))
+            @component('backend.components.box')
+                @slot('bodyClass', 'p-0')
+                @slot('title', 'Questions')
 
-        @component('backend.components.box')
-            @slot('bodyClass', 'p-0')
-            @slot('title', 'Questions')
+                <table class="table table-middle">
+                    <tbody>
+                        @foreach ($request->answers as $question => $answers)
+                            @if (is_array($answers))
+                                <tr>
+                                    <th width="300">{{ str_replace('_', ' ', $question) }}</th>
+                                    <td>{{ implode(' / ', $answers) }}</td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <th width="300">{{ str_replace('_', ' ', $question) }}</th>
+                                    <td>{{ $answers }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            @endcomponent
+        @endif
 
-            <table class="table table-middle">
-                <tbody>
-                    @foreach ($request->answers as $question => $answers)
-                        @if (is_array($answers))
-                            <tr>
-                                <th width="300">{{ str_replace('_', ' ', $question) }}</th>
-                                <td>{{ implode(' / ', $answers) }}</td>
-                            </tr>
-                        @else
-                            <tr>
-                                <th width="300">{{ str_replace('_', ' ', $question) }}</th>
-                                <td>{{ $answers }}</td>
-                            </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-        @endcomponent
 
         @if ($request->comment != null)
             @component('backend.components.box')

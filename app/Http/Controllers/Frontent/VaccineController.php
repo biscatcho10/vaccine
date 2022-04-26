@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontent;
 use anlutro\LaravelSettings\Facades\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VaccineFormRequest;
+use App\Http\Requests\WaitinglistRequest;
 use App\Http\Resources\VaccineResource;
 use App\Models\Patient;
 use App\Models\RequestAnswer;
@@ -28,7 +29,6 @@ class VaccineController extends Controller
 
     public function makeRequest(VaccineFormRequest $request)
     {
-        dd($request->all());
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
 
         // create patient
@@ -77,9 +77,8 @@ class VaccineController extends Controller
     }
 
 
-    public function makeRequestWl(Request $request)
+    public function makeRequestWl(WaitinglistRequest $request)
     {
-        dd($request->all());
         $waitingLists = WaitingList::create([
             'vaccine_id' => $request->vaccine,
             'user_name' => $request->first_name . " " . $request->last_name,

@@ -32,7 +32,6 @@ $("#products").change(function (e) {
         dataType: "json",
         success: function (response) {
             let vaccine = response;
-            console.log(vaccine);
             // change form action
             vaccine.out_of_stock == 1 ? form.attr('action', new_url) : form.attr('action', old_url);
 
@@ -41,7 +40,6 @@ $("#products").change(function (e) {
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
                 $('.date-div, .myTime, .age_users').addClass('d-none')
-
 
                 $(`<div class="waiting alert alert-warning" role="alert">
                     Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
@@ -395,8 +393,10 @@ $("#products").change(function (e) {
     });
 
     $("#day").change(function (e) {
-        // alert('dd')
         e.preventDefault();
+        $("#ChooseTime").val('');
+        $(".myTime span").text('Choose a time');
+        
         let day = $(this).val();
         $.ajax({
             type: "GET",
@@ -405,11 +405,9 @@ $("#products").change(function (e) {
             dataType: "json",
             success: function (response) {
                 let intervals = response;
-                console.log(response);
                 $("#ChooseTime").empty();
                 $(".myTime ul").empty();
                 if (response == '') {
-                    console.log('mohamed');
                     $(".myTime span").text('Choose a time');
                 }
                 intervals.forEach(interval => {
