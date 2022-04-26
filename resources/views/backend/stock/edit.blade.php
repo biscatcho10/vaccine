@@ -9,7 +9,7 @@
     @component('backend.components.breadcrumbs')
         @slot('parent', 'Stock')
         @slot('parentUrl', route('stock'))
-        @slot('page', 'Update Question')
+        @slot('page', $vaccine->name)
     @endcomponent
 
 
