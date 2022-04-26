@@ -15,6 +15,9 @@ $("#products").change(function (e) {
     let old_url = BASE_URL + "/request/vaccine";
     let new_url = BASE_URL + "/waiting-list/vaccine";
 
+    $('form input').val('')
+
+
     // reset datepicker
     $("#day").datepicker("destroy");
 
@@ -30,6 +33,59 @@ $("#products").change(function (e) {
             vaccine.out_of_stock == 1 ? form.attr('action', new_url) : form.attr('action', old_url);
 
 
+            if (vaccine.out_of_stock == 1) {
+                $('.oneCheckBox .checkBox').attr('checked',true)
+
+                $('.date-div, .myTime, .age_users').addClass('d-none')
+
+
+                $(`<div class="waiting alert alert-warning" role="alert">
+                    Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
+                </div>`).insertAfter('#my_faxen')
+
+                $('.forwards').on('click',function () {
+                    if (document.querySelector('.users_inform.active')) {
+                        $('.submits').addClass('d-inline-block');
+                        $('.forwards').hide();
+                    }
+                })
+
+                $('.backwards').on('click',function () {
+                    if (document.querySelector('.frist_page.active')) {
+                        $('.submits').removeClass('d-inline-block');
+                        $('.forwards').show();
+                    }
+                })
+
+                $('#wrapped').on('submit',function (event) {
+                    if (document.querySelector('.users_inform.active')) {
+                        document.querySelectorAll('.users_inform.active .requireds').forEach(e => {
+                            if (e.value == '') {
+                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e)
+                                event.preventDefault()
+                            }else{
+                                return true
+                            }
+                        })
+                    }
+                })
+
+            }else{
+                $('.waiting').remove();
+                $('.date-div, .myTime, .age_users').removeClass('d-none')
+                $('.submits').removeClass('d-inline-block');
+                $('.forwards').show();
+                $('.forwards').on('click',function () {
+                    if ($('.users_inform.active')) {
+                        $('.submits').removeClass('d-inline-block');
+                        $('.forwards').show();
+                    }
+                    if(document.querySelector('.oneCheckBox.form_items.active')){
+                        $('.forwards').hide();
+                    }
+                })
+            }
+
             // has exceptions only
             function exceptions(date) {
                 dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -39,7 +95,6 @@ $("#products").change(function (e) {
                     return [false, "", "Unavailable"];
                 }
             }
-
 
             // has weekend only
             var weekendDays = [];

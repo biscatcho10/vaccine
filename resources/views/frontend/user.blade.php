@@ -1,4 +1,4 @@
-<div class="form_items">
+<div class="form_items users_inform">
     <h3 class="main_question"><strong>2/6</strong>Contact information</h3>
     <div class="form-group">
         <input autocomplete="off" type="text" name="first_name" class="form-control requireds" placeholder="First Name">

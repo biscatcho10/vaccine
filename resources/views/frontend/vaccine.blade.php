@@ -1,4 +1,4 @@
-<div id="" class="form_items active">
+<div id="" class="form_items frist_page active">
     <h3 class="main_question"><strong>1/6</strong>Book an appointment with us now</h3>
     <h3 class="main_question titles">Choose your service</h3>
     <div id="my_faxen" class="form-group">
@@ -13,7 +13,7 @@
         </div>
 
     </div>
-    <div class="form-group option_input" style="display: none">
+    <div class="form-group option_input age_users" style="display: none">
         <select id="age" class="form-control" name="age">
         </select>
         {{-- <input type="hidden" name="_age" id="age_value"> --}}
@@ -26,14 +26,14 @@
     </div>
 
 
-    <div class="form-group date-div">
+    <div class="form-group date-div ">
         <div class="overlays"></div>
         <input type="text" name="day_date" id="day" class="form-control" readonly>
         <i class="icon-hotel-calendar_3"></i>
     </div>
 
 
-    <div class="form-group h-time myTime">
+    <div class="form-group h-time myTime ">
         <div class="styled-select clearfix">
             <select id="ChooseTime" class="form-control" name="day_time">
                 <option>Choose a time</option>

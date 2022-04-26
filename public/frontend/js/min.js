@@ -34,13 +34,15 @@ function clickCheckbox(e) {
         });
     }),
         e(".submits").on("click", function () {
-            let t = document.querySelector(".active .checkBox");
-            0 == t.checked
-                ? (e(
-                      '<span for="dates" class="error">Required</span>'
-                  ).insertAfter(t),
-                  (t.style.borderColor = "red"))
-                : e(".error").remove();
+            if (document.querySelector('.oneCheckBox.form_items.active')) {
+                let t = document.querySelector(".active .checkBox");
+                0 == t.checked
+                    ? (e(
+                          '<span for="dates" class="error">Required</span>'
+                      ).insertAfter(t),
+                      (t.style.borderColor = "red"))
+                    : e(".error").remove();
+            }
         }),
         e(".forwards").on("click", function () {
             e(".error,.error_input_select").remove(),
@@ -48,15 +50,15 @@ function clickCheckbox(e) {
                     ? $(
                           '<span for="dates" class="error_input_select">Required</span>'
                       ).insertAfter("#products")
-                    : ("Select one age" == $(".option_input .current").text() &&
+                    : ("Select one age" == $(".option_input:not(.d-none) .current").text() &&
                           $(
                               '<span for="dates" class="error_input_select">Required</span>'
                           ).insertAfter("#age"),
-                      "" == $("#day").val()
+                      "" == $(".date-div:not(.d-none) #day").val()
                           ? $(
                                 '<span for="dates" class="error_input_select">Required</span>'
                             ).insertAfter("#day")
-                          : "Choose a time" == $(".myTime .current").text() &&
+                          : "Choose a time" == $(".myTime:not(.d-none) .current").text() &&
                             $(
                                 '<span for="dates" class="error_input_select">Required</span>'
                             ).insertAfter("#ChooseTime")),
@@ -148,4 +150,7 @@ function clickCheckbox(e) {
         }),
         rome(input, { time: !1 }),
         $("select:not(.ignore)").niceSelect();
+        $('.nice-select, input').on('click', function () {
+            $(this).siblings('.error_input_select').remove();
+        })
 })(window.jQuery);
