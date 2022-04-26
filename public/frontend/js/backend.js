@@ -16,7 +16,12 @@ $("#products").change(function (e) {
     let old_url = BASE_URL + "/request/vaccine";
     let new_url = BASE_URL + "/waiting-list/vaccine";
 
-    $('form input:not([name="__token"])').val('')
+    $('form input').val('')
+    $("#ChooseTime").val('');
+    $(".myTime span").text('Choose a time');
+    $('input[name="_token"]').val(token);
+
+
 
     // $("#ChooseTime").empty();
     // $(".myTime ul").empty();
