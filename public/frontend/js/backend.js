@@ -22,15 +22,6 @@ $("#products").change(function (e) {
     $('input[name="_token"]').val(token);
 
 
-
-    // $("#ChooseTime").empty();
-    // $(".myTime ul").empty();
-    // $(".myTime .current").text('Choose a time');
-    $('form input').val('')
-    $("#ChooseTime").val('');
-    $(".myTime span").text('Choose a time');
-    $('input[name="_token"]').val(token);
-
     // reset datepicker
     $("#day").datepicker("destroy");
 
