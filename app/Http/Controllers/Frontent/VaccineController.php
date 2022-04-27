@@ -12,6 +12,7 @@ use App\Models\RequestAnswer;
 use App\Models\Vaccine;
 use App\Models\WaitingList;
 use App\Notifications\UserConfirmation;
+use App\Notifications\UserConfirmation1;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -144,6 +145,9 @@ class VaccineController extends Controller
             'body' => $email_template,
             'actionText' => 'Well Pharamacy',
             'actionURL' => url('/'),
+            'vaccine' => $vaccine_name,
+            'day_date' => $request->day_date,
+            'day_time' => $request->day_time
         ];
 
         // send mail to the patient

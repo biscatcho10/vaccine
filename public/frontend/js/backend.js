@@ -7,6 +7,7 @@ $(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: '1900:2022',
+        maxDate: 0,
     });
 });
 
@@ -396,7 +397,7 @@ $("#products").change(function (e) {
         e.preventDefault();
         $("#ChooseTime").val('');
         $(".myTime span").text('Choose a time');
-        
+
         let day = $(this).val();
         $.ajax({
             type: "GET",
