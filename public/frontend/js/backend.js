@@ -7,6 +7,7 @@ $(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: '1900:2022',
+        maxDate: 0,
     });
 });
 
@@ -37,6 +38,10 @@ $("#products").change(function (e) {
 
 
             if (vaccine.out_of_stock == 1) {
+
+                $('.frist_page strong').text('1/2')
+                $('.users_inform  strong').text('2/2')
+
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
                 $('.date-div, .myTime, .age_users').addClass('d-none')
@@ -73,6 +78,8 @@ $("#products").change(function (e) {
                 })
 
             }else{
+                $('.frist_page strong').text('1/6')
+                $('.users_inform  strong').text('2/6')
                 $('.waiting').remove();
                 $('.date-div, .myTime, .age_users').removeClass('d-none')
                 $('.submits').removeClass('d-inline-block');
@@ -396,7 +403,7 @@ $("#products").change(function (e) {
         e.preventDefault();
         $("#ChooseTime").val('');
         $(".myTime span").text('Choose a time');
-        
+
         let day = $(this).val();
         $.ajax({
             type: "GET",
