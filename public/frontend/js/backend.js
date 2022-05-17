@@ -35,7 +35,7 @@ $("#products").change(function (e) {
             let vaccine = response;
             // change form action
             vaccine.out_of_stock == 1 ? form.attr('action', new_url) : form.attr('action', old_url);
-
+console.log(vaccine);
 
             if (vaccine.out_of_stock == 1) {
 

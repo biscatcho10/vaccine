@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        <input type="text" name="dob" id="dob" class="form-control requireds" readonly>
+        <input type="text" name="dob" placeholder="Date of birth 'MM/DD/YYYY'" id="dob" class="form-control requireds" readonly>
         <i class="icon-hotel-calendar_3"></i>
         <div class="overlays"></div>
 
