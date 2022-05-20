@@ -32,11 +32,11 @@
     </div>
 
     <div class="form-group">
-<<<<<<< HEAD
+{{-- <<<<<<< HEAD --}}
         <input type="text" name="dob" placeholder="Date of birth 'MM/DD/YYYY'" id="dob" class="form-control requireds" readonly>
-=======
-        <input type="text" name="dob" id="dob" class="form-control requireds" placeholder="Date of birth 'MM/DD/YYYY'" readonly>
->>>>>>> eaa71190feb99f374d9d3e55eaab9534f2ab6da1
+{{-- ======= --}}
+        {{-- <input type="text" name="dob" id="dob" class="form-control requireds" placeholder="Date of birth 'MM/DD/YYYY'" readonly> --}}
+{{-- >>>>>>> eaa71190feb99f374d9d3e55eaab9534f2ab6da1 --}}
         <i class="icon-hotel-calendar_3"></i>
         <div class="overlays"></div>
 
