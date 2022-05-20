@@ -49,9 +49,9 @@ class SettingController extends Controller
 
 
         foreach ($request_data as $key => $field) {
-            if (!empty($request->$key)) {
+            // if (!empty($request->$key)) {
                 Setting::set($key, $field);
-            }
+            // }
         }
         Setting::save();
 
