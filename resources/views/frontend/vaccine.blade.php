@@ -1,5 +1,6 @@
 <div id="" class="form_items frist_page active">
-    <h3 class="main_question"><strong>1/6</strong>Book an appointment with us now</h3>
+
+    <h3 class="main_question"><strong><div class="num"></div></strong>Book an appointment with us now</h3>
     <h3 class="main_question titles">Choose your service</h3>
     <div id="my_faxen" class="form-group">
 

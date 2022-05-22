@@ -45,6 +45,9 @@ function clickCheckbox(e) {
             }
         }),
         e(".forwards").on("click", function () {
+
+
+
             e(".error,.error_input_select").remove(),
                 "select option" == $("#my_faxen .current").text()
                     ? $(
@@ -92,7 +95,7 @@ function clickCheckbox(e) {
                                     '<span for="dates" class="error">Email Required</span>'
                                 ).insertAfter(o);
                         }
-                    }),
+                    }),document.querySelector('#eligapility_content').innerHTML != ''&&
                 null == document.getElementById("tCheckBox") &&
                     null !==
                         document.querySelector(
@@ -103,7 +106,7 @@ function clickCheckbox(e) {
                         ? e(".error").remove()
                         : e(
                               '<span for="dates" class="error">Required</span>'
-                          ).insertAfter(".forwards")),
+                          ).insertAfter('.appCheckBox.form_items.active h3')),
                 0 == e(".error,.error_input_select").length &&
                     (e(".form_items.active").next().addClass("active"),
                     e(".form_items.active").prev().removeClass("active")),
@@ -118,17 +121,87 @@ function clickCheckbox(e) {
                 null == document.querySelector(".form_items.active:first-child")
                     ? e(".backwards").show()
                     : e(".backwards").hide();
+
+            // console.log($('.num').eq(('.num').length - 1).parents('.active'));
+            // console.log(document.querySelectorAll('.num')[document.querySelectorAll('.num').length - 1].closest('.active'));
+
+
+
+
+
+
+            if($(".form_items.active").find('.num').eq(0).length == 0){
+                let bra = $(".form_items.active").nextAll().find('.num')
+                bra.eq(bra.length - 1).closest('.form_items').addClass("active")
+                $(".form_items.active").prev().removeClass("active")
+                $('.active').eq(0).nextAll(".active").removeClass('active')
+
+
+            }
+            if ($(".form_items.active").find('.num').eq(0).length == 0 && $('.active.appCheckBox').find('.num').eq(0).length == 0) {
+                let bra = $(".form_items.active").nextAll().find('.num')
+                bra.eq(0).closest('.form_items').addClass("active")
+                $('.active.appCheckBox').removeClass('active')
+            }
+
+
+            // if($(".form_items.active").find('.num').eq(0).length == 0){
+            //     let bra = $(".form_items.active").nextAll().find('.num')
+            //     bra.eq(bra.length - 1).closest('.form_items').addClass("active")
+            //     $(".form_items.active").prev().removeClass("active")
+            //     $('.active').eq(0).nextAll(".active").removeClass('active')
+            // }
+
+
+            let myelement = document.querySelectorAll('.num')[document.querySelectorAll('.num').length - 1].closest('.active')
+            if (myelement) {
+                $('.forwards').hide()
+                $('.submits').show()
+
+                $('#wrapped').on('submit',function (event) {
+                        // myelement.querySelectorAll('.requireds').forEach(e => {
+                        //     console.log(e);
+                        // })
+                        document.querySelectorAll('.active .requireds').forEach(e => {
+                            if (e.value == '') {
+                                event.preventDefault()
+                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e)
+                            console.log('amr');
+
+                            }else{
+                                return true
+                            }
+                        })
+                            if (document.querySelector('#tCheckBox') == null && document.querySelector('.appCheckBox.form_items .num')) {
+                                event.preventDefault()
+                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(document.querySelector('.appCheckBox.form_items.active h3'))
+                            }else{
+                                return true
+                            }
+                })
+
+            }else{
+                $('.forwards').show()
+            }
+
         }),
         e(".backwards").on("click", function () {
             e(".error").remove(),
+            // console.log($(".form_items.active").prev().find('.num').closest('.form_items').addClass('active'));
                 e(".form_items.active").prev().addClass("active"),
                 e(".form_items.active").next().removeClass("active"),
                 e(".forwards").show(),
                 e(".submits").hide(),
                 null == document.querySelector(".form_items.active:first-child")
-                    ? e(".backwards").show()
-                    : e(".backwards").hide();
-        }),
+                ? e(".backwards").show()
+                : e(".backwards").hide();
+
+                if($(".form_items.active").find('.num').eq(0).length == 0){
+                    let brath = $(".form_items.active").prevAll().find('.num')
+                    brath.eq(brath.length - 1).closest('.form_items').addClass("active")
+                    $(".form_items.active").next().removeClass("active")
+                }
+            }),
         e("input[type=email]").focusout(function (t) {
             e(".container-fluid").removeClass("position-content");
         }),
@@ -153,4 +226,16 @@ function clickCheckbox(e) {
         $('.nice-select, input').on('click', function () {
             $(this).siblings('.error_input_select').remove();
         })
+
+
+        // $(".backwards").on("click", function () {
+        //     $(".error").remove()
+        //     // console.log($(".form_items.active").prev().find('.num').closest('.form_items').addClass('active'));
+
+        //         if(!$(".form_items.active").find('.num')){
+        //             console.log('amr');
+        //             $(".active").removeClass("active")
+        //             // $(".form_it$ms.active").prev().addClass("active")
+        //         }
+        //     })
 })(window.jQuery);

@@ -1,3 +1,4 @@
+// const { eq } = require("lodash");
 let token = $('input[name="_token"]').val();
 
 $(function () {
@@ -11,7 +12,12 @@ $(function () {
     });
 });
 
+$('strong .num').empty()
 $("#products").change(function (e) {
+
+
+
+
     e.preventDefault();
     let form = $("#wrapped");
     let old_url = BASE_URL + "/request/vaccine";
@@ -32,15 +38,34 @@ $("#products").change(function (e) {
         url: BASE_URL + "/vaccine/data/" + vaccine,
         dataType: "json",
         success: function (response) {
+
+
+            $("#question_section").empty();
+            $(".appCheckBox strong").empty();
+            $(".appCheckBox #eligapility_content").empty();
+            $(".oneCheckBox strong").empty();
+            $("#condition_list").empty();
+            $(".user_details strong").empty()
+
+
+
             let vaccine = response;
             // change form action
             vaccine.out_of_stock == 1 ? form.attr('action', new_url) : form.attr('action', old_url);
-console.log(vaccine);
+
+            // console.log(vaccine.out_of_stock);
+            // if (vaccine.out_of_stock == 1) {
+            //     $('.user_details strong .num').remove()
+            // }else{
+            //     $('.user_details strong').append('<div class="num"></div>')
+            // }
+
+
 
             if (vaccine.out_of_stock == 1) {
 
-                $('.frist_page strong').text('1/2')
-                $('.users_inform  strong').text('2/2')
+                // $('.frist_page strong').text('1/2')
+                // $('.users_inform  strong').text('2/2')
 
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
@@ -48,21 +73,21 @@ console.log(vaccine);
 
                 $(`<div class="waiting alert alert-warning" role="alert">
                     Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
-                </div>`).insertAfter('#my_faxen')
+                  </div>`).insertAfter('#my_faxen')
 
-                $('.forwards').on('click',function () {
-                    if (document.querySelector('.users_inform.active')) {
-                        $('.submits').addClass('d-inline-block');
-                        $('.forwards').hide();
-                    }
-                })
+                // $('.forwards').on('click',function () {
+                //     if (document.querySelector('.users_inform.active')) {
+                //         $('.submits').addClass('d-inline-block');
+                //         $('.forwards').hide();
+                //     }
+                // })
 
-                $('.backwards').on('click',function () {
-                    if (document.querySelector('.frist_page.active')) {
-                        $('.submits').removeClass('d-inline-block');
-                        $('.forwards').show();
-                    }
-                })
+                // $('.backwards').on('click',function () {
+                //     if (document.querySelector('.frist_page.active')) {
+                //         $('.submits').removeClass('d-inline-block');
+                //         $('.forwards').show();
+                //     }
+                // })
 
                 $('#wrapped').on('submit',function (event) {
                     if (document.querySelector('.users_inform.active')) {
@@ -78,21 +103,21 @@ console.log(vaccine);
                 })
 
             }else{
-                $('.frist_page strong').text('1/6')
-                $('.users_inform  strong').text('2/6')
-                $('.waiting').remove();
-                $('.date-div, .myTime, .age_users').removeClass('d-none')
-                $('.submits').removeClass('d-inline-block');
-                $('.forwards').show();
-                $('.forwards').on('click',function () {
-                    if ($('.users_inform.active')) {
-                        $('.submits').removeClass('d-inline-block');
-                        $('.forwards').show();
-                    }
-                    if(document.querySelector('.oneCheckBox.form_items.active')){
-                        $('.forwards').hide();
-                    }
-                })
+                // $('.frist_page strong').text('1/6')
+                // $('.users_inform  strong').text('2/6')
+                // $('.waiting').remove();
+                // $('.date-div, .myTime, .age_users').removeClass('d-none')
+                // $('.submits').removeClass('d-inline-block');
+                // $('.forwards').show();
+                // $('.forwards').on('click',function () {
+                //     if ($('.users_inform.active')) {
+                //         $('.submits').removeClass('d-inline-block');
+                //         $('.forwards').show();
+                //     }
+                //     if(document.querySelector('.oneCheckBox.form_items.active')){
+                //         $('.forwards').hide();
+                //     }
+                // })
             }
 
             // has exceptions only
@@ -104,6 +129,7 @@ console.log(vaccine);
                     return [false, "", "Unavailable"];
                 }
             }
+
 
             // has weekend only
             var weekendDays = [];
@@ -255,14 +281,25 @@ console.log(vaccine);
                 let eligaps = vaccine.eligapilities;
                 $("#eligapility_content").empty();
                 let title = eligaps.title;
+                // console.log(eligaps.eligapilities);
                 $("#eligap_title").text(title);
+                if (eligaps.eligapilities != null && document.querySelector(".appCheckBox .num") == null) {
+                    $(".active.appCheckBox strong").show()
+
+                    $(".appCheckBox strong").append('<div class="num"></div>')
+                }else if(eligaps.eligapilities == null){
+                    $(".appCheckBox strong .num").remove();
+                    $(".active.appCheckBox strong").hide()
+                }
+
                 eligaps.eligapilities.forEach(eligaps => {
                     let data = eligaps.eligapility;
+                    // console.log(data);
                     $("#eligapility_content").append(`
                     <div class="form-group options clearfix d-flex justify-content-between align-items-center mb-0 mb-lg-2 mb-xl-3">
                         <em> • ${data}</em>
                         <label class="switch-light switch-ios float-right">
-                            <input type="checkbox" onclick='clickCheckbox(this)' value="${data}" name="eligapility" id="">
+                            <input type="checkbox" onclick='clickCheckbox(this)' value="${data}" name="eligapility" id="" class='CheckboxEligapility'>
                             <span>
                                 <span>No</span>
                                 <span>Yes</span>
@@ -278,7 +315,20 @@ console.log(vaccine);
             // show questions
             if (vaccine.questions) {
                 let questions = vaccine.questions;
+
+
+
                 $("#question_section").empty();
+                if (vaccine.questions.length != 0 && document.querySelector("#question_section .num") == null) {
+                    $("#question_section").append('<strong><div class="num"></div></strong>')
+                    $(".active#question_section").show()
+                }else if(vaccine.questions.length == 0){
+                    $("#question_section strong").remove();
+                    $(".active#question_section").hide()
+                }
+
+                // $("#question_section").append('<strong><div class="num"></div></strong>')
+
                 questions.forEach((question, index) => {
                     let type = question.input_type;
 
@@ -293,6 +343,8 @@ console.log(vaccine);
                         }
 
                         $("#question_section").append(`
+
+
                             <div class="styled-select clearfix">
                                 <label class="mt-3">${question.question}</label>
                                 <div class="form-group group${select_type}">
@@ -377,6 +429,8 @@ console.log(vaccine);
                 let title = conditions.title;
                 $("#condition_page_title").text(title);
                 $("#condition_list").empty();
+                $(".oneCheckBox strong").append('<div class="num"></div>')
+
                 conditions.conditions.forEach(condition => {
                     $("#condition_list").append(`
                         <div class="form-group options clearfix d-flex justify-content-between align-items-center">
@@ -438,7 +492,19 @@ console.log(vaccine);
         });
     });
 
+    setTimeout(e=>{
+        if (document.querySelectorAll('.num').length >= 3) {
+            $(".user_details strong").append('<div class="num"></div>')
+        }else{
+            $(".user_details strong").empty()
+        }
+        for (let i = 0; i < document.querySelectorAll('.num').length; i++) {
+            document.querySelectorAll('.num')[i].innerHTML = i+1 + '/' + document.querySelectorAll('.num').length
+        }
+    },1000)
 });
+// $("#products").change(function (e) {
+// })
 
 function dayRank(day) {
     days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];

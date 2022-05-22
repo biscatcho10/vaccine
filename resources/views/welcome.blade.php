@@ -92,7 +92,7 @@
                 <div id="wizard_container">
                     <!-- /top-wizard -->
                     <form action="{{ route('make.request') }}" id="wrapped" method="POST" onkeydown="return event.key != 'Enter';" onsubmit="
-                        if (document.querySelector('.oneCheckBox .checkBox').checked == false){
+                        if (document.querySelector('.oneCheckBox .checkBox').checked == false && document.querySelector('.oneCheckBox.active')){
                             event.preventDefault()
                         }else{
                             return true
