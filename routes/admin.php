@@ -90,5 +90,4 @@ Route::middleware(['auth:web'])->group(function () {
 
     // get day intervals from anothere vaccine
     Route::get('intervals/{vaccine}', [IntervalController::class, 'getIntervals'])->name('get-intervals');
-
 });

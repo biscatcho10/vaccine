@@ -1,6 +1,6 @@
 {{-- @if (count($day->intervals) == 0) --}}
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal"
+<button type="button" class="btn btn-outline-primary float-end open-modal" data-bs-toggle="modal"
     data-bs-target="#primary-{{ $vaccine->id }}">
     <i class="fas fa-copy"></i>
 </button>
@@ -24,7 +24,7 @@
 
                 <div class="form-group vaccines" style="display: none">
                     <label>Vaccine</label>
-                    <select class="form-control" name="target">
+                    <select class="form-control" name="vaccine">
                         <option>Select one vaccine</option>
                         @foreach ($vaccines as $index => $value)
                             <option value="{{ $index }}"> {{ $value }} </option>
