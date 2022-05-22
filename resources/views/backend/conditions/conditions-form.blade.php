@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Update Conditions
+    Update Acknowledgments
 @stop
 
 @section('content')
@@ -10,13 +10,13 @@
     @component('backend.components.breadcrumbs')
         @slot('parent', $vaccine->name)
         @slot('parentUrl', route('vaccine.show', $vaccine))
-        @slot('page', 'Conditions')
+        @slot('page', 'Acknowledgments')
     @endcomponent
 
     {{ BsForm::putModel($vaccine, route('update-conditions', $vaccine), ['id' => 'form']) }}
 
     @component('backend.components.box')
-        @slot('title', 'Conditions')
+        @slot('title', 'Acknowledgments')
 
 
         @include('backend.conditions.conditions-input')

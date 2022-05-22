@@ -6,6 +6,13 @@
 </div>
 
 <div class="row mb-1">
+    <div class="col-4">
+        <input type="hidden" name="required" value="0">
+        {{ BsForm::checkbox('required')->label('Required')->value(1)->checked($question->required ?? 0) }}
+    </div>
+</div>
+
+<div class="row mb-1">
     <div class="col-12">
         {{ BsForm::select('input_type')->required()->options(['text' => 'Textbox', 'select' => 'Select'])->label('Type')->placeholder('Select the type') }}
     </div>

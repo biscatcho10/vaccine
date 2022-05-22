@@ -30,3 +30,33 @@
 
 @endsection
 
+@push('js')
+    <script>
+        $("input[name=required]").change(function (e) {
+            e.preventDefault();
+
+            if ($(this).is(':checked')) {
+                $(".vaccines").show();
+            } else {
+                $(".vaccines").hide();
+            }
+        });
+
+
+        // check vaccines input changed
+        $("select[name=target]").change(function (e) {
+            e.preventDefault();
+            var target = $(this).val();
+            var url = "{{ route('get-intervals', "+ target +") }}";
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    $("#intervals").html(data);
+                }
+            });
+        });
+    </script>
+@endpush
+
