@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->string('question');
             $table->string('input_type');
+            $table->boolean('required')->default(false);
             $table->enum('select_type', ['single', 'multiple'])->default('single');
             $table->text('options')->nullable();
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');

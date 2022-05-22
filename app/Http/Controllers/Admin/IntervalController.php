@@ -13,8 +13,8 @@ class IntervalController extends Controller
     public function get(Vaccine $vaccine, Day $day)
     {
         $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->except($day->id)->pluck('name', 'id')->toArray();
-
-        return view('backend.intervals.intervals-form', compact('vaccine', 'day', 'days'));
+        $vaccines = Vaccine::where('id', '!=', $vaccine->id)->get()->pluck('name', 'id')->toArray();
+        return view('backend.intervals.intervals-form', compact('vaccine', 'vaccines', 'day', 'days'));
     }
 
 
@@ -52,5 +52,13 @@ class IntervalController extends Controller
             'vaccine' => $vaccine,
             'days' => $days,
         ]);
+    }
+
+
+    // get day intervals from another vaccine
+    public function getIntervals(Vaccine $vaccine)
+    {
+        $days = Day::where('vaccine_id', $vaccine->id)->whereHas('intervals')->get()->pluck('name', 'id')->toArray();
+        return response()->json(['days' => $days]);
     }
 }

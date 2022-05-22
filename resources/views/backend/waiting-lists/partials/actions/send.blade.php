@@ -1,4 +1,4 @@
-@if ($vaccine->waitingLists()->where('notification_sent', 0)->count() > 0)
+@if ($vaccine->waitingLists()->where('notification_sent', 0)->count() > 0 && $vaccine->amount > 0)
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal"
         data-bs-target="#success-{{ $vaccine->id }}">

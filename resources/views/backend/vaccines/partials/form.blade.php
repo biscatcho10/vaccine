@@ -136,7 +136,7 @@ style="display: none" @endisset>
         <label class="form-check-label">
             <input type="checkbox" value="1" class="form-check-input" name="has_diff_ages"
                 @isset($vaccine) {{ $vaccine->has_diff_ages && $vaccine->diff_ages != null ? 'checked' : '' }} @endisset>
-            Has Different Ages ?
+                Has different Criteria ?
         </label>
     </div>
 </div>
@@ -151,7 +151,7 @@ style="display: none" @endisset>
                         <div class="col-md-4 col-12">
                             <div class="mb-1">
                                 <input type="text" class="form-control age" name="age" value="{{ $age['age'] }}"
-                                    placeholder="Enter Age Name" />
+                                    placeholder="Enter the criteria" />
                             </div>
                         </div>
 
@@ -182,7 +182,7 @@ style="display: none" @endisset>
                 <div class="row d-flex align-items-end">
                     <div class="col-md-4 col-12">
                         <div class="mb-1">
-                            <input type="text" class="form-control age" name="age" placeholder="Enter Age Name" />
+                            <input type="text" class="form-control age" name="age" placeholder="Enter the criteria" />
                         </div>
                     </div>
 

@@ -26,6 +26,15 @@
                     <td>{{ $question->question }}</td>
                 </tr>
                 <tr>
+                    <th width="200">Required ?</th>
+                    <td> @if ($question->required)
+                            <i class="fas fa-check-circle text-success fa-lg"></i>
+                        @else
+                            <i class="fas fa-times-circle text-danger fa-lg"></i>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
                     <th width="200">Type</th>
                     <td>{{ ucfirst($question->input_type) }}</td>
                 </tr>

@@ -16,6 +16,7 @@ class QuestionResource extends JsonResource
     {
         $data = [
             'question' => $this->question,
+            'required' => $this->required,
             'input_type' => $this->input_type,
         ];
         if ($this->input_type == "select") {

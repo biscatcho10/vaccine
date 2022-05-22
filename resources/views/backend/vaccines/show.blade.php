@@ -155,7 +155,7 @@
 
                 @if ($vaccine->has_diff_ages)
                     <tr>
-                        <th width="200">Different Ages</th>
+                        <th width="200">Different Criteria</th>
                         <td>
                             @foreach ($vaccine->diff_ages as $age)
                                 <span class="badge rounded-pill badge-light-primary">{{ $age['age'] }}</span>
@@ -173,60 +173,7 @@
             @include('backend.vaccines.partials.actions.exceptions')
             @include('backend.vaccines.partials.actions.conditions')
             @include('backend.vaccines.partials.actions.questions')
-            @include(
-                'backend.vaccines.partials.actions.eligapilities'
-            )
+            @include('backend.vaccines.partials.actions.eligapilities')
         @endslot
     @endcomponent
-
-
-
-    {{-- @component('backend.components.box')
-        @slot('title', 'Vaccine Requests')
-        @slot('bodyClass', 'p-0')
-
-        @if (count($requests) > 0)
-            <a href="{{ route('get.requests', $vaccine) }}"
-                class="btn btn-outline-primary waves-effect waves-light btn-sm float-right m-1">
-                <i data-feather="eye"></i> All Request
-            </a>
-        @endif
-
-        <table id="datatable-buttons" class="table dt-responsive nowrap"
-            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Phone Number</th>
-                    <th>Health Card Number</th>
-                    <th>Day Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse ($requests->take(5) as $request)
-                    <tr>
-                        <th> <a href="{{ route('user.show', $request->patient()->id) }}"> {{ $request->patient()->name }}
-                            </a> </th>
-                        <th>{{ $request->patient()->phone }}</th>
-                        <th>{{ $request->patient_hcm }}</th>
-                        <th>{{ $request->day_date }}</th>
-                        <th>
-                            <a href="{{ route('show.request', [$vaccine, $request]) }}"
-                                class="btn btn-outline-warning waves-effect waves-light btn-sm">
-                                <i data-feather="eye"></i>
-                            </a>
-                        </th>
-                    </tr>
-                @empty
-                    <tr>
-                        <th>No Requests Yet.</th>
-                    </tr>
-                @endforelse
-
-            </tbody>
-        </table>
-    @endcomponent --}}
-
 @endsection

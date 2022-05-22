@@ -88,4 +88,6 @@ Route::middleware(['auth:web'])->group(function () {
     // send emails to waiting list
     Route::get('{vaccine}/waiting-list/send-emails', [WaitingListController::class, 'sendEmails'])->name('send-emails');
 
+    // get day intervals from anothere vaccine
+    Route::get('intervals/{vaccine}', [IntervalController::class, 'getIntervals'])->name('get-intervals');
 });

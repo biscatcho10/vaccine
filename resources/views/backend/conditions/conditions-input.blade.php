@@ -2,13 +2,13 @@
 
 <div class="row mb-2">
     <div class="col-12">
-        {{ BsForm::text('page_title')->required()->attribute(['data-parsley-maxlength' => '191'])->label('Condition Page Tile')->value($condition->page_title ?? "") }}
+        {{ BsForm::text('page_title')->required()->attribute(['data-parsley-maxlength' => '191'])->label('Acknowledgments Page Tile')->value($condition->page_title ?? "") }}
     </div>
 </div>
 
 <hr>
 
-<label class="mb-1">Conditions</label>
+<label class="mb-1">Acknowledgments</label>
 
 @if($condition && $condition->conditions != null)
     <div class="expection-repeater">
