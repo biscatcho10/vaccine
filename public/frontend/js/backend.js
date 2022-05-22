@@ -69,7 +69,7 @@ $("#products").change(function (e) {
 
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
-                $('.date-div, .myTime, .age_users').addClass('d-none')
+                $('.date-div, .myTime').addClass('d-none')
 
                 $(`<div class="waiting alert alert-warning" role="alert">
                     Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
@@ -103,10 +103,11 @@ $("#products").change(function (e) {
                 })
 
             }else{
+                $('.date-div, .myTime, .age_users').removeClass('d-none')
+                $('.waiting').remove();
+
                 // $('.frist_page strong').text('1/6')
                 // $('.users_inform  strong').text('2/6')
-                // $('.waiting').remove();
-                // $('.date-div, .myTime, .age_users').removeClass('d-none')
                 // $('.submits').removeClass('d-inline-block');
                 // $('.forwards').show();
                 // $('.forwards').on('click',function () {
@@ -276,6 +277,8 @@ $("#products").change(function (e) {
                 $('.health_card_').addClass('requireds')
             }
 
+            console.log(vaccine);
+
             // show eligapilities
             if (vaccine.eligapilities) {
                 let eligaps = vaccine.eligapilities;
@@ -317,7 +320,6 @@ $("#products").change(function (e) {
                 let questions = vaccine.questions;
 
 
-
                 $("#question_section").empty();
                 if (vaccine.questions.length != 0 && document.querySelector("#question_section .num") == null) {
                     $("#question_section").append('<strong><div class="num"></div></strong>')
@@ -342,9 +344,12 @@ $("#products").change(function (e) {
                             select = "Select one or more";
                         }
 
+                        req = ''
+                        if (question.required == 1) {
+                            req = 'requireds'
+                        }
+
                         $("#question_section").append(`
-
-
                             <div class="styled-select clearfix">
                                 <label class="mt-3">${question.question}</label>
                                 <div class="form-group group${select_type}">
@@ -353,7 +358,7 @@ $("#products").change(function (e) {
                                     </select>
                                     <input id='' type="hidden">
                                     <div class="nice-select nice-select-${index} form-control" tabindex="0">
-                                        <span class="current">${select}</span>
+                                        <span class="current ${req}">${select}</span>
                                         <ul class="list list_question"></ul>
                                     </div>
                                 </div>
@@ -383,10 +388,14 @@ $("#products").change(function (e) {
                         });
                     }
                     else {
+                        req = ''
+                        if (question.required == 1) {
+                            req = 'requireds'
+                        }
                         $("#question_section").append(`
                             <div class="form-group">
                                 <label>${question.question}</label>
-                                <input type="text" name="${question.question}" class="form-control requireds">
+                                <input type="text" name="${question.question}" class="form-control ${req}">
                             </div>
                         `);
                     }

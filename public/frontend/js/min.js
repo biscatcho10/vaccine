@@ -72,7 +72,7 @@ function clickCheckbox(e) {
                     //             '<span for="dates" class="error_input_select">Required</span>'
                     //         ).insertAfter(e);
                     // }),
-                    document.querySelectorAll('#question_section.active .current').forEach(e =>{
+                    document.querySelectorAll('#question_section.active .current.requireds').forEach(e =>{
                         if (e.innerHTML == 'Select one' || e.innerHTML == 'Select one or more'){
                             $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e);
                         }
@@ -159,25 +159,37 @@ function clickCheckbox(e) {
                 $('.submits').show()
 
                 $('#wrapped').on('submit',function (event) {
-                        // myelement.querySelectorAll('.requireds').forEach(e => {
-                        //     console.log(e);
-                        // })
+                        flags = 0
+                        document.querySelectorAll('#question_section.active .current.requireds').forEach(e =>{
+                            if (e.innerHTML == 'Select one'){
+                                event.preventDefault()
+                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e);
+                                flags = 1
+                            }
+                        })
+                        document.querySelectorAll('#question_section.active .current.requireds').forEach(e =>{
+                            if (e.innerHTML == 'Select one or more'){
+                                event.preventDefault()
+                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e);
+                                flags = 1
+                            }
+                        })
                         document.querySelectorAll('.active .requireds').forEach(e => {
                             if (e.value == '') {
                                 event.preventDefault()
                                 $('<span for="dates" class="error_input_select">Required</span>').insertAfter(e)
-                            console.log('amr');
-
-                            }else{
-                                return true
+                                flags = 1
                             }
                         })
-                            if (document.querySelector('#tCheckBox') == null && document.querySelector('.appCheckBox.form_items .num')) {
-                                event.preventDefault()
-                                $('<span for="dates" class="error_input_select">Required</span>').insertAfter(document.querySelector('.appCheckBox.form_items.active h3'))
-                            }else{
-                                return true
-                            }
+                        if (document.querySelector('#tCheckBox') == null && document.querySelector('.appCheckBox.form_items .num')) {
+                            event.preventDefault()
+                            $('<span for="dates" class="error_input_select">Required</span>').insertAfter(document.querySelector('.appCheckBox.form_items.active h3'))
+                            flags = 1
+                        }
+
+                        if (flags == 0){
+                            return true
+                        }
                 })
 
             }else{
