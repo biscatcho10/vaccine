@@ -10,7 +10,7 @@
 
 <label class="mb-1">Conditions</label>
 
-@isset($eligapility)
+@isset($eligapility->eligapilities)
     <div class="expection-repeater">
         <div data-repeater-list="eligapilities">
             @foreach ($eligapility->eligapilities as $eligapility)
