@@ -35,7 +35,7 @@ class VaccineFormRequest extends FormRequest
             'day_date' => 'required',
             'day_time' => 'required',
             'day_date' => 'required',
-            'eligapility' => 'required',
+            // 'eligapility' => 'required',
         ];
     }
 
