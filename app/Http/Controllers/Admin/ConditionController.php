@@ -23,7 +23,7 @@ class ConditionController extends Controller
             ['page_title' => $request->page_title, 'conditions' => $request->conditions]
         );
 
-        return redirect()->route('vaccine.show', $vaccine)->with('success', 'Service\'s conditions added successfully.');
+        return redirect()->route('vaccine.show', $vaccine)->with('success', 'Service\'s acknowledgments added successfully.');
     }
 
     public function copy(Vaccine $vaccine, Request $request)
@@ -36,7 +36,7 @@ class ConditionController extends Controller
         $newCondition->vaccine_id = $vaccine->id;
         $newCondition->save();
         return redirect()->back()->with([
-            'success' => 'Service\'s conditions copied successfully.',
+            'success' => 'Service\'s acknowledgments copied successfully.',
             'condition' => $newCondition,
             'vaccine' => $vaccine,
             'vaccines' => $vaccines,
