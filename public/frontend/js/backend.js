@@ -72,7 +72,7 @@ $("#products").change(function (e) {
 
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
-                $('.date-div, .myTime').addClass('d-none')
+                $('.date-div, .myTime, .age_users').addClass('d-none')
 
                 $(`<div class="waiting alert alert-warning warningnull" role="alert">
                     Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
