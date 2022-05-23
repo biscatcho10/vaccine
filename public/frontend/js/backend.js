@@ -31,7 +31,7 @@ $("#products").change(function (e) {
 
     // reset datepicker
     $("#day").datepicker("destroy");
-
+    let condtionstock = true;
     let vaccine = $(this).val();
     $.ajax({
         type: "GET",
@@ -64,14 +64,17 @@ $("#products").change(function (e) {
 
             if (vaccine.out_of_stock == 1) {
 
-                // $('.frist_page strong').text('1/2')
-                // $('.users_inform  strong').text('2/2')
+                condtionstock = false;
+
+                $('.warningnull').remove()
+                $('.frist_page strong .num').text('1/2')
+                $('.users_inform  strong .num').text('2/2')
 
                 $('.oneCheckBox .checkBox').attr('checked',true)
 
                 $('.date-div, .myTime').addClass('d-none')
 
-                $(`<div class="waiting alert alert-warning" role="alert">
+                $(`<div class="waiting alert alert-warning warningnull" role="alert">
                     Sorry the vaccine is out of stock, You will be added in the waiting list ,And we will send mail for you when it's available.
                   </div>`).insertAfter('#my_faxen')
 
@@ -104,6 +107,12 @@ $("#products").change(function (e) {
 
             }else{
                 $('.date-div, .myTime, .age_users').removeClass('d-none')
+                condtionstock = true;
+
+                let lengthNum = $('.num').length
+                document.querySelector('.frist_page strong .num').innerHTML = `1/${lengthNum}`
+                document.querySelector('.users_inform  strong .num').innerHTML = `2/${lengthNum}`
+                // $('.users_inform  strong .num').text('2/2')
                 $('.waiting').remove();
 
                 // $('.frist_page strong').text('1/6')
@@ -277,10 +286,9 @@ $("#products").change(function (e) {
                 $('.health_card_').addClass('requireds')
             }
 
-            console.log(vaccine);
 
             // show eligapilities
-            if (vaccine.eligapilities) {
+            if (vaccine.eligapilities && condtionstock && vaccine.eligapilities.eligapilities != null) {
                 let eligaps = vaccine.eligapilities;
                 $("#eligapility_content").empty();
                 let title = eligaps.title;
@@ -316,7 +324,7 @@ $("#products").change(function (e) {
 
 
             // show questions
-            if (vaccine.questions) {
+            if (vaccine.questions && condtionstock) {
                 let questions = vaccine.questions;
 
 
@@ -433,7 +441,7 @@ $("#products").change(function (e) {
             }
 
             // show conditions select
-            if (vaccine.conditions) {
+            if (vaccine.conditions && condtionstock) {
                 let conditions = vaccine.conditions;
                 let title = conditions.title;
                 $("#condition_page_title").text(title);
@@ -502,13 +510,15 @@ $("#products").change(function (e) {
     });
 
     setTimeout(e=>{
-        if (document.querySelectorAll('.num').length >= 3) {
-            $(".user_details strong").append('<div class="num"></div>')
-        }else{
-            $(".user_details strong").empty()
-        }
-        for (let i = 0; i < document.querySelectorAll('.num').length; i++) {
-            document.querySelectorAll('.num')[i].innerHTML = i+1 + '/' + document.querySelectorAll('.num').length
+        if (condtionstock) {
+            if (document.querySelectorAll('.num').length >= 3) {
+                $(".user_details strong").append('<div class="num"></div>')
+            }else{
+                $(".user_details strong").empty()
+            }
+            for (let i = 0; i < document.querySelectorAll('.num').length; i++) {
+                document.querySelectorAll('.num')[i].innerHTML = i+1 + '/' + document.querySelectorAll('.num').length
+            }
         }
     },1000)
 });
