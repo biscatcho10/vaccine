@@ -140,16 +140,20 @@
                 <tr>
                     <th width="200">Available Days</th>
                     <td>
-                        <div class="row">
-                            @foreach ($vaccine->days as $day)
-                                <a href="{{ route('intervals', [$vaccine, $day]) }}" class="col-1 mx-2">
-                                    <label class="custom-option-item text-center p-1" for="sunday" style="cursor:pointer">
-                                        <i data-feather='calendar'></i>
-                                        <span class="custom-option-item-title h4 d-block">{{ $day->name }}</span>
-                                    </label>
-                                </a>
-                            @endforeach
-                        </div>
+                        @if (count($vaccine->days) > 0)
+                            <div class="row">
+                                @foreach ($vaccine->days as $day)
+                                    <a href="{{ route('intervals', [$vaccine, $day]) }}" class="col-1 mx-2">
+                                        <label class="custom-option-item text-center p-1" for="sunday" style="cursor:pointer">
+                                            <i data-feather='calendar'></i>
+                                            <span class="custom-option-item-title h4 d-block">{{ $day->name }}</span>
+                                        </label>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <i class="fas fa-times-circle text-danger fa-lg mx-1"></i> No Available Days
+                        @endif
                     </td>
                 </tr>
 

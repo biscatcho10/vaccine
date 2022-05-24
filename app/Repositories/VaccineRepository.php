@@ -82,14 +82,17 @@ class VaccineRepository implements CrudRepository
             $vaccine->update(['has_diff_ages' => 0]);
         }
 
+        if (isset($data['available_days'])) {
+            foreach ($data['available_days'] as $day) {
+                $day = Day::updateOrCreate(['vaccine_id' => $vaccine->id, 'name' => $day], ['name' => $day]);
+            }
 
-        foreach ($data['available_days'] as $day) {
-            $day = Day::updateOrCreate(['vaccine_id' => $vaccine->id, 'name' => $day], ['name' => $day]);
-        }
-
-        $minus = array_diff($vaccine->days->pluck('name')->toArray(), $data['available_days']);
-        foreach ($minus as $day) {
-            $vaccine->days()->where('name', $day)->delete();
+            $minus = array_diff($vaccine->days->pluck('name')->toArray(), $data['available_days']);
+            foreach ($minus as $day) {
+                $vaccine->days()->where('name', $day)->delete();
+            }
+        }else{
+            $vaccine->days()->delete();
         }
 
 
@@ -140,5 +143,4 @@ class VaccineRepository implements CrudRepository
     {
         $this->find($model)->restore();
     }
-
 }
