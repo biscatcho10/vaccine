@@ -21,7 +21,7 @@
 <!-- /step-->
 
 <div class="form_items user_details">
-    <h3 class="main_question"><strong></strong>Please fill with your details</h3>
+    <h3 class="main_question"><strong><div class="num"></div></strong>Please fill with your details</h3>
     <div class="form-group" style="display: none">
         <input type="text" data-field="date" readonly class="form-control myTime myDates "
             placeholder="Date of birth 'MM/DD/YYYY'" id="myDateTwo">

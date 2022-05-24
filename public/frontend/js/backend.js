@@ -45,7 +45,6 @@ $("#products").change(function (e) {
             $(".appCheckBox #eligapility_content").empty();
             $(".oneCheckBox strong").empty();
             $("#condition_list").empty();
-            $(".user_details strong").empty()
 
 
 
@@ -63,6 +62,7 @@ $("#products").change(function (e) {
 
 
             if (vaccine.out_of_stock == 1) {
+                $(".user_details strong").empty()
 
                 condtionstock = false;
 
@@ -106,6 +106,8 @@ $("#products").change(function (e) {
                 })
 
             }else{
+                $(".user_details strong").empty()
+                $(".user_details strong").append('<div class="num"></div>')
                 $('.date-div, .myTime, .age_users').removeClass('d-none')
                 condtionstock = true;
 
@@ -511,11 +513,11 @@ $("#products").change(function (e) {
 
     setTimeout(e=>{
         if (condtionstock) {
-            if (document.querySelectorAll('.num').length >= 3) {
-                $(".user_details strong").append('<div class="num"></div>')
-            }else{
-                $(".user_details strong").empty()
-            }
+            // if (document.querySelectorAll('.num').length >= 3) {
+            //     $(".user_details strong").append('<div class="num"></div>')
+            // }else{
+            //     $(".user_details strong").empty()
+            // }
             for (let i = 0; i < document.querySelectorAll('.num').length; i++) {
                 document.querySelectorAll('.num')[i].innerHTML = i+1 + '/' + document.querySelectorAll('.num').length
             }
