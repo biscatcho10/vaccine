@@ -172,8 +172,8 @@ $("#products").change(function (e) {
                 $("#age").empty();
                 $(".option_input .list").empty();
                 let ages = vaccine.diff_ages;
-                $("#age").append("<option>Select one age</option>");
-                $(".option_input .nice-select span").text('Select one age');
+                $("#age").append("<option>Select one criteria</option>");
+                $(".option_input .nice-select span").text('Select one criteria');
                 ages.forEach(age => {
                     let data = age.age;
                     $("#age").append("<option value='" + data + "'>" + data + "</option>");
