@@ -36,7 +36,7 @@
         <tbody>
             @foreach ($data as $question)
             <tr>
-                <th>{{$question->question}}</th>
+                <th>{{ Str::limit($question->question, 100, '...') }}</th>
                 <th>{{ucfirst($question->input_type)}}</th>
                 <th>
                     @include('backend.questions.partials.actions.show')
