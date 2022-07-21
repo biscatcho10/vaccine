@@ -15,7 +15,7 @@ $(function () {
 $('strong .num').empty()
 $("#products").change(function (e) {
 
-
+    $('.content-right .alert').remove();
 
 
     e.preventDefault();
@@ -327,19 +327,21 @@ $("#products").change(function (e) {
 
             // show questions
             if (vaccine.questions && condtionstock) {
-                let questions = vaccine.questions;
+                let questions = vaccine.questions,
+                My_question = $("#question_section")
 
+                vaccine.questions.length < 8 ? My_question.addClass('singl_child') : My_question.removeClass('singl_child');
 
-                $("#question_section").empty();
+                My_question.empty();
                 if (vaccine.questions.length != 0 && document.querySelector("#question_section .num") == null) {
-                    $("#question_section").append('<strong><div class="num"></div></strong>')
+                    My_question.append('<strong><div class="num"></div></strong>')
                     $(".active#question_section").show()
                 }else if(vaccine.questions.length == 0){
                     $("#question_section strong").remove();
                     $(".active#question_section").hide()
                 }
 
-                // $("#question_section").append('<strong><div class="num"></div></strong>')
+                // My_question.append('<strong><div class="num"></div></strong>')
 
                 questions.forEach((question, index) => {
                     let type = question.input_type;
@@ -359,7 +361,7 @@ $("#products").change(function (e) {
                             req = 'requireds'
                         }
 
-                        $("#question_section").append(`
+                        My_question.append(`
                             <div class="styled-select clearfix">
                                 <label class="mt-3">${question.question}</label>
                                 <div class="form-group group${select_type}">
@@ -402,7 +404,7 @@ $("#products").change(function (e) {
                         if (question.required == 1) {
                             req = 'requireds'
                         }
-                        $("#question_section").append(`
+                        My_question.append(`
                             <div class="form-group">
                                 <label>${question.question}</label>
                                 <input type="text" name="${question.question}" class="form-control ${req}">

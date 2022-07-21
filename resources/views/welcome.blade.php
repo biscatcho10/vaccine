@@ -15,15 +15,14 @@
     <!-- GOOGLE WEB FONT -->
 
     <!-- BASE CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/rome.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/rome.css') }}"> --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/DateTimePicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link href="{{ asset('frontend/css/vendors.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/nice-select.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/lib/jquery-nice-select-1.1.0/css/nice-select.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-
+    <link href="{{ asset('frontend/css/jquery-ui.css') }}" rel="stylesheet">
+    <link rel="stylesheet"  href="{{ asset('frontend/css/style.css') }}">
+    
     <style>
         .content-left-wrapper.bg_hotel:before {
             background: url({{ asset('storage/images/settings/' . $settings['page_image']) }}) center center no-repeat;
@@ -76,8 +75,8 @@
                         <!-- content text  -->
                         <!-- Footer -->
                         <footer>
-                            <span class="text-center">© Copy Right 2022 Well Pharmacy, All Right Reserved.</span>
-                            <span>Powerd By Creative Twinkles</span>
+                            <span class="text-center">© Copy Right 2022 Medonln, All Right Reserved.</span>
+                            {{-- <span>Powerd By Creative Twinkles</span> --}}
                         </footer>
                         <!-- Footer -->
                     </div>
@@ -131,9 +130,9 @@
                 <!-- /Wizard container -->
                 <!-- Footer -->
                 <footer>
-                    <span class="text-center">© Copy Right 2022 Well Pharmacy, All Right Reserved.</span>
+                    <span class="text-center">© Copy Right 2022 Medonln, All Right Reserved.</span>
                     <span>
-                        <a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative Twinkles</a>
+                        {{-- <a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative Twinkles</a> --}}
                     </span>
                 </footer>
                 <!-- Footer -->

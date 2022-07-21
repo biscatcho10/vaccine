@@ -56,15 +56,13 @@
 </script>
 <!-- / Calender SCRIPTS -->
 
-{{-- <script defer src="{{ asset('frontend/js/jquery-3.2.1.min.js') }}"></script> --}}
-<script src="{{ asset('frontend/js/rome.js') }}"></script>
-<script defer src="{{ asset('frontend/js/DateTimePicker.js') }}"></script>
-<script defer src="{{ asset('frontend/js/common_scripts.min.js') }}"></script>
-<script defer src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
-<script defer src="{{ asset('frontend/js/functions.js') }}"></script>
-<script defer src="{{ asset('frontend/js/min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-{{-- <script defer src="{{ asset('frontend/lib/jquery-nice-select-1.1.0/js/jquery.js') }}"></script> --}}
-{{-- <script defer src="{{ asset('frontend/lib/jquery-nice-select-1.1.0/js/jquery.nice-select.js') }}"></script> --}}
-<script defer src="{{ asset('frontend/js/backend.js') }}"></script>
+
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/jquery-ui.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/DateTimePicker.js') }}"></script>
+
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/common_scripts.min.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/functions.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/min.js') }}"></script>
+<script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/backend.js') }}"></script>

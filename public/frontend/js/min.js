@@ -233,7 +233,7 @@ function clickCheckbox(e) {
                     $(this).removeClass("actv"), $(".dtpicker-bg").remove();
                 });
         }),
-        rome(input, { time: !1 }),
+        // rome(input, { time: !1 }),
         $("select:not(.ignore)").niceSelect();
         $('.nice-select, input').on('click', function () {
             $(this).siblings('.error_input_select').remove();

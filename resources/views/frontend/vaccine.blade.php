@@ -29,7 +29,7 @@
 
     <div class="form-group date-div ">
         <div class="overlays"></div>
-        <input type="text" name="day_date" id="day" class="form-control" readonly>
+        <input type="text" name="day_date" id="day" placeholder="choose a date" class="form-control" readonly>
         <i class="icon-hotel-calendar_3"></i>
     </div>
 
