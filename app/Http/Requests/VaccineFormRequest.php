@@ -31,7 +31,7 @@ class VaccineFormRequest extends FormRequest
             'phone' => 'required',
             'dob' => 'required',
             'address' => 'required',
-            'health_card_number' => 'unique:request_answers,patient_hcm',
+            // 'health_card_number' => 'unique:request_answers,patient_hcm',
             'day_date' => 'required',
             'day_time' => 'required',
             'day_date' => 'required',

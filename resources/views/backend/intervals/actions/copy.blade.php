@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="form-group vaccines" style="display: none">
-                    <label>Vaccine</label>
+                    <label>Service</label>
                     <select class="form-control" name="vaccine">
-                        <option>Select one vaccine</option>
+                        <option>Select one service</option>
                         @foreach ($vaccines as $index => $value)
                             <option value="{{ $index }}"> {{ $value }} </option>
                         @endforeach
