@@ -23,7 +23,7 @@
     </div>
 </div>
 
-    <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <table id="datatable" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
         <thead>
             <tr>
                 <th>Question</th>
@@ -36,7 +36,8 @@
         <tbody>
             @foreach ($data as $question)
             <tr>
-                <th>{{ Str::limit($question->question, 100, '...') }}</th>
+                {{-- <th>{{ Str::limit($question->question, 100, '...') }}</th> --}}
+                <td>{{ $question->question }}</td>
                 <th>{{ucfirst($question->input_type)}}</th>
                 <th>
                     @include('backend.questions.partials.actions.show')
