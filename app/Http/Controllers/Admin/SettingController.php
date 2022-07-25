@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use anlutro\LaravelSettings\Facades\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
+use App\Notifications\TestMail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,5 +98,14 @@ class SettingController extends Controller
                 file_get_contents($path)
             ));
         }
+    }
+
+
+    // test mail
+    public function testMail()
+    {
+        $user = Patient::first();
+        $user->notify(new TestMail());
+        return redirect()->back()->with('success', __('Test mail has been sent successfully'));
     }
 }
