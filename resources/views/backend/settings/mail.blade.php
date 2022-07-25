@@ -183,6 +183,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingMargin4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#accordionMargin4" aria-expanded="false"
+                                        aria-controls="accordionMargin4">
+                                        Test Mail
+                                    </button>
+                                </h3>
+                                <div id="accordionMargin4" class="accordion-collapse collapse"
+                                    aria-labelledby="headingMargin4" data-bs-parent="#accordionMargin" style="">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="form-group col-12 mt-2">
+                                                <a href="{{ route('test-email') }}" class="btn btn-outline-facebook">
+                                                    <i class="fa fa-envelope"></i>
+                                                    Test Mail
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 

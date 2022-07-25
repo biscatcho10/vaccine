@@ -22,7 +22,7 @@
     <link href="{{ asset('frontend/css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/jquery-ui.css') }}" rel="stylesheet">
     <link rel="stylesheet"  href="{{ asset('frontend/css/style.css') }}">
-    
+
     <style>
         .content-left-wrapper.bg_hotel:before {
             background: url({{ asset('storage/images/settings/' . $settings['page_image']) }}) center center no-repeat;
@@ -75,7 +75,7 @@
                         <!-- content text  -->
                         <!-- Footer -->
                         <footer>
-                            <span class="text-center">© Copy Right 2022 Medonln, All Right Reserved.</span>
+                            <span class="text-center"><a href="#" style="color:#7a819a;">© Copy Right 2022 Medonln, All Right Reserved.</a></span>
                             {{-- <span>Powerd By Creative Twinkles</span> --}}
                         </footer>
                         <!-- Footer -->
@@ -130,7 +130,7 @@
                 <!-- /Wizard container -->
                 <!-- Footer -->
                 <footer>
-                    <span class="text-center">© Copy Right 2022 Medonln, All Right Reserved.</span>
+                    <span class="text-center"><a href="#" style="color:#7a819a;">© Copy Right 2022 Medonln, All Right Reserved.</a></span>
                     <span>
                         {{-- <a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative Twinkles</a> --}}
                     </span>
