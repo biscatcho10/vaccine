@@ -72,8 +72,7 @@
                         <!-- content text  -->
                         <!-- Footer -->
                         <footer>
-                            <span class="text-center">© Copy Right 2022 Well Pharmacy, All Right Reserved.</span>
-                            <span>Powerd By Creative Twinkles</span>
+                            <span class="text-center"><a href="#" style="color:#7a819a;">© Copy Right 2022 Medonln, All Right Reserved.</a></span>
                         </footer>
                         <!-- Footer -->
                     </div>
@@ -96,9 +95,9 @@
                 <!-- /Wizard container -->
                 <!-- Footer -->
                 <footer>
-                    <span class="text-center">© Copy Right 2022 Well Pharmacy, All Right Reserved.</span>
-                    <span><a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative
-                            Twinkles</a></span>
+                    <span class="text-center"><a href="#" style="color:#7a819a;">© Copy Right 2022 Medonln, All Right Reserved.</a></span>
+                    {{-- <span><a target="_blank" href="https://www.creativetwinkles.com/">Powerd By Creative
+                            Twinkles</a></span> --}}
                 </footer>
                 <!-- Footer -->
             </div>
@@ -109,7 +108,10 @@
     <!-- /container-fluid -->
 
 
-    <script defer src="{{ asset('frontend/js/jquery-3.2.1.min.js') }}"></script>
+    {{-- <script defer src="{{ asset('frontend/js/jquery-3.2.1.min.js') }}"></script> --}}
+
+    <script defer language="JavaScript" type="text/javascript" src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
+
     <script defer src="{{ asset('frontend/js/functions.js') }}"></script>
 
     {!! $settings['google_id_footer'] !!}
