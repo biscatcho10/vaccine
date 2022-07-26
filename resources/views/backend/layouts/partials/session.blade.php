@@ -69,3 +69,13 @@
         </div>
     </div>
 @endif
+
+@if(session()->has('error'))
+    <div class="alert alert-danger" role="alert">
+        <div class="alert-body">
+            {{ session()->get('error') }}
+        </div>
+    </div>
+@endif
+
+

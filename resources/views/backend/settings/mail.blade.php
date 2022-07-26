@@ -163,9 +163,21 @@
                                             </div>
                                             <div class="form-group col-12 mt-2">
                                                 <label>Mail Encryption</label>
-                                                <input type="text" name="MAIL_ENCRYPTION" class="form-control"
+                                                {{-- <input type="text" name="MAIL_ENCRYPTION" class="form-control"
                                                     placeholder="Enter mail encryption"
-                                                    value="{{ array_key_exists('MAIL_ENCRYPTION', $settings) ? $settings['MAIL_ENCRYPTION'] : '' }}">
+                                                    value="{{ array_key_exists('MAIL_ENCRYPTION', $settings) ? $settings['MAIL_ENCRYPTION'] : '' }}"> --}}
+
+                                                <select name="MAIL_ENCRYPTION" class="form-control">
+                                                    <option value="">Select Encryption</option>
+                                                    <option value="tls"
+                                                        {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'tls' ? 'selected' : '' }}>
+                                                        tls</option>
+                                                    <option value="ssl"
+                                                        {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'ssl' ? 'selected' : '' }}>
+                                                        ssl</option>
+                                                </select>
+                                                
+
                                             </div>
                                             <div class="form-group col-12 mt-2">
                                                 <label>Mail From Address</label>
@@ -197,7 +209,7 @@
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="form-group col-12 mt-2">
-                                                <a href="{{ route('test-email') }}" class="btn btn-outline-facebook">
+                                                <a href="{{ route('test-email') }}" class="btn btn-outline-warning">
                                                     <i class="fa fa-envelope"></i>
                                                     Test Mail
                                                 </a>

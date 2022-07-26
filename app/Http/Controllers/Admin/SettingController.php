@@ -9,6 +9,8 @@ use App\Models\Patient;
 use App\Notifications\TestMail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\HtmlString;
 
 class SettingController extends Controller
 {
@@ -104,8 +106,14 @@ class SettingController extends Controller
     // test mail
     public function testMail()
     {
-        $user = Patient::first();
-        $user->notify(new TestMail());
-        return redirect()->back()->with('success', __('Test mail has been sent successfully'));
+        try {
+            Notification::route('mail', Setting::get('MAIL_FROM_ADDRESS'))
+                ->notify(new TestMail());
+            return redirect()->back()->with('success', __('Test mail has been sent successfully'));
+        } catch (\Exception $e) {
+            $msg = '<b>Test mail has not been sent successfully, There is some problem in your mail settings</b> <br><br> The Error : <br>' . $e->getMessage();
+            $msg = new HtmlString($msg);
+            return redirect()->back()->with('error', $msg);
+        }
     }
 }

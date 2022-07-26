@@ -42,7 +42,7 @@ class TestMail extends Notification
     {
         return (new MailMessage)
                     ->line('Test Mail.')
-                    ->action('Notification Action', url("mail-settings"))
+                    ->action('Back', route("mail.settings"))
                     ->line('This mail is for testing!');
     }
 

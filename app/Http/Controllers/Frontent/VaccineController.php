@@ -69,7 +69,6 @@ class VaccineController extends Controller
         // send confirmation email
         $this->sendEmail($patient, $request);
 
-
         if (Setting::get('redirect')) {
             return redirect(Setting::get('redirect_url'));
         } else {
@@ -150,7 +149,10 @@ class VaccineController extends Controller
             'day_time' => $request->day_time
         ];
 
-        // send mail to the patient
-        Notification::send($patient, new UserConfirmation($details));
+        try {
+            // send mail to the patient
+            Notification::send($patient, new UserConfirmation($details));
+        } catch (\Exception $e) {
+        }
     }
 }
