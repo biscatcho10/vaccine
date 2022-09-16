@@ -30,6 +30,6 @@ class AlertWaitingList extends Mailable
      */
     public function build()
     {
-        return $this->view('backend.mail.alert-waiting');
+        return $this->subject($this->details['subject'])->view('backend.mail.alert-waiting');
     }
 }

@@ -63,8 +63,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label>Email Template</label>
-                                                    <textarea type="text" name="email_template" class="form-control ckeditor"
-                                                        rows="3">{{ array_key_exists('email_template', $settings) ? $settings['email_template'] : '' }}</textarea>
+                                                    <textarea type="text" name="email_template" class="form-control ckeditor" id="mailEditor1" rows="3">{{ array_key_exists('email_template', $settings) ? $settings['email_template'] : '' }}</textarea>
 
                                                     <small class="form-text text-warning">Be carefull use these variables in
                                                         your template
@@ -105,8 +104,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label>Email Template</label>
-                                                    <textarea type="text" name="wl_email_template" class="form-control ckeditor"
-                                                        rows="3">{{ array_key_exists('wl_email_template', $settings) ? $settings['wl_email_template'] : '' }}</textarea>
+                                                    <textarea type="text" name="wl_email_template" class="form-control ckeditor" id="mailEditor2" rows="3">{{ array_key_exists('wl_email_template', $settings) ? $settings['wl_email_template'] : '' }}</textarea>
 
                                                     <small class="form-text text-warning">Be carefull use these variables in
                                                         your template
@@ -126,74 +124,74 @@
                                         aria-controls="accordionMargin3">
                                         Mail Settings
                                     </button>
-                                </h3>
-                                <div id="accordionMargin3" class="accordion-collapse collapse"
-                                    aria-labelledby="headingMargin3" data-bs-parent="#accordionMargin" style="">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Mailer</label>
-                                                <input type="text" name="MAIL_MAILER" class="form-control"
-                                                    placeholder="Enter mail mailer"
-                                                    value="{{ array_key_exists('MAIL_MAILER', $settings) ? $settings['MAIL_MAILER'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Host</label>
-                                                <input type="text" name="MAIL_HOST" class="form-control"
-                                                    placeholder="Enter mail host"
-                                                    value="{{ array_key_exists('MAIL_HOST', $settings) ? $settings['MAIL_HOST'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Posrt</label>
-                                                <input type="text" name="MAIL_PORT" class="form-control"
-                                                    placeholder="Enter mail port"
-                                                    value="{{ array_key_exists('MAIL_PORT', $settings) ? $settings['MAIL_PORT'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Username</label>
-                                                <input type="text" name="MAIL_USERNAME" class="form-control"
-                                                    placeholder="Enter mail username"
-                                                    value="{{ array_key_exists('MAIL_USERNAME', $settings) ? $settings['MAIL_USERNAME'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Password</label>
-                                                <input type="text" name="MAIL_PASSWORD" class="form-control"
-                                                    placeholder="Enter mail password"
-                                                    value="{{ array_key_exists('MAIL_PASSWORD', $settings) ? $settings['MAIL_PASSWORD'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail Encryption</label>
-                                                {{-- <input type="text" name="MAIL_ENCRYPTION" class="form-control"
+                                    </h3>
+                                    <div id="accordionMargin3" class="accordion-collapse collapse"
+                                        aria-labelledby="headingMargin3" data-bs-parent="#accordionMargin" style="">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Mailer</label>
+                                                    <input type="text" name="MAIL_MAILER" class="form-control"
+                                                        placeholder="Enter mail mailer"
+                                                        value="{{ array_key_exists('MAIL_MAILER', $settings) ? $settings['MAIL_MAILER'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Host</label>
+                                                    <input type="text" name="MAIL_HOST" class="form-control"
+                                                        placeholder="Enter mail host"
+                                                        value="{{ array_key_exists('MAIL_HOST', $settings) ? $settings['MAIL_HOST'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Posrt</label>
+                                                    <input type="text" name="MAIL_PORT" class="form-control"
+                                                        placeholder="Enter mail port"
+                                                        value="{{ array_key_exists('MAIL_PORT', $settings) ? $settings['MAIL_PORT'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Username</label>
+                                                    <input type="text" name="MAIL_USERNAME" class="form-control"
+                                                        placeholder="Enter mail username"
+                                                        value="{{ array_key_exists('MAIL_USERNAME', $settings) ? $settings['MAIL_USERNAME'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Password</label>
+                                                    <input type="text" name="MAIL_PASSWORD" class="form-control"
+                                                        placeholder="Enter mail password"
+                                                        value="{{ array_key_exists('MAIL_PASSWORD', $settings) ? $settings['MAIL_PASSWORD'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail Encryption</label>
+                                                    {{-- <input type="text" name="MAIL_ENCRYPTION" class="form-control"
                                                     placeholder="Enter mail encryption"
                                                     value="{{ array_key_exists('MAIL_ENCRYPTION', $settings) ? $settings['MAIL_ENCRYPTION'] : '' }}"> --}}
 
-                                                <select name="MAIL_ENCRYPTION" class="form-control">
-                                                    <option value="">Select Encryption</option>
-                                                    <option value="tls"
-                                                        {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'tls' ? 'selected' : '' }}>
-                                                        tls</option>
-                                                    <option value="ssl"
-                                                        {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'ssl' ? 'selected' : '' }}>
-                                                        ssl</option>
-                                                </select>
-                                                
+                                                    <select name="MAIL_ENCRYPTION" class="form-control">
+                                                        <option value="">Select Encryption</option>
+                                                        <option value="tls"
+                                                            {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'tls' ? 'selected' : '' }}>
+                                                            tls</option>
+                                                        <option value="ssl"
+                                                            {{ array_key_exists('MAIL_ENCRYPTION', $settings) && $settings['MAIL_ENCRYPTION'] == 'ssl' ? 'selected' : '' }}>
+                                                            ssl</option>
+                                                    </select>
 
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail From Address</label>
-                                                <input type="email" name="MAIL_FROM_ADDRESS" class="form-control"
-                                                    placeholder="Enter mail from address"
-                                                    value="{{ array_key_exists('MAIL_FROM_ADDRESS', $settings) ? $settings['MAIL_FROM_ADDRESS'] : '' }}">
-                                            </div>
-                                            <div class="form-group col-12 mt-2">
-                                                <label>Mail From Name</label>
-                                                <input type="text" name="MAIL_FROM_NAME" class="form-control"
-                                                    placeholder="Enter mail from name"
-                                                    value="{{ array_key_exists('MAIL_FROM_NAME', $settings) ? $settings['MAIL_FROM_NAME'] : '' }}">
+
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail From Address</label>
+                                                    <input type="email" name="MAIL_FROM_ADDRESS" class="form-control"
+                                                        placeholder="Enter mail from address"
+                                                        value="{{ array_key_exists('MAIL_FROM_ADDRESS', $settings) ? $settings['MAIL_FROM_ADDRESS'] : '' }}">
+                                                </div>
+                                                <div class="form-group col-12 mt-2">
+                                                    <label>Mail From Name</label>
+                                                    <input type="text" name="MAIL_FROM_NAME" class="form-control"
+                                                        placeholder="Enter mail from name"
+                                                        value="{{ array_key_exists('MAIL_FROM_NAME', $settings) ? $settings['MAIL_FROM_NAME'] : '' }}">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
 
                             <div class="accordion-item">
@@ -203,24 +201,23 @@
                                         aria-controls="accordionMargin4">
                                         Test Mail
                                     </button>
-                                </h3>
-                                <div id="accordionMargin4" class="accordion-collapse collapse"
-                                    aria-labelledby="headingMargin4" data-bs-parent="#accordionMargin" style="">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="form-group col-12 mt-2">
-                                                <a href="{{ route('test-email') }}" class="btn btn-outline-warning">
-                                                    <i class="fa fa-envelope"></i>
-                                                    Test Mail
-                                                </a>
+                                    </h3>
+                                    <div id="accordionMargin4" class="accordion-collapse collapse"
+                                        aria-labelledby="headingMargin4" data-bs-parent="#accordionMargin"
+                                        style="">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="form-group col-12 mt-2">
+                                                    <a href="{{ route('test-email') }}" class="btn btn-outline-warning">
+                                                        <i class="fa fa-envelope"></i>
+                                                        Test Mail
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
-
-
 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
@@ -268,6 +265,19 @@
                     $("#url_input").hide();
                 }
             });
+        });
+    </script>
+
+    {{-- <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script> --}}
+    <script type="text/javascript">
+        CKEDITOR.replace('mailEditor1', {
+            filebrowserUploadUrl: "{{ route('image.upload', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
+        });
+
+        CKEDITOR.replace('mailEditor2', {
+            filebrowserUploadUrl: "{{ route('image.upload', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
         });
     </script>
 @endpush

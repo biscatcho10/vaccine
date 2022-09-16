@@ -93,4 +93,6 @@ Route::middleware(['auth:web'])->group(function () {
 
     // send test email
     Route::get('test-email', [SettingController::class, 'testMail'])->name('test-email');
+
+    Route::post('ckeditor/image_upload', [SettingController::class, 'uploadEditor'])->name('image.upload');
 });
