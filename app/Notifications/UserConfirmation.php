@@ -45,6 +45,7 @@ class UserConfirmation extends Notification
     {
         $thanks = new HtmlString($this->details['body']);
         return (new MailMessage)
+            ->subject($this->details['subject'])
             ->greeting($this->details['subject'])
             ->line($thanks)
             ->action($this->details['actionText'], $this->details['actionURL']);

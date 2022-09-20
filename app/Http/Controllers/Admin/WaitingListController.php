@@ -51,7 +51,7 @@ class WaitingListController extends Controller
         $details = [
             'subject' => Setting::get('wl_email_subject'),
             'body' => $email_template,
-            'actionText' => 'Well Pharamacy',
+            'actionText' => 'Well Plus Pharmacy',
             'actionURL' => url('/'),
         ];
 

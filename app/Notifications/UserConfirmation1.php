@@ -53,7 +53,7 @@ class UserConfirmation1 extends Notification
                     ->description('Your request for ' . $this->details['vaccine'] . ' sent successfully.')
                     ->organizer("wellpharmacy@petegypt.net", "Well Plus Compounding Pharmacy*")
                     ->startsAt(Carbon::parse($this->details['day_date'] . ' ' . $this->details['day_time']));
-                    // ->address('Well pharamacy clinic');
+                    // ->address('Well Plus Pharmacy clinic');
             });
         $calendar->appendProperty(TextProperty::create('METHOD', 'REQUEST'));
 

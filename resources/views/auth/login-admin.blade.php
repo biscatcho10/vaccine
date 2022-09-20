@@ -80,10 +80,10 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Well Pharamacy</h2>
+                                    <h2 class="brand-text text-primary ms-1">Well Plus Pharmacy</h2>
                                 </a>
 
-                                <h4 class="card-title mb-3">Welcome to Well Pharamacy</h4>
+                                <h4 class="card-title mb-3">Welcome to Well Plus Pharmacy</h4>
 
                                 <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                                     @csrf

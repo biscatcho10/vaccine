@@ -142,7 +142,7 @@ class VaccineController extends Controller
         $details = [
             'subject' => Setting::get('email_subject'),
             'body' => $email_template,
-            'actionText' => 'Well Pharamacy',
+            'actionText' => 'Well Plus Pharmacy',
             'actionURL' => url('/'),
             'vaccine' => $vaccine_name,
             'day_date' => $request->day_date,
