@@ -4,7 +4,8 @@
     <!-- /.card-header -->
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-3">
+                <label>Service</label>
                 <select name="service" class="form-control">
                     <option value="">Select Service</option>
                     @foreach ($services as $service)
@@ -12,8 +13,20 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Start At</label>
+                    <input type="date" name="start" value="{{ request()->start }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>End At</label>
+                    <input type="date" name="end" value="{{ request()->end }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary mt-2">
                     <i class="fas fa fa-fw fa-filter"></i>
                     Filter
                 </button>
