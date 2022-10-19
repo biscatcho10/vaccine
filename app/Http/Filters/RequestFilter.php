@@ -13,8 +13,9 @@ class RequestFilter extends BaseFilters
      */
     protected $filters = [
         'service',
-        'start',
-        'end',
+        'date',
+        // 'start',
+        // 'end',
     ];
 
     /**
@@ -27,6 +28,22 @@ class RequestFilter extends BaseFilters
     {
         if ($value) {
             return $this->builder->where('vaccine_id', "$value");
+        }
+
+        return $this->builder;
+    }
+
+    /**
+     * Filter the query by a given service.
+     *
+     * @param string|int $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function date($value)
+    {
+        if ($value) {
+            $date = Carbon::parse($value)->format('Y-m-d');
+            return $this->builder->whereDate('day_date', $date);
         }
 
         return $this->builder;
