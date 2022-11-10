@@ -17,6 +17,7 @@ class Vaccine extends Model
         "to",
         "has_diff_ages",
         "diff_ages",
+        "order"
     ];
 
     protected $casts = [

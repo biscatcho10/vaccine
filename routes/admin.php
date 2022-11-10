@@ -95,4 +95,6 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('test-email', [SettingController::class, 'testMail'])->name('test-email');
 
     Route::post('ckeditor/image_upload', [SettingController::class, 'uploadEditor'])->name('image.upload');
+
+    Route::post('order-services', [VaccineController::class, 'order'])->name('order.services');
 });
