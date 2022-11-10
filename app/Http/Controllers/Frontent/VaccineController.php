@@ -24,7 +24,7 @@ class VaccineController extends Controller
         return view('welcome', [
             'settings' => Setting::all(),
             'page_image' => asset("storage/images/settings/" . Setting::get('page_image')),
-            'vaccines' => Vaccine::pluck('name', 'id')->toArray()
+            'vaccines' => Vaccine::orderBy('order', 'asc')->pluck('name', 'id')->toArray()
         ]);
     }
 
