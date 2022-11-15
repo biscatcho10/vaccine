@@ -40,6 +40,7 @@ Route::middleware(['auth:web'])->group(function () {
 
     // Vaccines
     Route::resource('vaccine', VaccineController::class);
+    Route::get('order/vaccines', [VaccineController::class, 'ordered'])->name('vaccine.order');
 
     // Vaccines
     Route::get('requests', [VaccineController::class, 'allRequests'])->name('all.requests');

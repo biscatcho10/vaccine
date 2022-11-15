@@ -260,4 +260,14 @@ class VaccineController extends Controller
 
         return redirect()->back()->with('success', 'Services ordered successfully.');
     }
+
+
+    public function ordered()
+    {
+        $data = $this->repository->all();
+
+        return view('backend.vaccines.order', compact('data'));
+    }
+
+
 }
