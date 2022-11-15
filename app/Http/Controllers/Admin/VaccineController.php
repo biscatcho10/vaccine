@@ -247,4 +247,27 @@ class VaccineController extends Controller
         $vaccine->update(['amount' => $vaccine->amount + 1]);
         return redirect()->route('vaccine.show', $vaccine)->with('success', 'Request canceled successfully.');
     }
+
+
+    public function order (Request $request)
+    {
+        foreach ($request->services as $key => $service) {
+            $order = $key + 1;
+            Vaccine::where('id', $service)->update([
+                'order' => $order,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Services ordered successfully.');
+    }
+
+
+    public function ordered()
+    {
+        $data = $this->repository->all();
+
+        return view('backend.vaccines.order', compact('data'));
+    }
+
+
 }

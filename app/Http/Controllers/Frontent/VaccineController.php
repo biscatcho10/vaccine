@@ -24,7 +24,7 @@ class VaccineController extends Controller
         return view('welcome', [
             'settings' => Setting::all(),
             'page_image' => asset("storage/images/settings/" . Setting::get('page_image')),
-            'vaccines' => Vaccine::pluck('name', 'id')->toArray()
+            'vaccines' => Vaccine::orderBy('order', 'asc')->pluck('name', 'id')->toArray()
         ]);
     }
 
@@ -32,49 +32,55 @@ class VaccineController extends Controller
     {
         $answer = $request->except('_token', 'vaccine', 'age', 'day_date', 'day_time', 'first_name', 'last_name', 'email', 'phone', 'dob', 'address', 'health_card_number', 'eligapility', 'condition_approved', 'process', 'comment');
 
-        // create patient
-        $patient = Patient::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
-            'address' => $request->address,
-            'health_card_num' => $request->health_card_number,
-        ]);
+        $amount = Vaccine::find($request->vaccine)->amount;
 
-        // create patient request
-        $request_answer = RequestAnswer::create([
-            'vaccine_id' => $request->vaccine,
-            'day_date' => $request->day_date,
-            'day_time' => $request->day_time,
-            'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
-            'patient_hcm' => $patient->health_card_num,
-            'eligapility' => $request->eligapility,
-            'comment' => $request->comment,
-            'answers' => $answer,
-        ]);
-        
-        if ($request->age && $request->age != null) {
-            $request_answer->update([
-                'age' => $request->age
+        if ($amount >0) {
+            // create patient
+            $patient = Patient::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'dob' => Carbon::parse($request->dob)->format('Y-m-d'),
+                'address' => $request->address,
+                'health_card_num' => $request->health_card_number,
             ]);
-        }
 
-        // update vaccine amount
-        $vaccine = Vaccine::find($request->vaccine);
-        $vaccine->update([
-            'amount' => $vaccine->amount - 1
-        ]);
+            // create patient request
+            $request_answer = RequestAnswer::create([
+                'vaccine_id' => $request->vaccine,
+                'day_date' => $request->day_date,
+                'day_time' => $request->day_time,
+                'day_name' => lcfirst(Carbon::parse($request->day_date)->format('l')),
+                'patient_hcm' => $patient->health_card_num,
+                'eligapility' => $request->eligapility,
+                'comment' => $request->comment,
+                'answers' => $answer,
+            ]);
+            if ($request->age && $request->age != null) {
+                $request_answer->update([
+                    'age' => $request->age
+                ]);
+            }
 
-        // send confirmation email
-        $this->sendEmail($patient, $request);
+            // update vaccine amount
+            $vaccine = Vaccine::find($request->vaccine);
+            $vaccine->update([
+                'amount' => $vaccine->amount - 1
+            ]);
 
-        if (Setting::get('redirect')) {
-            return redirect(Setting::get('redirect_url'));
+            // send confirmation email
+            $this->sendEmail($patient, $request);
+
+            if (Setting::get('redirect')) {
+                return redirect(Setting::get('redirect_url'));
+            } else {
+                return redirect()->route('get.thanks');
+            }
         } else {
-            return redirect()->route('get.thanks');
+            return redirect()->back()->with('error', 'This vaccine is currently out of stock. Please Fill your information On next Page. And an E-mail will be sent to you once available');
         }
+
     }
 
 

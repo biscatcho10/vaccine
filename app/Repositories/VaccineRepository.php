@@ -18,7 +18,7 @@ class VaccineRepository implements CrudRepository
      */
     public function all()
     {
-        return Vaccine::orderBy('created_at', 'desc')->get();
+        return Vaccine::orderBy('order', 'asc')->get();
     }
 
     /**
@@ -30,6 +30,10 @@ class VaccineRepository implements CrudRepository
     public function create(array $data)
     {
         $vaccine = Vaccine::create($data);
+
+        $vaccine->update([
+            'order' => $vaccine->id
+        ]);
 
         if ($data['from'] == null && $data['to'] == null) {
             $vaccine->update(['definded_period' => 0]);

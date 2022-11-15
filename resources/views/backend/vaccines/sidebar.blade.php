@@ -13,5 +13,10 @@
                 <i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add Service</span>
             </a>
         </li>
+        <li>
+            <a class="d-flex align-items-center" href="{{route('vaccine.order')}}">
+                <i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Order Services</span>
+            </a>
+        </li>
     </ul>
 </li>
