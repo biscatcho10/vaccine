@@ -54,6 +54,7 @@ class VaccineController extends Controller
             'comment' => $request->comment,
             'answers' => $answer,
         ]);
+        
         if ($request->age && $request->age != null) {
             $request_answer->update([
                 'age' => $request->age
