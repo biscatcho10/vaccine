@@ -1,7 +1,7 @@
 @extends('backend.dark-app')
 
 @section('title')
-    Services
+    Questions
 @stop
 
 @push('css')
@@ -13,26 +13,32 @@
 @endpush
 
 @section('content')
+
     @component('backend.components.breadcrumbs')
-        @slot('page', 'Services')
+        @slot('parent', $vaccine->name)
+        @slot('parentUrl', route('vaccine.show', $vaccine))
+        @slot('page', 'Questions')
     @endcomponent
 
     @include('backend.layouts.partials.session')
-    <form action="{{ route('order.services') }}" method="POST">
 
-        <table id="datatable" class="table dt-responsive nowrap"
-            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <form action="{{ route('order.questions') }}" method="POST">
+
+        <table id="datatable" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Question</th>
+                    <th>Type</th>
                 </tr>
             </thead>
 
+
             <tbody>
-                @foreach ($data as $vaccine)
+                @foreach ($data as $question)
                     <tr>
-                        <input type="hidden" name='services[]' value="{{ $vaccine->id }}" class="form-controldrag">
-                        <th>{{ $vaccine->name }}</th>
+                        <input type="hidden" name='questions[]' value="{{ $question->id }}" class="form-controldrag">
+                        <td>{{ $question->question }}</td>
+                        <th>{{ ucfirst($question->input_type) }}</th>
                     </tr>
                 @endforeach
             </tbody>

@@ -21,6 +21,9 @@
     <div class="col">
         @include('backend.questions.partials.actions.create')
     </div>
+    <div class="col">
+        @include('backend.questions.partials.actions.order')
+    </div>
 </div>
 
     <table id="datatable" class="table dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

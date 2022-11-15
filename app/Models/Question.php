@@ -13,6 +13,7 @@ class Question extends Model
         "select_type",
         "options",
         "vaccine_id",
+        "order",
     ];
 
     protected $casts = [

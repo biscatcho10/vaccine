@@ -53,6 +53,10 @@ class QuestionController extends Controller
             $question = $vaccine->questions()->create($request->except('_token'));
         }
 
+        $question->update([
+            'order' => $question->id
+        ]);
+
         return redirect()->route('question.show', [$vaccine, $question])->with('success', 'question created successfully.');
     }
 
@@ -99,7 +103,6 @@ class QuestionController extends Controller
                 "options" => null,
             ]);
             $question->update($request->all());
-
         } else {
             if (!$request->select_type) {
                 $request->merge(["select_type" => "single"]);
@@ -184,5 +187,25 @@ class QuestionController extends Controller
             'vaccine' => $vaccine,
             'vaccines' => $vaccines,
         ]);
+    }
+
+
+    public function order(Request $request)
+    {
+        foreach ($request->questions as $key => $question) {
+            $order = $key + 1;
+            Question::where('id', $question)->update([
+                'order' => $order,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Questions ordered successfully.');
+    }
+
+
+    public function ordered(Vaccine $vaccine)
+    {
+        $data = $vaccine->questions()->get();
+        return view('backend.questions.order', compact('data', 'vaccine'));
     }
 }

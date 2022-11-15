@@ -38,9 +38,8 @@ Route::middleware(['auth:web'])->group(function () {
     // Users
     Route::resource('user', PatientController::class);
 
-    // Vaccines
+    // questions
     Route::resource('vaccine', VaccineController::class);
-    Route::get('order/vaccines', [VaccineController::class, 'ordered'])->name('vaccine.order');
 
     // Vaccines
     Route::get('requests', [VaccineController::class, 'allRequests'])->name('all.requests');
@@ -98,4 +97,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('ckeditor/image_upload', [SettingController::class, 'uploadEditor'])->name('image.upload');
 
     Route::post('order-services', [VaccineController::class, 'order'])->name('order.services');
+    Route::get('order/vaccines', [VaccineController::class, 'ordered'])->name('vaccine.order');
+
+    Route::post('order-questions', [QuestionController::class, 'order'])->name('order.questions');
+    Route::get('order/questions/{vaccine}', [QuestionController::class, 'ordered'])->name('question.order');
+
 });
