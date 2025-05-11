@@ -36,6 +36,7 @@
                     <tr>
                         <th>User Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Service</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                         <tr>
                             <th>{{ $list->user_name }}</th>
                             <th>{{ $list->user_email }}</th>
+                            <th>{{ $list->patients->latest()->first()->phone }}</th>
                             <th>{{ $list->vaccine->name }}</th>
                         </tr>
                     @empty
@@ -63,6 +65,7 @@
                     <tr>
                         <th>User Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Service</th>
                     </tr>
                 </thead>
@@ -72,6 +75,7 @@
                         <tr>
                             <th>{{ $list->user_name }}</th>
                             <th>{{ $list->user_email }}</th>
+                            <th>{{ $list->patients->latest()->first()->phone }}</th>
                             <th>{{ $list->vaccine->name }}</th>
                         </tr>
                     @empty

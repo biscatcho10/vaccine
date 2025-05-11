@@ -19,4 +19,9 @@ class WaitingList extends Model
         return $this->belongsTo(Vaccine::class);
     }
 
+    // get the last patient that waiting is belong to
+    public function patients()
+    {
+        return $this->hasMany(Patient::class, 'email', 'user_email');
+    }
 }

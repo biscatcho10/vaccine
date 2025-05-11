@@ -19,8 +19,8 @@ class WaitingListController extends Controller
     public function waitingListVaccine($id)
     {
         $vaccine = Vaccine::findOrFail($id);
-        $waitingLists = $vaccine->waitingLists()->where('notification_sent', false)->orderBy('created_at', 'asc')->get();
-        $NotifiedwaitingLists = $vaccine->waitingLists()->where('notification_sent', true)->orderBy('created_at', 'asc')->get();
+        $waitingLists = $vaccine->waitingLists()->with('patients')->where('notification_sent', false)->orderBy('created_at', 'asc')->get();
+        $NotifiedwaitingLists = $vaccine->waitingLists()->with('patients')->where('notification_sent', true)->orderBy('created_at', 'asc')->get();
         return view('backend.waiting-lists.vaccine-waiting-list', compact('vaccine', 'waitingLists', 'NotifiedwaitingLists'));
     }
 
